@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #f5f5f5;
+  background-color: #F8F0E5;
   background-image: url('driving.jpg');
   background-size: cover;
   background-attachment: fixed;
@@ -14,7 +14,7 @@ body {
   top: 20px;
   left: 20px;
   z-index: 1001;
-  background: #2c3e50;
+  background: #3a281a;
   color: white;
   border: none;
   width: 50px;
@@ -30,7 +30,7 @@ body {
 }
 
 .sidebar-toggle:hover {
-  background: #34495e;
+  background: #3a281a;
   transform: scale(1.1);
 }
 
@@ -59,7 +59,7 @@ body {
   left: 0;
   width: 220px;
   height: 100vh;
-  background: #2c3e50;
+  background: #3a281a;
   color: white;
   padding: 20px;
   z-index: 1000;
@@ -76,7 +76,7 @@ body {
 .profile-section {
     padding: 24px;
     border-bottom: 1px solid #e5e7eb;
-    background-color: white;
+    background-color: ceebfb;
 }
 
 .profile-container {
@@ -91,7 +91,7 @@ body {
     height: 64px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #c084fc;
+    border: 2px solid #ceebfb;
     flex-shrink: 0;
 }
 
@@ -109,13 +109,13 @@ body {
 
 .profile-role {
     font-size: 14px;
-    color: #6b7280;
+    color: #082052;
     font-weight: 400;
 }
 
 /* Hover Effects */
 .profile-section:hover {
-    background-color: #fafafa;
+    background-color: #ceebfb;
     transition: background-color 0.2s ease;
 }
 
@@ -140,7 +140,7 @@ body {
 }
 
 .sidebar .menu li a:hover {
-  background: #3498db;
+  background: #111827;
 }
 
 .sidebar .menu li a i {
@@ -156,7 +156,7 @@ body {
 
 /* Banner */
 .banner {
-  background: rgba(173, 216, 230, 0.9);
+  background: rgba(206,235,251);
   padding: 40px;
   text-align: center;
   border-radius: 8px;
@@ -165,19 +165,19 @@ body {
 
 .banner h1 {
   margin-bottom: 10px;
-  color: #333;
+  color: #3a281a;
 }
 
 .banner p {
   margin-bottom: 20px;
-  color: #555;
+  color: #4d3522;
 }
 
 .banner button {
   margin: 5px;
   padding: 10px 20px;
   border: none;
-  background: #4CAF50;
+  background: #0b2e78;
   color: white;
   cursor: pointer;
   border-radius: 5px;
@@ -186,7 +186,7 @@ body {
 }
 
 .banner button:hover {
-  background: #45a049;
+  background: #60422b;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -204,7 +204,7 @@ body {
   min-width: 200px;
   padding: 20px;
   border-radius: 8px;
-  color: white;
+  color: whitesmoke;
   text-align: center;
   transition: all 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -215,17 +215,17 @@ body {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.purple { background: rgb(230, 147, 230); }
-.green  { background: rgb(119, 163, 138); }
-.yellow { background: rgb(224, 198, 132); }
-.pink   { background: rgb(201, 143, 172); }
+.purple { background: #082052; }
+.green  { background: #082052; }
+.yellow { background: #082052; }
+.pink   { background: #082052; }
 
 .box button {
   margin-top: 10px;
   padding: 8px 12px;
   border: none;
-  background-color: white;
-  color: black;
+  background-color: #ceebfb;
+  color: #3a281a;
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
