@@ -17,13 +17,21 @@
 
   <!-- Sidebar -->
  <aside class="sidebar">
-  <div class="profile">
-    <img src="download (5 ).jpg"
-     alt="Emily Johnson Profile Picture"
-     width="80"
-     height="80">
-    
-  </div>
+  <!-- Profile Section -->
+<div class="profile-section">
+    <div class="profile-container">
+        <img 
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop" 
+            alt="Emily Johnson Profile Picture" 
+            class="profile-avatar"
+        >
+        <div class="profile-info">
+            <h3 class="profile-name">Emily Johnson</h3>
+            <p class="profile-role">Learner</p>
+        </div>
+    </div>
+</div>
+
 
   <nav>
     <ul class="menu">
@@ -81,6 +89,32 @@
   </main>
 
   <script>
+    // Profile section hover effect
+const profileSection = document.querySelector('.profile-section' );
+
+profileSection.addEventListener('mouseenter', function() {
+    this.style.backgroundColor = '#fafafa';
+    this.style.cursor = 'pointer';
+});
+
+profileSection.addEventListener('mouseleave', function() {
+    this.style.backgroundColor = 'white';
+});
+
+// Profile click handler
+profileSection.addEventListener('click', function() {
+    console.log('Profile clicked: Emily Johnson');
+    alert('Profile clicked! Navigate to profile page.');
+});
+
+// Dynamic profile update function
+function updateProfile(name, role, avatarUrl) {
+    document.querySelector('.profile-name').textContent = name;
+    document.querySelector('.profile-role').textContent = role;
+    document.querySelector('.profile-avatar').src = avatarUrl;
+    console.log('Profile updated: ' + name);
+}
+
     const sidebar = document.querySelector('.sidebar');
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebarOverlay = document.getElementById('sidebarOverlay');
