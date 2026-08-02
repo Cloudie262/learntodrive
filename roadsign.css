@@ -1,0 +1,315 @@
+/* Google Font */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:#F7F9FC;
+    color:#3B2617;
+}
+
+.container{
+
+    width:90%;
+    margin:auto;
+    padding:40px 0;
+}
+
+/*================ HEADER ================*/
+
+.header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.title h1{
+
+    font-size:60px;
+    font-family:Georgia, serif;
+    color:#3B2617;
+}
+
+.title p{
+
+    margin-top:10px;
+    color:#555;
+    font-size:18px;
+    line-height:30px;
+}
+
+/*================ SEARCH ================*/
+
+.search-box{
+
+    width:420px;
+    height:60px;
+
+    background:white;
+
+    border:2px solid #9EC7F8;
+
+    border-radius:15px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 20px;
+
+}
+
+.search-box i{
+
+    color:#666;
+    font-size:22px;
+}
+
+.search-box input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    font-size:18px;
+
+    margin-left:15px;
+
+    background:transparent;
+}
+
+/*================ CATEGORY ================*/
+
+.category{
+
+    margin:40px 0;
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+}
+
+.category button{
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:white;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.3s;
+}
+
+.category button:hover{
+
+    transform:translateY(-3px);
+}
+
+.category .active{
+
+    background:#4A2F20;
+
+    color:white;
+}
+
+/*================ ROAD SIGN GRID ================*/
+
+.road-signs{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+}
+
+/*================ CARD ================*/
+
+.card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    cursor:pointer;
+
+    min-height:340px;
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.12);
+
+    border:2px solid #B8D9FF;
+}
+
+.card img{
+
+    width:110px;
+
+    height:110px;
+
+    object-fit:contain;
+
+    transition:.3s;
+}
+
+.card:hover img{
+
+    transform:scale(1.08);
+}
+
+.card h3{
+
+    margin-top:15px;
+
+    color:#3B2617;
+
+    font-size:24px;
+}
+
+.card p{
+
+    margin-top:12px;
+
+    color:#666;
+
+    font-size:15px;
+
+    line-height:25px;
+}
+
+/*================ SAFE DRIVING TIP ================*/
+
+.tip{
+
+    margin-top:50px;
+
+    background:#DDEEFF;
+
+    border-radius:20px;
+
+    padding:25px 35px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+}
+
+.tip-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    background:#2D7FF9;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+}
+
+.tip-text h3{
+
+    color:#123;
+
+    font-size:25px;
+
+    margin-bottom:8px;
+}
+
+.tip-text p{
+
+    color:#444;
+
+    line-height:28px;
+}
+
+/*================ RESPONSIVE ================*/
+
+@media(max-width:900px){
+
+.header{
+
+    flex-direction:column;
+}
+
+.search-box{
+
+    width:100%;
+}
+
+.title h1{
+
+    font-size:45px;
+}
+
+}
+
+@media(max-width:600px){
+
+.card{
+
+    min-height:300px;
+}
+
+.card img{
+
+    width:90px;
+    height:90px;
+}
+
+.title h1{
+
+    font-size:38px;
+}
+
+.tip{
+
+    flex-direction:column;
+
+    text-align:center;
+}
+
+}
