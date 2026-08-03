@@ -1,6 +1,9 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  background-image: url('driving.jpg');
+  background-size: cover;
+  padding: 40px;
   background-color: #f5f5f5;
   background-attachment: fixed;
   background-position: center;
@@ -155,9 +158,6 @@ body {
 /* Banner */
 .banner {
   background: rgba(173, 216, 230, 0.9);
-  background-image: url('driving.jpg');
-  background-size: cover;
-  padding: 40px;
   text-align: center;
   border-radius: 8px;
   backdrop-filter: blur(5px);
