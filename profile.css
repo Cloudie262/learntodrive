@@ -1,13 +1,23 @@
-/* Profile Container */
-.profile-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
+/* Color Scheme */
+:root {
+  --primary-color: #082052;
+  --light-bg: #F8F0E5;
+  --text-dark: #082052;
+  --text-light: #666;
+  --border-color: #E8DFD3;
+  --accent-color: #4CAF50;
 }
 
-/* User Profile Section */
+/* Profile Container */
+.profile-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* User Profile */
 .user-profile {
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn 0.4s ease;
 }
 
 @keyframes fadeIn {
@@ -21,13 +31,13 @@
   }
 }
 
+/* Profile Section */
 .profile-section {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 30px;
-  border-radius: 12px;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  border: 1px solid var(--border-color);
 }
 
 .profile-header {
@@ -37,147 +47,165 @@
 }
 
 .profile-pic {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  border: 4px solid #4CAF50;
+  border: 2px solid var(--primary-color);
   object-fit: cover;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .profile-info h1 {
-  margin: 0 0 10px 0;
-  color: #333;
+  margin: 0 0 8px 0;
+  color: var(--text-dark);
   font-size: 28px;
+  font-weight: 600;
 }
 
-.status {
-  margin: 5px 0;
-  font-size: 16px;
-  color: #666;
+.status-text {
+  margin: 8px 0;
+  font-size: 14px;
+  color: var(--text-light);
 }
 
 .status-badge {
   display: inline-block;
-  padding: 5px 12px;
+  padding: 4px 12px;
+  background: #E8F5E9;
+  color: var(--accent-color);
   border-radius: 20px;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.status-badge.active {
-  background: #d4edda;
-  color: #155724;
-}
-
-.status-badge.inactive {
-  background: #f8d7da;
-  color: #721c24;
+  font-weight: 600;
+  font-size: 13px;
 }
 
 .member-since {
-  color: #999;
-  font-size: 14px;
+  margin: 8px 0 0 0;
+  font-size: 13px;
+  color: var(--text-light);
 }
 
 /* Progress Section */
 .progress-section {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 30px;
-  border-radius: 12px;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  border: 1px solid var(--border-color);
 }
 
 .progress-section h2 {
-  color: #333;
+  color: var(--text-dark);
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .progress-item {
-  margin-bottom: 20px;
+  margin-bottom: 28px;
+}
+
+.progress-item:last-child {
+  margin-bottom: 0;
 }
 
 .progress-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-size: 14px;
-  color: #666;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.percentage {
+  color: var(--accent-color);
+  font-weight: 600;
 }
 
 .progress-bar {
-  background: #e0e0e0;
-  height: 10px;
-  border-radius: 5px;
+  background: #F0F0F0;
+  height: 8px;
+  border-radius: 4px;
   overflow: hidden;
 }
 
 .progress-fill {
-  background: linear-gradient(to right, #4CAF50, #45a049);
+  background: var(--accent-color);
   height: 100%;
   transition: width 0.3s ease;
 }
 
 /* Calendar Section */
 .calendar-section {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 30px;
-  border-radius: 12px;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-}
-
-.calendar-section h2 {
-  color: #333;
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.streak-info {
-  font-size: 18px;
-  color: #ff6b6b;
-  margin: 10px 0 20px 0;
-  font-weight: bold;
-}
-
-.calendar {
   background: white;
-  padding: 20px;
+  padding: 40px;
   border-radius: 8px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color);
 }
 
-.calendar-header {
+.calendar-header-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-.calendar-header button {
-  background: #4CAF50;
+.calendar-section h2 {
+  color: var(--text-dark);
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.streak-info {
+  font-size: 16px;
+  color: var(--text-dark);
+  margin: 0;
+  font-weight: 500;
+}
+
+.flame {
+  margin-right: 4px;
+}
+
+.calendar {
+  background: var(--light-bg);
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.calendar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.nav-btn {
+  background: var(--primary-color);
   color: white;
   border: none;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.calendar-header button:hover {
-  background: #45a049;
-  transform: scale(1.1);
+.nav-btn:hover {
+  background: #0A2E6D;
+  transform: scale(1.05);
 }
 
-.calendar-header h3 {
+.calendar-nav h3 {
   margin: 0;
-  color: #333;
+  color: var(--text-dark);
+  font-size: 16px;
+  font-weight: 600;
   min-width: 150px;
   text-align: center;
 }
@@ -185,15 +213,17 @@
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  gap: 6px;
 }
 
 .day-name {
   text-align: center;
-  font-weight: bold;
-  color: #666;
+  font-weight: 600;
+  color: var(--text-dark);
   padding: 10px 0;
   font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .calendar-day {
@@ -201,16 +231,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
-  background: #f5f5f5;
+  border-radius: 4px;
+  background: white;
   cursor: pointer;
-  font-size: 14px;
-  color: #999;
-  transition: all 0.3s ease;
+  font-size: 13px;
+  color: var(--text-light);
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
 }
 
 .calendar-day:not(.empty):hover {
-  background: #e0e0e0;
+  background: #F0F0F0;
+  border-color: var(--border-color);
 }
 
 .calendar-day.empty {
@@ -219,39 +251,14 @@
 }
 
 .calendar-day.active-day {
-  background: linear-gradient(135deg, #4CAF50, #45a049);
+  background: var(--primary-color);
   color: white;
-  font-weight: bold;
+  font-weight: 600;
+  border-color: var(--primary-color);
 }
 
-.legend {
-  display: flex;
-  gap: 30px;
-  margin-top: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  color: #666;
-}
-
-.legend-box {
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
-}
-
-.legend-box.active-day {
-  background: linear-gradient(135deg, #4CAF50, #45a049);
-}
-
-.legend-box.inactive-day {
-  background: #e0e0e0;
+.calendar-day.active-day:hover {
+  background: #0A2E6D;
 }
 
 /* Sign Up Section */
@@ -264,26 +271,27 @@
 }
 
 .signup-container {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  max-width: 450px;
+  background: white;
+  padding: 50px 40px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  max-width: 420px;
   width: 100%;
-  backdrop-filter: blur(5px);
 }
 
 .signup-container h1 {
-  color: #333;
+  color: var(--text-dark);
   margin-top: 0;
   margin-bottom: 10px;
   font-size: 28px;
+  font-weight: 600;
 }
 
-.signup-container > p {
-  color: #666;
+.subtitle {
+  color: var(--text-light);
   margin-bottom: 30px;
   font-size: 14px;
+  line-height: 1.6;
 }
 
 .signup-form,
@@ -294,11 +302,11 @@
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateX(-10px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
 
@@ -309,9 +317,11 @@
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  color: #333;
+  color: var(--text-dark);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .form-group input[type="text"],
@@ -319,24 +329,32 @@
 .form-group input[type="password"] {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
   font-size: 14px;
   transition: all 0.3s ease;
   box-sizing: border-box;
+  background: var(--light-bg);
+  color: var(--text-dark);
+}
+
+.form-group input[type="text"]::placeholder,
+.form-group input[type="email"]::placeholder,
+.form-group input[type="password"]::placeholder {
+  color: #999;
 }
 
 .form-group input[type="text"]:focus,
 .form-group input[type="email"]:focus,
 .form-group input[type="password"]:focus {
   outline: none;
-  border-color: #4CAF50;
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+  border-color: var(--primary-color);
+  background: white;
 }
 
 .form-group.checkbox {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 25px;
 }
 
@@ -344,78 +362,98 @@
   width: 18px;
   height: 18px;
   margin-right: 10px;
+  margin-top: 2px;
   cursor: pointer;
+  accent-color: var(--primary-color);
 }
 
 .form-group.checkbox label {
   margin: 0;
   font-weight: 400;
   font-size: 13px;
+  text-transform: none;
+  letter-spacing: normal;
   cursor: pointer;
 }
 
 .signup-btn {
   width: 100%;
   padding: 12px;
-  background: linear-gradient(135deg, #4CAF50, #45a049);
+  background: var(--primary-color);
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: bold;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .signup-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
+  background: #0A2E6D;
+  transform: translateY(-1px);
 }
 
 .signup-btn:active {
   transform: translateY(0);
 }
 
-.login-link {
+.toggle-link {
   text-align: center;
   margin-top: 15px;
-  font-size: 14px;
-  color: #666;
+  font-size: 13px;
+  color: var(--text-light);
 }
 
-.login-link a {
-  color: #4CAF50;
+.toggle-link a {
+  color: var(--primary-color);
   text-decoration: none;
   font-weight: 600;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
-.login-link a:hover {
-  color: #45a049;
+.toggle-link a:hover {
+  color: #0A2E6D;
 }
 
 .login-form h2 {
-  color: #333;
+  color: var(--text-dark);
   margin-top: 0;
   margin-bottom: 25px;
   font-size: 22px;
+  font-weight: 600;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
+  .profile-container {
+    padding: 20px 15px;
+  }
+
+  .profile-section,
+  .progress-section,
+  .calendar-section {
+    padding: 25px 20px;
+    margin-bottom: 25px;
+  }
+
   .profile-header {
     flex-direction: column;
     text-align: center;
-  }
-
-  .profile-pic {
-    width: 100px;
-    height: 100px;
+    gap: 20px;
   }
 
   .profile-info h1 {
     font-size: 24px;
+  }
+
+  .calendar-header-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
   }
 
   .signup-container {
@@ -423,14 +461,49 @@
   }
 
   .calendar-grid {
-    gap: 5px;
+    gap: 4px;
   }
 
   .calendar-day {
     font-size: 12px;
   }
 
-  .legend {
-    gap: 15px;
+  .day-name {
+    font-size: 11px;
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-container {
+    padding: 15px 10px;
+  }
+
+  .profile-section,
+  .progress-section,
+  .calendar-section {
+    padding: 20px 15px;
+    margin-bottom: 20px;
+  }
+
+  .profile-pic {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-info h1 {
+    font-size: 20px;
+  }
+
+  .signup-container {
+    padding: 25px 15px;
+  }
+
+  .calendar {
+    padding: 15px;
+  }
+
+  .calendar-nav h3 {
+    font-size: 14px;
   }
 }

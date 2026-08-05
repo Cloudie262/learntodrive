@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="profile.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body>
+<body style="background-color: #F8F0E5;">
   <!-- Toggle Button -->
   <button class="sidebar-toggle" id="sidebarToggle">
     <i class="fa-solid fa-bars"></i>
@@ -42,27 +42,26 @@
   <!-- Main content -->
   <main class="content">
     <div class="profile-container">
-      <!-- Check if user is logged in -->
+      <!-- User Profile Section -->
       <div id="userProfile" class="user-profile" style="display: none;">
-        <!-- User Profile Section -->
         <section class="profile-section">
           <div class="profile-header">
-            <img src="https://via.placeholder.com/120" alt="User Profile" class="profile-pic">
+            <img src="https://via.placeholder.com/100" alt="User Profile" class="profile-pic">
             <div class="profile-info">
               <h1 id="userName">John Doe</h1>
-              <p class="status"><span class="status-badge active">● Active</span></p>
-              <p class="member-since">Member since: <span id="memberDate">January 2024</span></p>
+              <p class="status-text"><span class="status-badge">Active</span></p>
+              <p class="member-since">Joined <span id="memberDate">January 2024</span></p>
             </div>
           </div>
         </section>
 
         <!-- Course Progress Section -->
         <section class="progress-section">
-          <h2>Course Progress</h2>
+          <h2>Learning Progress</h2>
           <div class="progress-item">
             <div class="progress-header">
               <span>Knowledge Sharing</span>
-              <span id="progress1">65%</span>
+              <span class="percentage">65%</span>
             </div>
             <div class="progress-bar">
               <div class="progress-fill" style="width: 65%"></div>
@@ -71,7 +70,7 @@
           <div class="progress-item">
             <div class="progress-header">
               <span>Practice Tests</span>
-              <span id="progress2">80%</span>
+              <span class="percentage">80%</span>
             </div>
             <div class="progress-bar">
               <div class="progress-fill" style="width: 80%"></div>
@@ -80,7 +79,7 @@
           <div class="progress-item">
             <div class="progress-header">
               <span>Road Signs</span>
-              <span id="progress3">45%</span>
+              <span class="percentage">45%</span>
             </div>
             <div class="progress-bar">
               <div class="progress-fill" style="width: 45%"></div>
@@ -90,13 +89,15 @@
 
         <!-- Activity Calendar Section -->
         <section class="calendar-section">
-          <h2>Your Activity</h2>
-          <p class="streak-info">🔥 <strong id="streakDays">12</strong> day streak! Keep it up!</p>
+          <div class="calendar-header-section">
+            <h2>Activity Calendar</h2>
+            <p class="streak-info"><span class="flame">🔥</span> <strong id="streakDays">12</strong> day streak</p>
+          </div>
           <div class="calendar">
-            <div class="calendar-header">
-              <button id="prevMonth">&lt;</button>
+            <div class="calendar-nav">
+              <button id="prevMonth" class="nav-btn">&lt;</button>
               <h3 id="monthYear">January 2024</h3>
-              <button id="nextMonth">&gt;</button>
+              <button id="nextMonth" class="nav-btn">&gt;</button>
             </div>
             <div class="calendar-grid">
               <div class="day-name">Sun</div>
@@ -109,70 +110,60 @@
               <div id="calendarDays"></div>
             </div>
           </div>
-          <div class="legend">
-            <div class="legend-item">
-              <div class="legend-box active-day"></div>
-              <span>Active Day</span>
-            </div>
-            <div class="legend-item">
-              <div class="legend-box inactive-day"></div>
-              <span>Inactive Day</span>
-            </div>
-          </div>
         </section>
       </div>
 
-      <!-- Sign Up Section (for non-logged-in users ) -->
+      <!-- Sign Up Section -->
       <div id="signupSection" class="signup-section">
         <div class="signup-container">
-          <h1>Join Learn2Drive Today!</h1>
-          <p>Sign up to track your progress, take practice tests, and master driving skills.</p>
+          <h1>Join Learn2Drive</h1>
+          <p class="subtitle">Start your journey to becoming a confident driver</p>
           
           <form class="signup-form">
             <div class="form-group">
               <label for="fullName">Full Name</label>
-              <input type="text" id="fullName" placeholder="Enter your full name" required>
+              <input type="text" id="fullName" placeholder="Your name" required>
             </div>
 
             <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" placeholder="Enter your email" required>
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="your@email.com" required>
             </div>
 
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" id="password" placeholder="Create a password" required>
+              <input type="password" id="password" placeholder="••••••••" required>
             </div>
 
             <div class="form-group">
               <label for="confirmPassword">Confirm Password</label>
-              <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+              <input type="password" id="confirmPassword" placeholder="••••••••" required>
             </div>
 
             <div class="form-group checkbox">
               <input type="checkbox" id="terms" required>
-              <label for="terms">I agree to the Terms of Service and Privacy Policy</label>
+              <label for="terms">I agree to Terms of Service and Privacy Policy</label>
             </div>
 
             <button type="submit" class="signup-btn">Create Account</button>
-            <p class="login-link">Already have an account? <a href="#" onclick="toggleLogin()">Login here</a></p>
+            <p class="toggle-link">Already have an account? <a href="#" onclick="toggleLogin(event )">Sign in</a></p>
           </form>
 
           <!-- Login Form -->
           <form class="login-form" id="loginForm" style="display: none;">
-            <h2>Login to Your Account</h2>
+            <h2>Welcome Back</h2>
             <div class="form-group">
-              <label for="loginEmail">Email Address</label>
-              <input type="email" id="loginEmail" placeholder="Enter your email" required>
+              <label for="loginEmail">Email</label>
+              <input type="email" id="loginEmail" placeholder="your@email.com" required>
             </div>
 
             <div class="form-group">
               <label for="loginPassword">Password</label>
-              <input type="password" id="loginPassword" placeholder="Enter your password" required>
+              <input type="password" id="loginPassword" placeholder="••••••••" required>
             </div>
 
-            <button type="submit" class="signup-btn">Login</button>
-            <p class="login-link">Don't have an account? <a href="#" onclick="toggleLogin()">Sign up here</a></p>
+            <button type="submit" class="signup-btn">Sign In</button>
+            <p class="toggle-link">Don't have an account? <a href="#" onclick="toggleLogin(event)">Create one</a></p>
           </form>
         </div>
       </div>
@@ -242,20 +233,17 @@
       const calendarDays = document.getElementById('calendarDays');
       calendarDays.innerHTML = '';
 
-      // Empty cells for days before month starts
       for (let i = 0; i < startingDayOfWeek; i++) {
         const emptyCell = document.createElement('div');
         emptyCell.className = 'calendar-day empty';
         calendarDays.appendChild(emptyCell);
       }
 
-      // Days of the month
       for (let day = 1; day <= daysInMonth; day++) {
         const dayCell = document.createElement('div');
         dayCell.className = 'calendar-day';
         dayCell.textContent = day;
 
-        // Randomly mark some days as active (you can customize this)
         if (Math.random() > 0.5) {
           dayCell.classList.add('active-day');
         }
@@ -277,7 +265,6 @@
         return;
       }
 
-      // Save to localStorage
       localStorage.setItem('userLoggedIn', 'true');
       localStorage.setItem('userName', fullName);
       localStorage.setItem('userEmail', email);
@@ -296,7 +283,6 @@
       const email = document.getElementById('loginEmail').value;
       const password = document.getElementById('loginPassword').value;
 
-      // Simple validation (in real app, this would validate against a backend)
       if (email && password) {
         localStorage.setItem('userLoggedIn', 'true');
         localStorage.setItem('userName', email.split('@')[0]);
@@ -310,7 +296,8 @@
     });
 
     // Toggle between sign up and login forms
-    function toggleLogin() {
+    function toggleLogin(e) {
+      e.preventDefault();
       const signupForm = document.querySelector('.signup-form');
       const loginForm = document.getElementById('loginForm');
       signupForm.style.display = signupForm.style.display === 'none' ? 'block' : 'none';
@@ -326,7 +313,6 @@
       location.reload();
     }
 
-    // Add logout event listener
     document.querySelector('.sidebar .menu li:last-child a').addEventListener('click', function(e) {
       e.preventDefault();
       logout();
