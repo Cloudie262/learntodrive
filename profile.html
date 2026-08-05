@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile - Learn2Drive</title>
+  <link rel="stylesheet" href="drive.css">
+  <link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Toggle Button -->
+  <button class="sidebar-toggle" id="sidebarToggle">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="profile">
+      <img src="https://via.placeholder.com/80" alt="Profile Picture" width="80" height="80">
+    </div>
+
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="#"><i class="fa-solid fa-lightbulb"></i> Knowledge Sharing</a></li>
+        <li><a href="#"><i class="fa-solid fa-file-pen"></i> Practice Test</a></li>
+        <li><a href="#"><i class="fa-solid fa-triangle-exclamation"></i> Road Signs</a></li>
+        <li><a href="#"><i class="fa-solid fa-phone"></i> Hotline</a></li>
+        <li><a href="profile.html"><i class="fa-solid fa-user"></i> My Profile</a></li>
+        <li><a href="#"><i class="fa-solid fa-clock"></i> Test History</a></li>
+        <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+        <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Main content -->
+  <main class="content">
+    <div class="profile-container">
+      <!-- Check if user is logged in -->
+      <div id="userProfile" class="user-profile" style="display: none;">
+        <!-- User Profile Section -->
+        <section class="profile-section">
+          <div class="profile-header">
+            <img src="https://via.placeholder.com/120" alt="User Profile" class="profile-pic">
+            <div class="profile-info">
+              <h1 id="userName">John Doe</h1>
+              <p class="status"><span class="status-badge active">● Active</span></p>
+              <p class="member-since">Member since: <span id="memberDate">January 2024</span></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Course Progress Section -->
+        <section class="progress-section">
+          <h2>Course Progress</h2>
+          <div class="progress-item">
+            <div class="progress-header">
+              <span>Knowledge Sharing</span>
+              <span id="progress1">65%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 65%"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header">
+              <span>Practice Tests</span>
+              <span id="progress2">80%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 80%"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header">
+              <span>Road Signs</span>
+              <span id="progress3">45%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 45%"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Activity Calendar Section -->
+        <section class="calendar-section">
+          <h2>Your Activity</h2>
+          <p class="streak-info">🔥 <strong id="streakDays">12</strong> day streak! Keep it up!</p>
+          <div class="calendar">
+            <div class="calendar-header">
+              <button id="prevMonth">&lt;</button>
+              <h3 id="monthYear">January 2024</h3>
+              <button id="nextMonth">&gt;</button>
+            </div>
+            <div class="calendar-grid">
+              <div class="day-name">Sun</div>
+              <div class="day-name">Mon</div>
+              <div class="day-name">Tue</div>
+              <div class="day-name">Wed</div>
+              <div class="day-name">Thu</div>
+              <div class="day-name">Fri</div>
+              <div class="day-name">Sat</div>
+              <div id="calendarDays"></div>
+            </div>
+          </div>
+          <div class="legend">
+            <div class="legend-item">
+              <div class="legend-box active-day"></div>
+              <span>Active Day</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-box inactive-day"></div>
+              <span>Inactive Day</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Sign Up Section (for non-logged-in users ) -->
+      <div id="signupSection" class="signup-section">
+        <div class="signup-container">
+          <h1>Join Learn2Drive Today!</h1>
+          <p>Sign up to track your progress, take practice tests, and master driving skills.</p>
+          
+          <form class="signup-form">
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" placeholder="Create a password" required>
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+            </div>
+
+            <div class="form-group checkbox">
+              <input type="checkbox" id="terms" required>
+              <label for="terms">I agree to the Terms of Service and Privacy Policy</label>
+            </div>
+
+            <button type="submit" class="signup-btn">Create Account</button>
+            <p class="login-link">Already have an account? <a href="#" onclick="toggleLogin()">Login here</a></p>
+          </form>
+
+          <!-- Login Form -->
+          <form class="login-form" id="loginForm" style="display: none;">
+            <h2>Login to Your Account</h2>
+            <div class="form-group">
+              <label for="loginEmail">Email Address</label>
+              <input type="email" id="loginEmail" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="loginPassword">Password</label>
+              <input type="password" id="loginPassword" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="signup-btn">Login</button>
+            <p class="login-link">Don't have an account? <a href="#" onclick="toggleLogin()">Sign up here</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Sidebar Toggle
+    const sidebar = document.querySelector('.sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    sidebarToggle.addEventListener('click', function() {
+      sidebar.classList.add('active');
+      sidebarOverlay.classList.add('active');
+    });
+
+    function closeSidebar() {
+      sidebar.classList.remove('active');
+      sidebarOverlay.classList.remove('active');
+    }
+
+    sidebarOverlay.addEventListener('click', closeSidebar);
+
+    const menuItems = document.querySelectorAll('.sidebar .menu li a');
+    menuItems.forEach(item => {
+      item.addEventListener('click', closeSidebar);
+    });
+
+    // Profile and Sign Up Logic
+    const userProfile = document.getElementById('userProfile');
+    const signupSection = document.getElementById('signupSection');
+    const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+
+    if (isLoggedIn) {
+      userProfile.style.display = 'block';
+      signupSection.style.display = 'none';
+      loadUserProfile();
+      generateCalendar();
+    } else {
+      userProfile.style.display = 'none';
+      signupSection.style.display = 'block';
+    }
+
+    // Load User Profile
+    function loadUserProfile() {
+      const userName = localStorage.getItem('userName') || 'John Doe';
+      const memberDate = localStorage.getItem('memberDate') || 'January 2024';
+      document.getElementById('userName').textContent = userName;
+      document.getElementById('memberDate').textContent = memberDate;
+    }
+
+    // Generate Calendar
+    function generateCalendar() {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = today.getMonth();
+      
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const daysInMonth = lastDay.getDate();
+      const startingDayOfWeek = firstDay.getDay();
+
+      document.getElementById('monthYear').textContent = 
+        firstDay.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+      const calendarDays = document.getElementById('calendarDays');
+      calendarDays.innerHTML = '';
+
+      // Empty cells for days before month starts
+      for (let i = 0; i < startingDayOfWeek; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.className = 'calendar-day empty';
+        calendarDays.appendChild(emptyCell);
+      }
+
+      // Days of the month
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayCell = document.createElement('div');
+        dayCell.className = 'calendar-day';
+        dayCell.textContent = day;
+
+        // Randomly mark some days as active (you can customize this)
+        if (Math.random() > 0.5) {
+          dayCell.classList.add('active-day');
+        }
+
+        calendarDays.appendChild(dayCell);
+      }
+    }
+
+    // Sign Up Form Handler
+    document.querySelector('.signup-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fullName = document.getElementById('fullName').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+
+      // Save to localStorage
+      localStorage.setItem('userLoggedIn', 'true');
+      localStorage.setItem('userName', fullName);
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('memberDate', new Date().toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long' 
+      }));
+
+      alert('Account created successfully!');
+      location.reload();
+    });
+
+    // Login Form Handler
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      // Simple validation (in real app, this would validate against a backend)
+      if (email && password) {
+        localStorage.setItem('userLoggedIn', 'true');
+        localStorage.setItem('userName', email.split('@')[0]);
+        localStorage.setItem('memberDate', new Date().toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long' 
+        }));
+        alert('Logged in successfully!');
+        location.reload();
+      }
+    });
+
+    // Toggle between sign up and login forms
+    function toggleLogin() {
+      const signupForm = document.querySelector('.signup-form');
+      const loginForm = document.getElementById('loginForm');
+      signupForm.style.display = signupForm.style.display === 'none' ? 'block' : 'none';
+      loginForm.style.display = loginForm.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Logout functionality
+    function logout() {
+      localStorage.removeItem('userLoggedIn');
+      localStorage.removeItem('userName');
+      localStorage.removeItem('userEmail');
+      localStorage.removeItem('memberDate');
+      location.reload();
+    }
+
+    // Add logout event listener
+    document.querySelector('.sidebar .menu li:last-child a').addEventListener('click', function(e) {
+      e.preventDefault();
+      logout();
+    });
+  </script>
+</body>
+</html>
