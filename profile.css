@@ -6,6 +6,8 @@
   --text-light: #666;
   --border-color: #E8DFD3;
   --accent-color: #4CAF50;
+  --green-attended: #4CAF50;
+  --red-absent: #E74C3C;
 }
 
 /* Profile Container */
@@ -170,30 +172,63 @@
 
 .calendar {
   background: var(--light-bg);
-  padding: 20px;
+  padding: 30px;
   border-radius: 6px;
 }
 
-.calendar-nav {
+.calendar-month-year {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 40px;
+}
+
+.month-year-display {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 18px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+#monthNumber {
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--text-dark);
+}
+
+.separator {
+  font-size: 24px;
+  color: var(--text-light);
+  font-weight: 300;
+}
+
+#yearNumber {
+  font-size: 18px;
+  color: var(--text-light);
+}
+
+#monthName {
+  font-size: 16px;
+  color: var(--text-light);
+  margin-left: 8px;
 }
 
 .nav-btn {
   background: var(--primary-color);
   color: white;
   border: none;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
 }
 
 .nav-btn:hover {
@@ -201,29 +236,33 @@
   transform: scale(1.05);
 }
 
-.calendar-nav h3 {
-  margin: 0;
-  color: var(--text-dark);
-  font-size: 16px;
-  font-weight: 600;
-  min-width: 150px;
-  text-align: center;
-}
-
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
+  gap: 0;
+  border: 1px solid var(--border-color);
+  background: white;
 }
 
 .day-name {
   text-align: center;
   font-weight: 600;
   color: var(--text-dark);
-  padding: 10px 0;
+  padding: 12px 8px;
   font-size: 12px;
-  text-transform: uppercase;
+  text-transform: lowercase;
   letter-spacing: 0.5px;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.day-name:nth-child(7n) {
+  border-right: none;
+}
+
+.day-name.sat,
+.day-name.sun {
+  color: var(--red-absent);
 }
 
 .calendar-day {
@@ -231,34 +270,73 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-  background: white;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   cursor: pointer;
-  font-size: 13px;
-  color: var(--text-light);
+  font-size: 14px;
+  color: var(--text-dark);
   transition: all 0.2s ease;
-  border: 1px solid transparent;
+  font-weight: 500;
 }
 
-.calendar-day:not(.empty):hover {
-  background: #F0F0F0;
-  border-color: var(--border-color);
+.calendar-day:nth-child(7n) {
+  border-right: none;
 }
 
 .calendar-day.empty {
   background: transparent;
   cursor: default;
+  border: none;
 }
 
-.calendar-day.active-day {
-  background: var(--primary-color);
+.calendar-day.attended {
+  background: var(--green-attended);
   color: white;
   font-weight: 600;
-  border-color: var(--primary-color);
 }
 
-.calendar-day.active-day:hover {
-  background: #0A2E6D;
+.calendar-day.attended:hover {
+  opacity: 0.9;
+}
+
+.calendar-day.absent {
+  background: var(--red-absent);
+  color: white;
+  font-weight: 600;
+}
+
+.calendar-day.absent:hover {
+  opacity: 0.9;
+}
+
+.calendar-legend {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.legend-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+}
+
+.legend-box.attended {
+  background: var(--green-attended);
+}
+
+.legend-box.absent {
+  background: var(--red-absent);
 }
 
 /* Sign Up Section */
@@ -460,8 +538,16 @@
     padding: 30px 20px;
   }
 
-  .calendar-grid {
-    gap: 4px;
+  .calendar {
+    padding: 20px;
+  }
+
+  .month-year-display {
+    font-size: 16px;
+  }
+
+  #monthNumber {
+    font-size: 36px;
   }
 
   .calendar-day {
@@ -470,7 +556,7 @@
 
   .day-name {
     font-size: 11px;
-    padding: 8px 0;
+    padding: 8px 4px;
   }
 }
 
@@ -503,7 +589,28 @@
     padding: 15px;
   }
 
-  .calendar-nav h3 {
+  .month-year-display {
     font-size: 14px;
+  }
+
+  #monthNumber {
+    font-size: 28px;
+  }
+
+  .calendar-day {
+    font-size: 11px;
+  }
+
+  .day-name {
+    font-size: 10px;
+    padding: 6px 3px;
+  }
+
+  .calendar-legend {
+    gap: 15px;
+  }
+
+  .legend-item {
+    font-size: 12px;
   }
 }
