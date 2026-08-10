@@ -1,45 +1,45 @@
-/* Color Scheme */
 :root {
-  --primary-color: #082052;
-  --light-bg: #F8F0E5;
+  --primary: #082052;
+  --primary-hover: #0a2e6d;
+  --background: #f8f0e5;
   --text-dark: #082052;
   --text-light: #666;
-  --border-color: #E8DFD3;
-  --accent-color: #4CAF50;
-  --green-attended: #4CAF50;
-  --red-absent: #E74C3C;
+  --border: #e8dfd3;
+  --green: #4caf50;
+  --red: #e74c3c;
+  --white: #ffffff;
 }
 
-/* Profile Container */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--background);
+  color: var(--text-dark);
+  font-family: Arial, sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
 .profile-container {
   max-width: 900px;
   margin: 0 auto;
   padding: 40px 20px;
 }
 
-/* User Profile */
-.user-profile {
-  animation: fadeIn 0.4s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Profile Section */
-.profile-section {
-  background: white;
-  padding: 40px;
+.profile-section,
+.progress-section,
+.calendar-section {
+  background: var(--white);
+  border: 1px solid var(--border);
   border-radius: 8px;
+  padding: 40px;
   margin-bottom: 40px;
-  border: 1px solid var(--border-color);
 }
 
 .profile-header {
@@ -51,54 +51,40 @@
 .profile-pic {
   width: 100px;
   height: 100px;
+  border: 2px solid var(--primary);
   border-radius: 50%;
-  border: 2px solid var(--primary-color);
   object-fit: cover;
 }
 
-.profile-info h1 {
-  margin: 0 0 8px 0;
+h1,
+h2 {
   color: var(--text-dark);
-  font-size: 28px;
-  font-weight: 600;
+  margin-top: 0;
 }
 
-.status-text {
-  margin: 8px 0;
-  font-size: 14px;
+h1 {
+  margin-bottom: 8px;
+  font-size: 28px;
+}
+
+h2 {
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+
+.status-text,
+.member-since {
   color: var(--text-light);
+  font-size: 14px;
 }
 
 .status-badge {
   display: inline-block;
   padding: 4px 12px;
-  background: #E8F5E9;
-  color: var(--accent-color);
   border-radius: 20px;
-  font-weight: 600;
+  background: #e8f5e9;
+  color: var(--green);
   font-size: 13px;
-}
-
-.member-since {
-  margin: 8px 0 0 0;
-  font-size: 13px;
-  color: var(--text-light);
-}
-
-/* Progress Section */
-.progress-section {
-  background: white;
-  padding: 40px;
-  border-radius: 8px;
-  margin-bottom: 40px;
-  border: 1px solid var(--border-color);
-}
-
-.progress-section h2 {
-  color: var(--text-dark);
-  margin-top: 0;
-  margin-bottom: 30px;
-  font-size: 20px;
   font-weight: 600;
 }
 
@@ -115,502 +101,230 @@
   justify-content: space-between;
   margin-bottom: 10px;
   font-size: 14px;
-  color: var(--text-dark);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .percentage {
-  color: var(--accent-color);
-  font-weight: 600;
+  color: var(--green);
 }
 
 .progress-bar {
-  background: #F0F0F0;
   height: 8px;
-  border-radius: 4px;
   overflow: hidden;
+  background: #f0f0f0;
+  border-radius: 4px;
 }
 
 .progress-fill {
-  background: var(--accent-color);
   height: 100%;
+  background: var(--green);
+  border-radius: inherit;
   transition: width 0.3s ease;
 }
 
-/* Calendar Section */
-.calendar-section {
-  background: white;
-  padding: 40px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-}
+/* Calendar */
 
 .calendar-header-section {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
-.calendar-section h2 {
-  color: var(--text-dark);
+.calendar-header-section h2,
+.streak-info {
   margin: 0;
-  font-size: 20px;
-  font-weight: 600;
 }
 
 .streak-info {
-  font-size: 16px;
-  color: var(--text-dark);
-  margin: 0;
-  font-weight: 500;
-}
-
-.flame {
-  margin-right: 4px;
+  font-weight: 600;
 }
 
 .calendar {
-  background: var(--light-bg);
   padding: 30px;
+  background: var(--background);
   border-radius: 6px;
 }
 
 .calendar-month-year {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
+  justify-content: space-between;
+  margin-bottom: 24px;
 }
 
 .month-year-display {
   display: flex;
   align-items: baseline;
   gap: 8px;
-  font-size: 18px;
-  color: var(--text-dark);
-  font-weight: 500;
 }
 
 #monthNumber {
-  font-size: 48px;
+  font-size: 42px;
   font-weight: 300;
-  color: var(--text-dark);
 }
 
-.separator {
-  font-size: 24px;
+#yearNumber,
+#monthName {
   color: var(--text-light);
-  font-weight: 300;
 }
 
 #yearNumber {
   font-size: 18px;
-  color: var(--text-light);
 }
 
 #monthName {
-  font-size: 16px;
+  font-size: 17px;
+}
+
+.separator {
   color: var(--text-light);
-  margin-left: 8px;
 }
 
 .nav-btn {
-  background: var(--primary-color);
-  color: white;
-  border: none;
   width: 40px;
   height: 40px;
+  border: none;
   border-radius: 50%;
+  background: var(--primary);
+  color: var(--white);
   cursor: pointer;
-  font-size: 18px;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
+  font-size: 24px;
+  line-height: 1;
+  transition: 0.2s ease;
 }
 
-.nav-btn:hover {
-  background: #0A2E6D;
+.nav-btn:hover,
+.nav-btn:focus-visible {
+  background: var(--primary-hover);
   transform: scale(1.05);
+}
+
+.nav-btn:focus-visible {
+  outline: 3px solid #8ab4f8;
+  outline-offset: 2px;
 }
 
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 0;
-  border: 1px solid var(--border-color);
-  background: white;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  border: 1px solid var(--border);
+  background: var(--white);
 }
 
-.day-name {
-  text-align: center;
-  font-weight: 600;
-  color: var(--text-dark);
-  padding: 12px 8px;
-  font-size: 12px;
-  text-transform: lowercase;
-  letter-spacing: 0.5px;
-  border-right: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.day-name:nth-child(7n) {
-  border-right: none;
-}
-
-.day-name.sat,
-.day-name.sun {
-  color: var(--red-absent);
-}
-
+.day-name,
 .calendar-day {
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-right: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
-  cursor: pointer;
-  font-size: 14px;
-  color: var(--text-dark);
-  transition: all 0.2s ease;
-  font-weight: 500;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
+.day-name:nth-child(7n),
 .calendar-day:nth-child(7n) {
   border-right: none;
 }
 
+.day-name {
+  padding: 11px 4px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.day-name.sat,
+.day-name.sun {
+  color: var(--red);
+}
+
+.calendar-day {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark);
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .calendar-day.empty {
-  background: transparent;
-  cursor: default;
-  border: none;
+  background: #fffaf4;
 }
 
 .calendar-day.attended {
-  background: var(--green-attended);
-  color: white;
-  font-weight: 600;
-}
-
-.calendar-day.attended:hover {
-  opacity: 0.9;
+  background: var(--green);
+  color: var(--white);
 }
 
 .calendar-day.absent {
-  background: var(--red-absent);
-  color: white;
-  font-weight: 600;
-}
-
-.calendar-day.absent:hover {
-  opacity: 0.9;
+  background: var(--red);
+  color: var(--white);
 }
 
 .calendar-legend {
   display: flex;
-  gap: 30px;
-  margin-top: 20px;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 18px;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-size: 14px;
-  color: var(--text-dark);
 }
 
 .legend-box {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border-radius: 3px;
 }
 
 .legend-box.attended {
-  background: var(--green-attended);
+  background: var(--green);
 }
 
 .legend-box.absent {
-  background: var(--red-absent);
+  background: var(--red);
 }
 
-/* Sign Up Section */
-.signup-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 20px;
-}
+/* Responsive layout */
 
-.signup-container {
-  background: white;
-  padding: 50px 40px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  max-width: 420px;
-  width: 100%;
-}
-
-.signup-container h1 {
-  color: var(--text-dark);
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 28px;
-  font-weight: 600;
-}
-
-.subtitle {
-  color: var(--text-light);
-  margin-bottom: 30px;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.signup-form,
-.login-form {
-  animation: slideIn 0.3s ease;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--text-dark);
-  font-weight: 600;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="password"] {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  font-size: 14px;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
-  background: var(--light-bg);
-  color: var(--text-dark);
-}
-
-.form-group input[type="text"]::placeholder,
-.form-group input[type="email"]::placeholder,
-.form-group input[type="password"]::placeholder {
-  color: #999;
-}
-
-.form-group input[type="text"]:focus,
-.form-group input[type="email"]:focus,
-.form-group input[type="password"]:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  background: white;
-}
-
-.form-group.checkbox {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 25px;
-}
-
-.form-group.checkbox input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  margin-right: 10px;
-  margin-top: 2px;
-  cursor: pointer;
-  accent-color: var(--primary-color);
-}
-
-.form-group.checkbox label {
-  margin: 0;
-  font-weight: 400;
-  font-size: 13px;
-  text-transform: none;
-  letter-spacing: normal;
-  cursor: pointer;
-}
-
-.signup-btn {
-  width: 100%;
-  padding: 12px;
-  background: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.signup-btn:hover {
-  background: #0A2E6D;
-  transform: translateY(-1px);
-}
-
-.signup-btn:active {
-  transform: translateY(0);
-}
-
-.toggle-link {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 13px;
-  color: var(--text-light);
-}
-
-.toggle-link a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.toggle-link a:hover {
-  color: #0A2E6D;
-}
-
-.login-form h2 {
-  color: var(--text-dark);
-  margin-top: 0;
-  margin-bottom: 25px;
-  font-size: 22px;
-  font-weight: 600;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .profile-container {
-    padding: 20px 15px;
+    padding: 20px 12px;
   }
 
   .profile-section,
   .progress-section,
   .calendar-section {
-    padding: 25px 20px;
-    margin-bottom: 25px;
+    padding: 24px 18px;
+    margin-bottom: 24px;
   }
 
-  .profile-header {
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
-  }
-
-  .profile-info h1 {
-    font-size: 24px;
-  }
-
+  .profile-header,
   .calendar-header-section {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
-
-  .signup-container {
-    padding: 30px 20px;
+    text-align: center;
   }
 
   .calendar {
-    padding: 20px;
-  }
-
-  .month-year-display {
-    font-size: 16px;
+    padding: 14px 8px;
   }
 
   #monthNumber {
-    font-size: 36px;
+    font-size: 32px;
   }
 
   .calendar-day {
+    min-height: 42px;
     font-size: 12px;
   }
 
   .day-name {
-    font-size: 11px;
-    padding: 8px 4px;
-  }
-}
-
-@media (max-width: 480px) {
-  .profile-container {
-    padding: 15px 10px;
-  }
-
-  .profile-section,
-  .progress-section,
-  .calendar-section {
-    padding: 20px 15px;
-    margin-bottom: 20px;
-  }
-
-  .profile-pic {
-    width: 80px;
-    height: 80px;
-  }
-
-  .profile-info h1 {
-    font-size: 20px;
-  }
-
-  .signup-container {
-    padding: 25px 15px;
-  }
-
-  .calendar {
-    padding: 15px;
-  }
-
-  .month-year-display {
-    font-size: 14px;
-  }
-
-  #monthNumber {
-    font-size: 28px;
-  }
-
-  .calendar-day {
-    font-size: 11px;
-  }
-
-  .day-name {
+    padding: 8px 2px;
     font-size: 10px;
-    padding: 6px 3px;
-  }
-
-  .calendar-legend {
-    gap: 15px;
-  }
-
-  .legend-item {
-    font-size: 12px;
   }
 }

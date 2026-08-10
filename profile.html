@@ -1,363 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Profile - Learn2Drive</title>
-  <link rel="stylesheet" href="drive.css">
   <link rel="stylesheet" href="profile.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body style="background-color: #F8F0E5;">
-  <!-- Toggle Button -->
-  <button class="sidebar-toggle" id="sidebarToggle">
-    <i class="fa-solid fa-bars"></i>
-  </button>
 
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="profile">
-      <img src="https://via.placeholder.com/80" alt="Profile Picture" width="80" height="80">
-    </div>
+<body>
+  <main class="profile-container">
 
-    <nav>
-      <ul class="menu">
-        <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-        <li><a href="#"><i class="fa-solid fa-lightbulb"></i> Knowledge Sharing</a></li>
-        <li><a href="#"><i class="fa-solid fa-file-pen"></i> Practice Test</a></li>
-        <li><a href="#"><i class="fa-solid fa-triangle-exclamation"></i> Road Signs</a></li>
-        <li><a href="#"><i class="fa-solid fa-phone"></i> Hotline</a></li>
-        <li><a href="profile.html"><i class="fa-solid fa-user"></i> My Profile</a></li>
-        <li><a href="#"><i class="fa-solid fa-clock"></i> Test History</a></li>
-        <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
-        <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
-      </ul>
-    </nav>
-  </aside>
+    <section class="profile-section">
+      <div class="profile-header">
+        <img
+          class="profile-pic"
+          src="https://via.placeholder.com/100"
+          alt="User profile picture"
+        >
 
-  <!-- Overlay -->
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-  <!-- Main content -->
-  <main class="content">
-    <div class="profile-container">
-      <!-- User Profile Section -->
-      <div id="userProfile" class="user-profile" style="display: none;">
-        <section class="profile-section">
-          <div class="profile-header">
-            <img src="https://via.placeholder.com/100" alt="User Profile" class="profile-pic">
-            <div class="profile-info">
-              <h1 id="userName">John Doe</h1>
-              <p class="status-text"><span class="status-badge">Active</span></p>
-              <p class="member-since">Joined <span id="memberDate">January 2024</span></p>
-            </div>
-          </div>
-        </section>
-
-        <!-- Course Progress Section -->
-        <section class="progress-section">
-          <h2>Learning Progress</h2>
-          <div class="progress-item">
-            <div class="progress-header">
-              <span>Knowledge Sharing</span>
-              <span class="percentage">65%</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 65%"></div>
-            </div>
-          </div>
-          <div class="progress-item">
-            <div class="progress-header">
-              <span>Practice Tests</span>
-              <span class="percentage">80%</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 80%"></div>
-            </div>
-          </div>
-          <div class="progress-item">
-            <div class="progress-header">
-              <span>Road Signs</span>
-              <span class="percentage">45%</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 45%"></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Activity Calendar Section -->
-        <section class="calendar-section">
-          <div class="calendar-header-section">
-            <h2>Activity Calendar</h2>
-            <p class="streak-info"><span class="flame">🔥</span> <strong id="streakDays">12</strong> day streak</p>
-          </div>
-          <div class="calendar">
-            <div class="calendar-month-year">
-              <button id="prevMonth" class="nav-btn">&lt;</button>
-              <div class="month-year-display">
-                <span id="monthNumber">7</span>
-                <span class="separator">/</span>
-                <span id="yearNumber">2026</span>
-                <span id="monthName">July</span>
-              </div>
-              <button id="nextMonth" class="nav-btn">&gt;</button>
-            </div>
-            <div class="calendar-grid">
-              <div class="day-name">mon</div>
-              <div class="day-name">tue</div>
-              <div class="day-name">wed</div>
-              <div class="day-name">thu</div>
-              <div class="day-name">fri</div>
-              <div class="day-name sat">sat</div>
-              <div class="day-name sun">sun</div>
-              <div id="calendarDays"></div>
-            </div>
-          </div>
-          <div class="calendar-legend">
-            <div class="legend-item">
-              <div class="legend-box attended"></div>
-              <span>Attended</span>
-            </div>
-            <div class="legend-item">
-              <div class="legend-box absent"></div>
-              <span>Absent</span>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <!-- Sign Up Section -->
-      <div id="signupSection" class="signup-section">
-        <div class="signup-container">
-          <h1>Join Learn2Drive</h1>
-          <p class="subtitle">Start your journey to becoming a confident driver</p>
-          
-          <form class="signup-form">
-            <div class="form-group">
-              <label for="fullName">Full Name</label>
-              <input type="text" id="fullName" placeholder="Your name" required>
-            </div>
-
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" placeholder="your@email.com" required>
-            </div>
-
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" id="password" placeholder="••••••••" required>
-            </div>
-
-            <div class="form-group">
-              <label for="confirmPassword">Confirm Password</label>
-              <input type="password" id="confirmPassword" placeholder="••••••••" required>
-            </div>
-
-            <div class="form-group checkbox">
-              <input type="checkbox" id="terms" required>
-              <label for="terms">I agree to Terms of Service and Privacy Policy</label>
-            </div>
-
-            <button type="submit" class="signup-btn">Create Account</button>
-            <p class="toggle-link">Already have an account? <a href="#" onclick="toggleLogin(event )">Sign in</a></p>
-          </form>
-
-          <!-- Login Form -->
-          <form class="login-form" id="loginForm" style="display: none;">
-            <h2>Welcome Back</h2>
-            <div class="form-group">
-              <label for="loginEmail">Email</label>
-              <input type="email" id="loginEmail" placeholder="your@email.com" required>
-            </div>
-
-            <div class="form-group">
-              <label for="loginPassword">Password</label>
-              <input type="password" id="loginPassword" placeholder="••••••••" required>
-            </div>
-
-            <button type="submit" class="signup-btn">Sign In</button>
-            <p class="toggle-link">Don't have an account? <a href="#" onclick="toggleLogin(event)">Create one</a></p>
-          </form>
+        <div>
+          <h1>John Doe</h1>
+          <p class="status-text">
+            <span class="status-badge">Active</span>
+          </p>
+          <p class="member-since">Joined January 2024</p>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section class="progress-section">
+      <h2>Learning Progress</h2>
+
+      <div class="progress-item">
+        <div class="progress-header">
+          <span>Knowledge Sharing</span>
+          <span class="percentage">65%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 65%"></div>
+        </div>
+      </div>
+
+      <div class="progress-item">
+        <div class="progress-header">
+          <span>Practice Tests</span>
+          <span class="percentage">80%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 80%"></div>
+        </div>
+      </div>
+
+      <div class="progress-item">
+        <div class="progress-header">
+          <span>Road Signs</span>
+          <span class="percentage">45%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 45%"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="calendar-section" aria-labelledby="calendarTitle">
+      <div class="calendar-header-section">
+        <h2 id="calendarTitle">Activity Calendar</h2>
+
+        <p class="streak-info">
+          🔥 <strong id="streakDays">0</strong> day streak
+        </p>
+      </div>
+
+      <div class="calendar">
+        <div class="calendar-month-year">
+          <button
+            class="nav-btn"
+            id="prevMonth"
+            type="button"
+            aria-label="Previous month"
+          >
+            &lt;
+          </button>
+
+          <div class="month-year-display">
+            <span id="monthNumber"></span>
+            <span class="separator">/</span>
+            <span id="yearNumber"></span>
+            <span id="monthName"></span>
+          </div>
+
+          <button
+            class="nav-btn"
+            id="nextMonth"
+            type="button"
+            aria-label="Next month"
+          >
+            &gt;
+          </button>
+        </div>
+
+        <div
+          class="calendar-grid"
+          role="grid"
+          aria-label="Monthly activity calendar"
+        >
+          <div class="day-name">Mon</div>
+          <div class="day-name">Tue</div>
+          <div class="day-name">Wed</div>
+          <div class="day-name">Thu</div>
+          <div class="day-name">Fri</div>
+          <div class="day-name sat">Sat</div>
+          <div class="day-name sun">Sun</div>
+
+          <div id="calendarDays" style="display: contents"></div>
+        </div>
+
+        <div class="calendar-legend">
+          <div class="legend-item">
+            <span class="legend-box attended"></span>
+            Attempted
+          </div>
+
+          <div class="legend-item">
+            <span class="legend-box absent"></span>
+            Not attending
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <script>
-    // Sidebar Toggle
-    const sidebar = document.querySelector('.sidebar');
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const sidebarOverlay = document.getElementById('sidebarOverlay');
-
-    sidebarToggle.addEventListener('click', function() {
-      sidebar.classList.add('active');
-      sidebarOverlay.classList.add('active');
-    });
-
-    function closeSidebar() {
-      sidebar.classList.remove('active');
-      sidebarOverlay.classList.remove('active');
-    }
-
-    sidebarOverlay.addEventListener('click', closeSidebar);
-
-    const menuItems = document.querySelectorAll('.sidebar .menu li a');
-    menuItems.forEach(item => {
-      item.addEventListener('click', closeSidebar);
-    });
-
-    // Profile and Sign Up Logic
-    const userProfile = document.getElementById('userProfile');
-    const signupSection = document.getElementById('signupSection');
-    const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
-
-    if (isLoggedIn) {
-      userProfile.style.display = 'block';
-      signupSection.style.display = 'none';
-      loadUserProfile();
-      generateCalendar();
-    } else {
-      userProfile.style.display = 'none';
-      signupSection.style.display = 'block';
-    }
-
-    // Load User Profile
-    function loadUserProfile() {
-      const userName = localStorage.getItem('userName') || 'John Doe';
-      const memberDate = localStorage.getItem('memberDate') || 'January 2024';
-      document.getElementById('userName').textContent = userName;
-      document.getElementById('memberDate').textContent = memberDate;
-    }
-
-    // Month names
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-                        'July', 'August', 'September', 'October', 'November', 'December'];
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
 
     let currentDate = new Date();
 
-    // Generate Calendar
-    function generateCalendar() {
+    const attendance = JSON.parse(
+      localStorage.getItem("learn2driveAttendance") || "{}"
+    );
+
+    function getDateKey(year, month, day) {
+      return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    }
+
+    function getDefaultStatus(year, month, day) {
+      const dateKey = getDateKey(year, month, day);
+      let hash = 0;
+
+      for (const character of dateKey) {
+        hash = (hash * 31 + character.charCodeAt(0)) % 100;
+      }
+
+      return hash < 65;
+    }
+
+    function renderCalendar() {
       const year = currentDate.getFullYear();
       const month = currentDate.getMonth();
-      
+
       const firstDay = new Date(year, month, 1);
-      const lastDay = new Date(year, month + 1, 0);
-      const daysInMonth = lastDay.getDate();
-      const startingDayOfWeek = firstDay.getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-      // Update month/year display
-      document.getElementById('monthNumber').textContent = month + 1;
-      document.getElementById('yearNumber').textContent = year;
-      document.getElementById('monthName').textContent = monthNames[month];
+      // Convert JavaScript Sunday-first format to Monday-first format.
+      const startingOffset = (firstDay.getDay() + 6) % 7;
 
-      const calendarDays = document.getElementById('calendarDays');
-      calendarDays.innerHTML = '';
+      document.getElementById("monthNumber").textContent = month + 1;
+      document.getElementById("yearNumber").textContent = year;
+      document.getElementById("monthName").textContent = months[month];
 
-      // Calculate starting position (Monday = 0)
-      let startPos = startingDayOfWeek === 0 ? 6 : startingDayOfWeek - 1;
+      const calendarDays = document.getElementById("calendarDays");
+      calendarDays.innerHTML = "";
 
-      // Empty cells before month starts
-      for (let i = 0; i < startPos; i++) {
-        const emptyCell = document.createElement('div');
-        emptyCell.className = 'calendar-day empty';
+      // Add empty cells before the first day of the month.
+      for (let i = 0; i < startingOffset; i++) {
+        const emptyCell = document.createElement("div");
+
+        emptyCell.className = "calendar-day empty";
+        emptyCell.setAttribute("aria-hidden", "true");
+
         calendarDays.appendChild(emptyCell);
       }
 
-      // Days of the month
+      // Add every day of the current month.
       for (let day = 1; day <= daysInMonth; day++) {
-        const dayCell = document.createElement('div');
-        dayCell.className = 'calendar-day';
-        dayCell.textContent = day;
+        const dateKey = getDateKey(year, month, day);
 
-        // Randomly assign attended or absent
-        if (Math.random() > 0.5) {
-          dayCell.classList.add('attended');
-        } else {
-          dayCell.classList.add('absent');
-        }
+        const attempted =
+          attendance[dateKey] ?? getDefaultStatus(year, month, day);
+
+        const dayCell = document.createElement("div");
+
+        dayCell.className = `calendar-day ${
+          attempted ? "attended" : "absent"
+        }`;
+
+        dayCell.textContent = day;
+        dayCell.setAttribute("role", "gridcell");
+
+        dayCell.setAttribute(
+          "aria-label",
+          `${months[month]} ${day}, ${year}: ${
+            attempted ? "Attempted" : "Not attending"
+          }`
+        );
 
         calendarDays.appendChild(dayCell);
       }
+
+      updateStreak();
     }
 
-    // Navigation
-    document.getElementById('prevMonth').addEventListener('click', function() {
+    function updateStreak() {
+      let date = new Date();
+      let streak = 0;
+
+      while (streak < 365) {
+        const dateKey = getDateKey(
+          date.getFullYear(),
+          date.getMonth(),
+          date.getDate()
+        );
+
+        const attempted =
+          attendance[dateKey] ??
+          getDefaultStatus(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
+          );
+
+        if (!attempted) {
+          break;
+        }
+
+        streak++;
+        date.setDate(date.getDate() - 1);
+      }
+
+      document.getElementById("streakDays").textContent = streak;
+    }
+
+    document.getElementById("prevMonth").addEventListener("click", () => {
       currentDate.setMonth(currentDate.getMonth() - 1);
-      generateCalendar();
+      renderCalendar();
     });
 
-    document.getElementById('nextMonth').addEventListener('click', function() {
+    document.getElementById("nextMonth").addEventListener("click", () => {
       currentDate.setMonth(currentDate.getMonth() + 1);
-      generateCalendar();
+      renderCalendar();
     });
 
-    // Sign Up Form Handler
-    document.querySelector('.signup-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const fullName = document.getElementById('fullName').value;
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      const confirmPassword = document.getElementById('confirmPassword').value;
-
-      if (password !== confirmPassword) {
-        alert('Passwords do not match!');
-        return;
-      }
-
-      localStorage.setItem('userLoggedIn', 'true');
-      localStorage.setItem('userName', fullName);
-      localStorage.setItem('userEmail', email);
-      localStorage.setItem('memberDate', new Date().toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'long' 
-      }));
-
-      alert('Account created successfully!');
-      location.reload();
-    });
-
-    // Login Form Handler
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = document.getElementById('loginEmail').value;
-      const password = document.getElementById('loginPassword').value;
-
-      if (email && password) {
-        localStorage.setItem('userLoggedIn', 'true');
-        localStorage.setItem('userName', email.split('@')[0]);
-        localStorage.setItem('memberDate', new Date().toLocaleDateString('en-US', { 
-          year: 'numeric', 
-          month: 'long' 
-        }));
-        alert('Logged in successfully!');
-        location.reload();
-      }
-    });
-
-    // Toggle between sign up and login forms
-    function toggleLogin(e) {
-      e.preventDefault();
-      const signupForm = document.querySelector('.signup-form');
-      const loginForm = document.getElementById('loginForm');
-      signupForm.style.display = signupForm.style.display === 'none' ? 'block' : 'none';
-      loginForm.style.display = loginForm.style.display === 'none' ? 'block' : 'none';
-    }
-
-    // Logout functionality
-    function logout() {
-      localStorage.removeItem('userLoggedIn');
-      localStorage.removeItem('userName');
-      localStorage.removeItem('userEmail');
-      localStorage.removeItem('memberDate');
-      location.reload();
-    }
-
-    document.querySelector('.sidebar .menu li:last-child a').addEventListener('click', function(e) {
-      e.preventDefault();
-      logout();
-    });
+    renderCalendar();
   </script>
 </body>
 </html>
