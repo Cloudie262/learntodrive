@@ -1,270 +1,875 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Profile - Learn2Drive</title>
-  <link rel="stylesheet" href="profile.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving License Learning Portal</title>
+    <link rel="stylesheet" href="profile.css">
 </head>
 
 <body>
-  <main class="profile-container">
+<main class="page-container">
 
+    <!-- Profile -->
     <section class="profile-section">
-      <div class="profile-header">
-        <img
-          class="profile-pic"
-          src="https://via.placeholder.com/100"
-          alt="User profile picture"
-        >
+        <div class="profile-header">
+            <div class="profile-pic">👤</div>
 
-        <div>
-          <h1>John Doe</h1>
-          <p class="status-text">
-            <span class="status-badge">Active</span>
-          </p>
-          <p class="member-since">Joined January 2024</p>
+            <div>
+                <h1>Alex Driver</h1>
+
+                <p class="status-text">
+                    Account status:
+                    <span class="status-badge">Active</span>
+                </p>
+
+                <p class="member-since">
+                    Member since January 2026
+                </p>
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="openProfileButton"
+                >
+                    Access Profile
+                </button>
+            </div>
         </div>
-      </div>
     </section>
 
+    <!-- Quiz portal -->
+    <section class="portal-section">
+        <div class="header-section">
+            <h1 class="portal-title">
+                License Practice Portal
+            </h1>
+
+            <p class="pass-all-text">
+                Pass all modules to unlock the Official Test Simulation
+            </p>
+        </div>
+
+        <div class="progress-and-average">
+            <div class="stat-card">
+                <h3>Portal Progress</h3>
+
+                <div class="stat-value">
+                    <span id="progressText">50%</span>
+                    <span class="pass-all-text">completed</span>
+                </div>
+
+                <div class="portal-progress-container">
+                    <div
+                        class="portal-progress-bar"
+                        id="portalProgressBar"
+                        style="width: 50%;"
+                    ></div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Overall Average</h3>
+
+                <div class="stat-value">
+                    81%
+                    <span class="best-score-text">best score</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="dynamic-simulation-header">
+            Dynamic Simulation
+        </div>
+
+        <div class="dynamic-simulation-controls">
+            <label class="dynamic-control-item">
+                <span class="switch">
+                    <input type="checkbox" id="module3Check">
+                    <span class="slider"></span>
+                </span>
+
+                Module 3 Passed
+            </label>
+
+            <label class="dynamic-control-item">
+                <span class="switch">
+                    <input type="checkbox" id="module4Check">
+                    <span class="slider"></span>
+                </span>
+
+                Module 4 Passed
+            </label>
+        </div>
+
+        <div class="filter-header">
+            <div class="filter-pills">
+                <button class="pill active" data-filter="all">
+                    All
+                </button>
+
+                <button class="pill" data-filter="completed">
+                    Completed
+                </button>
+
+                <button class="pill" data-filter="progress">
+                    In Progress
+                </button>
+            </div>
+
+            <div class="module-count">
+                <span id="moduleCount">4</span> Modules
+            </div>
+        </div>
+
+        <div class="modules-list">
+            <article
+                class="module-card"
+                data-status="completed"
+                onclick="openModule(1, 'Road Signs & Signals')"
+            >
+                <div class="module-info">
+                    <div class="module-title">
+                        <span class="module-id-label">M1</span>
+                        Road Signs & Signals
+                    </div>
+
+                    <div class="module-description">
+                        Official regulatory, warnings, signals, and markers.
+                    </div>
+
+                    <div class="module-meta-row">
+                        <span>20 Questions</span>
+                        <span>• Min 80%</span>
+                    </div>
+                </div>
+
+                <div class="badge green">✓ 95%</div>
+            </article>
+
+            <article
+                class="module-card"
+                data-status="completed"
+                onclick="openModule(2, 'Rules & Right-of-Way')"
+            >
+                <div class="module-info">
+                    <div class="module-title">
+                        <span class="module-id-label">M2</span>
+                        Rules & Right-of-Way
+                    </div>
+
+                    <div class="module-description">
+                        Intersections, roundabouts, priority procedures.
+                    </div>
+
+                    <div class="module-meta-row">
+                        <span>25 Questions</span>
+                        <span>• Min 80%</span>
+                    </div>
+                </div>
+
+                <div class="badge green">✓ 88%</div>
+            </article>
+
+            <article
+                class="module-card active-module"
+                data-status="progress"
+                onclick="openModule(3, 'Speed Limits & Lane Controls')"
+            >
+                <div class="module-info">
+                    <div class="module-title">
+                        <span class="module-id-label">M3</span>
+                        Speed Limits & Lane Controls
+                    </div>
+
+                    <div class="module-description">
+                        Freeway conditions, speed tiers, lane discipline.
+                    </div>
+
+                    <div class="module-meta-row">
+                        <span>15 Questions</span>
+                        <span>• Min 80%</span>
+                    </div>
+                </div>
+
+                <div id="statusM3" class="badge red">60%</div>
+            </article>
+
+            <article
+                class="module-card locked"
+                id="cardM4"
+                data-status="locked"
+                onclick="openModule(4, 'Alcohol, Laws & Violations')"
+            >
+                <div class="module-info">
+                    <div class="module-title">
+                        <span class="module-id-label">M4</span>
+                        Alcohol, Laws & Violations
+                    </div>
+
+                    <div class="module-description">
+                        Legal limits, penalties, liability issues.
+                    </div>
+
+                    <div class="module-meta-row">
+                        <span>15 Questions</span>
+                        <span>• Min 80%</span>
+                    </div>
+                </div>
+
+                <div id="statusM4" class="badge gray">Locked</div>
+            </article>
+        </div>
+
+        <div class="mock-exam-card">
+            <h2 class="mock-exam-title">Official Mock Exam</h2>
+
+            <span id="examLockedTag" class="locked-label">
+                Locked
+            </span>
+
+            <div class="mock-exam-meta">
+                ⏱ 50 questions • 45 mins • Full simulator
+            </div>
+
+            <p id="examDesc" class="locked-exam-description">
+                Locked until all practice modules are completed.
+            </p>
+
+            <button
+                type="button"
+                id="examBtn"
+                class="mock-exam-action-button"
+            >
+                Locked
+            </button>
+        </div>
+    </section>
+
+    <!-- Progress -->
     <section class="progress-section">
-      <h2>Learning Progress</h2>
+        <h2>Learning Progress</h2>
 
-      <div class="progress-item">
-        <div class="progress-header">
-          <span>Knowledge Sharing</span>
-          <span class="percentage">65%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 65%"></div>
-        </div>
-      </div>
+        <div class="progress-item">
+            <div class="progress-header">
+                <span>Road Signs & Signals</span>
+                <span class="percentage">95%</span>
+            </div>
 
-      <div class="progress-item">
-        <div class="progress-header">
-          <span>Practice Tests</span>
-          <span class="percentage">80%</span>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 95%;"></div>
+            </div>
         </div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 80%"></div>
-        </div>
-      </div>
 
-      <div class="progress-item">
-        <div class="progress-header">
-          <span>Road Signs</span>
-          <span class="percentage">45%</span>
+        <div class="progress-item">
+            <div class="progress-header">
+                <span>Rules & Right-of-Way</span>
+                <span class="percentage">88%</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 88%;"></div>
+            </div>
         </div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 45%"></div>
+
+        <div class="progress-item">
+            <div class="progress-header">
+                <span>Speed Limits & Lane Controls</span>
+                <span class="percentage">60%</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 60%;"></div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <section class="calendar-section" aria-labelledby="calendarTitle">
-      <div class="calendar-header-section">
-        <h2 id="calendarTitle">Activity Calendar</h2>
+    <!-- Streak pet -->
+    <section class="streak-pet-section">
+        <div class="streak-pet-header">
+            <div>
+                <h2>Your Streak Pet</h2>
+                <p id="petMessage">
+                    Start practicing to take care of your pet.
+                </p>
+            </div>
 
-        <p class="streak-info">
-          🔥 <strong id="streakDays">0</strong> day streak
-        </p>
-      </div>
+            <div class="pet-name-area">
+                <label for="petName">Pet name</label>
 
-      <div class="calendar">
-        <div class="calendar-month-year">
-          <button
-            class="nav-btn"
-            id="prevMonth"
-            type="button"
-            aria-label="Previous month"
-          >
-            &lt;
-          </button>
+                <input
+                    type="text"
+                    id="petName"
+                    maxlength="20"
+                    placeholder="Name your pet"
+                >
 
-          <div class="month-year-display">
-            <span id="monthNumber"></span>
-            <span class="separator">/</span>
-            <span id="yearNumber"></span>
-            <span id="monthName"></span>
-          </div>
-
-          <button
-            class="nav-btn"
-            id="nextMonth"
-            type="button"
-            aria-label="Next month"
-          >
-            &gt;
-          </button>
+                <button type="button" id="savePetName">
+                    Save Name
+                </button>
+            </div>
         </div>
 
-        <div
-          class="calendar-grid"
-          role="grid"
-          aria-label="Monthly activity calendar"
+        <div class="pet-display">
+            <div id="streakPet" class="streak-pet">
+                <div class="pet-ear pet-ear-left"></div>
+                <div class="pet-ear pet-ear-right"></div>
+
+                <div class="pet-face">
+                    <span class="pet-eye pet-eye-left"></span>
+                    <span class="pet-eye pet-eye-right"></span>
+                    <span class="pet-nose"></span>
+                    <span class="pet-mouth"></span>
+                </div>
+
+                <div class="pet-body">
+                    <span class="pet-leg pet-leg-left"></span>
+                    <span class="pet-leg pet-leg-right"></span>
+                </div>
+
+                <div class="pet-accessory"></div>
+            </div>
+
+            <div class="pet-details">
+                <h3 id="petDisplayName">Your Pet</h3>
+
+                <p id="streakText">
+                    Current streak: 0 days
+                </p>
+
+                <p id="milestoneText">
+                    Starting Out
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar -->
+    <section class="calendar-section">
+        <div class="calendar-header-section">
+            <div>
+                <h2>Practice Calendar</h2>
+
+                <p class="section-description">
+                    Future dates remain uncolored until their date arrives.
+                </p>
+            </div>
+
+            <div class="streak-info">
+                Current streak:
+                <span id="calendarStreak">0 days</span>
+            </div>
+        </div>
+
+        <div class="calendar">
+            <div class="calendar-month-year">
+                <button
+                    type="button"
+                    class="nav-btn"
+                    id="previousMonth"
+                >
+                    ‹
+                </button>
+
+                <div class="month-year-display">
+                    <span id="monthNumber"></span>
+                    <span class="separator">/</span>
+                    <span id="yearNumber"></span>
+                    <span id="monthName"></span>
+                </div>
+
+                <button
+                    type="button"
+                    class="nav-btn"
+                    id="nextMonth"
+                >
+                    ›
+                </button>
+            </div>
+
+            <div id="calendarGrid" class="calendar-grid"></div>
+
+            <div class="calendar-legend">
+                <div class="legend-item">
+                    <span class="legend-box attended"></span>
+                    Attended
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-box absent"></span>
+                    Absent
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-box today"></span>
+                    Today
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Authentication modal -->
+<div
+    id="profileAuthModal"
+    class="auth-modal"
+    role="dialog"
+    aria-modal="true"
+    hidden
+>
+    <div class="auth-modal-content">
+        <button
+            type="button"
+            id="closeAuthModal"
+            class="auth-close"
         >
-          <div class="day-name">Mon</div>
-          <div class="day-name">Tue</div>
-          <div class="day-name">Wed</div>
-          <div class="day-name">Thu</div>
-          <div class="day-name">Fri</div>
-          <div class="day-name sat">Sat</div>
-          <div class="day-name sun">Sun</div>
+            ×
+        </button>
 
-          <div id="calendarDays" style="display: contents"></div>
-        </div>
+        <h2>Verify Your Identity</h2>
 
-        <div class="calendar-legend">
-          <div class="legend-item">
-            <span class="legend-box attended"></span>
-            Attempted
-          </div>
+        <p>
+            Enter your username and password to access your profile.
+        </p>
 
-          <div class="legend-item">
-            <span class="legend-box absent"></span>
-            Not attending
-          </div>
-        </div>
-      </div>
-    </section>
+        <form id="profileAuthForm">
+            <label for="profileUsername">Username</label>
 
-  </main>
+            <input
+                type="text"
+                id="profileUsername"
+                autocomplete="username"
+                required
+            >
 
-  <script>
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ];
+            <label for="profilePassword">Password</label>
 
-    let currentDate = new Date();
+            <input
+                type="password"
+                id="profilePassword"
+                autocomplete="current-password"
+                required
+            >
 
-    const attendance = JSON.parse(
-      localStorage.getItem("learn2driveAttendance") || "{}"
+            <p id="authError" class="auth-error"></p>
+
+            <button type="submit" class="auth-submit">
+                Continue to Profile
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const attendance = {
+        "2026-08-05": "attended",
+        "2026-08-06": "attended",
+        "2026-08-07": "attended",
+        "2026-08-08": "absent",
+        "2026-08-09": "attended",
+        "2026-08-10": "attended"
+    };
+
+    let displayedDate = new Date();
+
+    displayedDate = new Date(
+        displayedDate.getFullYear(),
+        displayedDate.getMonth(),
+        1
     );
 
-    function getDateKey(year, month, day) {
-      return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-    }
+    let module4Unlocked = false;
+    let examUnlocked = false;
 
-    function getDefaultStatus(year, month, day) {
-      const dateKey = getDateKey(year, month, day);
-      let hash = 0;
+    function getToday() {
+        const date = new Date();
 
-      for (const character of dateKey) {
-        hash = (hash * 31 + character.charCodeAt(0)) % 100;
-      }
-
-      return hash < 65;
-    }
-
-    function renderCalendar() {
-      const year = currentDate.getFullYear();
-      const month = currentDate.getMonth();
-
-      const firstDay = new Date(year, month, 1);
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-      // Convert JavaScript Sunday-first format to Monday-first format.
-      const startingOffset = (firstDay.getDay() + 6) % 7;
-
-      document.getElementById("monthNumber").textContent = month + 1;
-      document.getElementById("yearNumber").textContent = year;
-      document.getElementById("monthName").textContent = months[month];
-
-      const calendarDays = document.getElementById("calendarDays");
-      calendarDays.innerHTML = "";
-
-      // Add empty cells before the first day of the month.
-      for (let i = 0; i < startingOffset; i++) {
-        const emptyCell = document.createElement("div");
-
-        emptyCell.className = "calendar-day empty";
-        emptyCell.setAttribute("aria-hidden", "true");
-
-        calendarDays.appendChild(emptyCell);
-      }
-
-      // Add every day of the current month.
-      for (let day = 1; day <= daysInMonth; day++) {
-        const dateKey = getDateKey(year, month, day);
-
-        const attempted =
-          attendance[dateKey] ?? getDefaultStatus(year, month, day);
-
-        const dayCell = document.createElement("div");
-
-        dayCell.className = `calendar-day ${
-          attempted ? "attended" : "absent"
-        }`;
-
-        dayCell.textContent = day;
-        dayCell.setAttribute("role", "gridcell");
-
-        dayCell.setAttribute(
-          "aria-label",
-          `${months[month]} ${day}, ${year}: ${
-            attempted ? "Attempted" : "Not attending"
-          }`
-        );
-
-        calendarDays.appendChild(dayCell);
-      }
-
-      updateStreak();
-    }
-
-    function updateStreak() {
-      let date = new Date();
-      let streak = 0;
-
-      while (streak < 365) {
-        const dateKey = getDateKey(
-          date.getFullYear(),
-          date.getMonth(),
-          date.getDate()
-        );
-
-        const attempted =
-          attendance[dateKey] ??
-          getDefaultStatus(
+        return new Date(
             date.getFullYear(),
             date.getMonth(),
             date.getDate()
-          );
-
-        if (!attempted) {
-          break;
-        }
-
-        streak++;
-        date.setDate(date.getDate() - 1);
-      }
-
-      document.getElementById("streakDays").textContent = streak;
+        );
     }
 
-    document.getElementById("prevMonth").addEventListener("click", () => {
-      currentDate.setMonth(currentDate.getMonth() - 1);
-      renderCalendar();
+    function getDateKey(date) {
+        return [
+            date.getFullYear(),
+            String(date.getMonth() + 1).padStart(2, "0"),
+            String(date.getDate()).padStart(2, "0")
+        ].join("-");
+    }
+
+    function updatePortal() {
+        const module3Passed =
+            document.getElementById("module3Check").checked;
+
+        const module4Passed =
+            document.getElementById("module4Check").checked;
+
+        const cardM4 = document.getElementById("cardM4");
+        const statusM3 = document.getElementById("statusM3");
+        const statusM4 = document.getElementById("statusM4");
+
+        if (module3Passed) {
+            statusM3.className = "badge green";
+            statusM3.textContent = "✓ 100%";
+        } else {
+            statusM3.className = "badge red";
+            statusM3.textContent = "60%";
+        }
+
+        if (module4Passed) {
+            statusM4.className = "badge green";
+            statusM4.textContent = "✓ 100%";
+            cardM4.classList.remove("locked");
+            module4Unlocked = true;
+        } else if (module3Passed) {
+            statusM4.className = "badge red";
+            statusM4.textContent = "0%";
+            cardM4.classList.remove("locked");
+            module4Unlocked = true;
+        } else {
+            statusM4.className = "badge gray";
+            statusM4.textContent = "Locked";
+            cardM4.classList.add("locked");
+            module4Unlocked = false;
+        }
+
+        let passed = 2;
+
+        if (module3Passed) passed++;
+        if (module4Passed) passed++;
+
+        const percentage = passed / 4 * 100;
+
+        document.getElementById("portalProgressBar").style.width =
+            `${percentage}%`;
+
+        document.getElementById("progressText").textContent =
+            `${percentage}%`;
+
+        const examButton =
+            document.getElementById("examBtn");
+
+        const examTag =
+            document.getElementById("examLockedTag");
+
+        const examDescription =
+            document.getElementById("examDesc");
+
+        if (module3Passed && module4Passed) {
+            examUnlocked = true;
+            examButton.textContent = "Take Mock Exam";
+            examButton.classList.add("exam-unlocked");
+            examTag.style.display = "none";
+            examDescription.textContent =
+                "All requirements met. Ready for test simulation.";
+        } else {
+            examUnlocked = false;
+            examButton.textContent = "Locked";
+            examButton.classList.remove("exam-unlocked");
+            examTag.style.display = "inline-block";
+            examDescription.textContent =
+                "Locked until all practice modules are completed.";
+        }
+    }
+
+    document
+        .getElementById("module3Check")
+        .addEventListener("change", updatePortal);
+
+    document
+        .getElementById("module4Check")
+        .addEventListener("change", updatePortal);
+
+    function openModule(number, title) {
+        if (number === 4 && !module4Unlocked) {
+            alert("Module 4 is locked. Complete Module 3 first.");
+            return;
+        }
+
+        alert(`Opening Module ${number}: ${title}`);
+    }
+
+    document
+        .getElementById("examBtn")
+        .addEventListener("click", () => {
+            if (examUnlocked) {
+                alert("Starting Official Mock Exam...");
+            } else {
+                alert("Pass all 4 modules to unlock the official exam.");
+            }
+        });
+
+    document.querySelectorAll(".pill").forEach(button => {
+        button.addEventListener("click", () => {
+            document
+                .querySelectorAll(".pill")
+                .forEach(item => item.classList.remove("active"));
+
+            button.classList.add("active");
+
+            const filter = button.dataset.filter;
+
+            document
+                .querySelectorAll(".module-card")
+                .forEach(card => {
+                    const status = card.dataset.status;
+
+                    card.style.display =
+                        filter === "all" || filter === status
+                            ? "flex"
+                            : "none";
+                });
+        });
     });
 
-    document.getElementById("nextMonth").addEventListener("click", () => {
-      currentDate.setMonth(currentDate.getMonth() + 1);
-      renderCalendar();
-    });
+    function renderCalendar() {
+        const grid = document.getElementById("calendarGrid");
+        const year = displayedDate.getFullYear();
+        const month = displayedDate.getMonth();
+        const today = getToday();
 
+        grid.innerHTML = `
+            <div class="day-name">Mon</div>
+            <div class="day-name">Tue</div>
+            <div class="day-name">Wed</div>
+            <div class="day-name">Thu</div>
+            <div class="day-name">Fri</div>
+            <div class="day-name sat">Sat</div>
+            <div class="day-name sun">Sun</div>
+        `;
+
+        const firstDay = new Date(year, month, 1);
+        const daysInMonth =
+            new Date(year, month + 1, 0).getDate();
+
+        let firstPosition = firstDay.getDay();
+        firstPosition = firstPosition === 0 ? 6 : firstPosition - 1;
+
+        for (let i = 0; i < firstPosition; i++) {
+            const empty = document.createElement("div");
+            empty.className = "calendar-day empty";
+            grid.appendChild(empty);
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            const date = new Date(year, month, day);
+            const key = getDateKey(date);
+
+            const cell = document.createElement("div");
+            cell.className = "calendar-day";
+
+            const number = document.createElement("span");
+            number.className = "calendar-day-number";
+            number.textContent = day;
+
+            if (date > today) {
+                cell.classList.add("future");
+            } else if (attendance[key] === "attended") {
+                cell.classList.add("attended");
+            } else if (attendance[key] === "absent") {
+                cell.classList.add("absent");
+            }
+
+            if (date.getTime() === today.getTime()) {
+                cell.classList.add("today");
+            }
+
+            cell.appendChild(number);
+            grid.appendChild(cell);
+        }
+
+        document.getElementById("monthNumber").textContent =
+            String(month + 1).padStart(2, "0");
+
+        document.getElementById("yearNumber").textContent = year;
+
+        document.getElementById("monthName").textContent =
+            displayedDate.toLocaleString("en-US", {
+                month: "long"
+            });
+    }
+
+    document
+        .getElementById("previousMonth")
+        .addEventListener("click", () => {
+            displayedDate.setMonth(displayedDate.getMonth() - 1);
+            renderCalendar();
+        });
+
+    document
+        .getElementById("nextMonth")
+        .addEventListener("click", () => {
+            displayedDate.setMonth(displayedDate.getMonth() + 1);
+            renderCalendar();
+        });
+
+    function getCurrentStreak() {
+        const dates = Object.keys(attendance)
+            .filter(date => attendance[date] === "attended")
+            .map(date => new Date(`${date}T00:00:00`))
+            .sort((a, b) => b - a);
+
+        if (!dates.length) return 0;
+
+        const today = getToday();
+        const latestDifference =
+            Math.floor((today - dates[0]) / 86400000);
+
+        if (latestDifference > 1) return 0;
+
+        let streak = 1;
+
+        for (let i = 1; i < dates.length; i++) {
+            const difference =
+                Math.floor((dates[i - 1] - dates[i]) / 86400000);
+
+            if (difference === 1) {
+                streak++;
+            } else {
+                break;
+            }
+        }
+
+        return streak;
+    }
+
+    function updatePet() {
+        const pet = document.getElementById("streakPet");
+        const streak = getCurrentStreak();
+
+        const savedName =
+            localStorage.getItem("streakPetName");
+
+        document.getElementById("petDisplayName").textContent =
+            savedName || "Your Pet";
+
+        document.getElementById("streakText").textContent =
+            `Current streak: ${streak} day${streak === 1 ? "" : "s"}`;
+
+        document.getElementById("calendarStreak").textContent =
+            `${streak} day${streak === 1 ? "" : "s"}`;
+
+        pet.className = "streak-pet";
+
+        if (streak === 0) {
+            pet.classList.add("sad");
+
+            document.getElementById("milestoneText").textContent =
+                "Streak Lost";
+
+            document.getElementById("petMessage").textContent =
+                "Your pet is sad. Practice today to restore your streak.";
+
+            return;
+        }
+
+        if (streak >= 30) {
+            pet.classList.add("day-30");
+
+            document.getElementById("milestoneText").textContent =
+                "Day 30 – Ready to Ride!";
+
+            document.getElementById("petMessage").textContent =
+                "Your pet rides in a mini car with goggles.";
+        } else if (streak >= 10) {
+            pet.classList.add("day-10");
+
+            document.getElementById("milestoneText").textContent =
+                "Day 10 – Buckled Up!";
+
+            document.getElementById("petMessage").textContent =
+                "Your pet earned a seatbelt badge.";
+        } else if (streak >= 3) {
+            pet.classList.add("day-3");
+
+            document.getElementById("milestoneText").textContent =
+                "Day 3 – Stay on Track";
+
+            document.getElementById("petMessage").textContent =
+                "Your pet unlocked a toy traffic cone.";
+        } else {
+            document.getElementById("milestoneText").textContent =
+                "Day 1 – Starting Out";
+
+            document.getElementById("petMessage").textContent =
+                "Your pet is cheerful and ready to begin.";
+        }
+    }
+
+    document
+        .getElementById("savePetName")
+        .addEventListener("click", () => {
+            const input = document.getElementById("petName");
+            const name = input.value.trim();
+
+            if (!name) {
+                input.focus();
+                return;
+            }
+
+            localStorage.setItem("streakPetName", name);
+            updatePet();
+        });
+
+    document.getElementById("petName").value =
+        localStorage.getItem("streakPetName") || "";
+
+    const authModal =
+        document.getElementById("profileAuthModal");
+
+    document
+        .getElementById("openProfileButton")
+        .addEventListener("click", () => {
+            authModal.hidden = false;
+            document.getElementById("profileUsername").focus();
+        });
+
+    function closeAuthModal() {
+        authModal.hidden = true;
+        document.getElementById("profileAuthForm").reset();
+        document.getElementById("authError").textContent = "";
+    }
+
+    document
+        .getElementById("closeAuthModal")
+        .addEventListener("click", closeAuthModal);
+
+    document
+        .getElementById("profileAuthForm")
+        .addEventListener("submit", event => {
+            event.preventDefault();
+
+            const username =
+                document.getElementById("profileUsername").value.trim();
+
+            const password =
+                document.getElementById("profilePassword").value;
+
+            /*
+             * Demo only:
+             * Username: learner
+             * Password: license123
+             *
+             * Replace this with backend authentication.
+             */
+            if (
+                username === "learner" &&
+                password === "license123"
+            ) {
+                closeAuthModal();
+                alert("Profile access granted.");
+            } else {
+                document.getElementById("authError").textContent =
+                    "Incorrect username or password.";
+            }
+        });
+
+    updatePortal();
     renderCalendar();
-  </script>
+    updatePet();
+</script>
+
 </body>
 </html>
