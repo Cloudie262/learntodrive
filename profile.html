@@ -3,34 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driving License Learning Portal</title>
+    <title>Driving License Portal</title>
     <link rel="stylesheet" href="profile.css">
 </head>
 
 <body>
-<main class="page-container">
 
-    <!-- Profile -->
-    <section class="profile-section">
+<section id="authScreen" class="auth-screen">
+    <div class="auth-card">
+        <h1>Driving License Portal</h1>
+        <p class="muted">Practice and track your learning progress.</p>
+
+        <div class="tabs">
+            <button class="tab active" data-form="loginForm">
+                Log In
+            </button>
+
+            <button class="tab" data-form="registerForm">
+                Create Account
+            </button>
+        </div>
+
+        <form id="loginForm">
+            <label>
+                Username
+                <input id="loginUsername" required>
+            </label>
+
+            <label>
+                Password
+                <input
+                    id="loginPassword"
+                    type="password"
+                    required
+                >
+            </label>
+
+            <p id="loginError" class="error"></p>
+
+            <button class="primary-button">
+                Log In
+            </button>
+
+            <small>
+                Demo account: learner / license123
+            </small>
+        </form>
+
+        <form id="registerForm" class="hidden">
+            <label>
+                Username
+                <input id="registerUsername" required>
+            </label>
+
+            <label>
+                Password
+                <input
+                    id="registerPassword"
+                    type="password"
+                    minlength="6"
+                    required
+                >
+            </label>
+
+            <p id="registerMessage" class="message"></p>
+
+            <button class="primary-button">
+                Create Account
+            </button>
+        </form>
+    </div>
+</section>
+
+<main id="app" class="hidden">
+    <header class="topbar">
+        <strong>Driving License Learning Portal</strong>
+        <button id="logoutButton" class="secondary-button">
+            Log Out
+        </button>
+    </header>
+
+    <section class="card profile-section">
         <div class="profile-header">
             <div class="profile-pic">👤</div>
 
             <div>
                 <h1>Alex Driver</h1>
 
-                <p class="status-text">
+                <p class="muted">
                     Account status:
                     <span class="status-badge">Active</span>
                 </p>
 
-                <p class="member-since">
+                <p class="muted">
                     Member since January 2026
                 </p>
 
                 <button
-                    type="button"
-                    class="primary-button"
                     id="openProfileButton"
+                    class="primary-button"
                 >
                     Access Profile
                 </button>
@@ -38,422 +109,270 @@
         </div>
     </section>
 
-    <!-- Quiz portal -->
-    <section class="portal-section">
-        <div class="header-section">
-            <h1 class="portal-title">
-                License Practice Portal
-            </h1>
+    <section class="card">
+        <h1>License Practice Portal</h1>
 
-            <p class="pass-all-text">
-                Pass all modules to unlock the Official Test Simulation
-            </p>
-        </div>
+        <p class="muted">
+            Pass all modules to unlock the Official Test Simulation.
+        </p>
 
-        <div class="progress-and-average">
-            <div class="stat-card">
-                <h3>Portal Progress</h3>
+        <div class="stats">
+            <div class="stat-box">
+                <small>PORTAL PROGRESS</small>
+                <h2 id="progressText">50%</h2>
 
-                <div class="stat-value">
-                    <span id="progressText">50%</span>
-                    <span class="pass-all-text">completed</span>
-                </div>
-
-                <div class="portal-progress-container">
+                <div class="progress-track">
                     <div
-                        class="portal-progress-bar"
-                        id="portalProgressBar"
-                        style="width: 50%;"
+                        id="portalProgress"
+                        class="progress-fill portal-fill"
                     ></div>
                 </div>
             </div>
 
-            <div class="stat-card">
-                <h3>Overall Average</h3>
-
-                <div class="stat-value">
+            <div class="stat-box">
+                <small>OVERALL AVERAGE</small>
+                <h2>
                     81%
-                    <span class="best-score-text">best score</span>
-                </div>
+                    <em>best score</em>
+                </h2>
             </div>
         </div>
 
-        <div class="dynamic-simulation-header">
-            Dynamic Simulation
-        </div>
+        <h3>Dynamic Simulation</h3>
 
-        <div class="dynamic-simulation-controls">
-            <label class="dynamic-control-item">
-                <span class="switch">
-                    <input type="checkbox" id="module3Check">
-                    <span class="slider"></span>
-                </span>
-
+        <div class="simulation">
+            <label>
+                <input id="module3Check" type="checkbox">
                 Module 3 Passed
             </label>
 
-            <label class="dynamic-control-item">
-                <span class="switch">
-                    <input type="checkbox" id="module4Check">
-                    <span class="slider"></span>
-                </span>
-
+            <label>
+                <input id="module4Check" type="checkbox">
                 Module 4 Passed
             </label>
         </div>
 
-        <div class="filter-header">
-            <div class="filter-pills">
-                <button class="pill active" data-filter="all">
-                    All
-                </button>
+        <div class="filters">
+            <button class="filter active" data-filter="all">
+                All
+            </button>
 
-                <button class="pill" data-filter="completed">
-                    Completed
-                </button>
+            <button class="filter" data-filter="completed">
+                Completed
+            </button>
 
-                <button class="pill" data-filter="progress">
-                    In Progress
-                </button>
-            </div>
-
-            <div class="module-count">
-                <span id="moduleCount">4</span> Modules
-            </div>
+            <button class="filter" data-filter="progress">
+                In Progress
+            </button>
         </div>
 
-        <div class="modules-list">
-            <article
-                class="module-card"
-                data-status="completed"
-                onclick="openModule(1, 'Road Signs & Signals')"
-            >
-                <div class="module-info">
-                    <div class="module-title">
-                        <span class="module-id-label">M1</span>
-                        Road Signs & Signals
-                    </div>
-
-                    <div class="module-description">
-                        Official regulatory, warnings, signals, and markers.
-                    </div>
-
-                    <div class="module-meta-row">
-                        <span>20 Questions</span>
-                        <span>• Min 80%</span>
-                    </div>
+        <div class="modules">
+            <article class="module" data-status="completed">
+                <div>
+                    <h2>M1 Road Signs & Signals</h2>
+                    <p>Official regulatory signs, warnings, and markers.</p>
+                    <small>20 Questions • Min 80%</small>
                 </div>
 
-                <div class="badge green">✓ 95%</div>
+                <b class="green">✓ 95%</b>
+            </article>
+
+            <article class="module" data-status="completed">
+                <div>
+                    <h2>M2 Rules & Right-of-Way</h2>
+                    <p>Intersections, roundabouts, and priority procedures.</p>
+                    <small>25 Questions • Min 80%</small>
+                </div>
+
+                <b class="green">✓ 88%</b>
+            </article>
+
+            <article class="module active" data-status="progress">
+                <div>
+                    <h2>M3 Speed Limits & Lane Controls</h2>
+                    <p>Freeway conditions, speed tiers, and lane discipline.</p>
+                    <small>15 Questions • Min 80%</small>
+                </div>
+
+                <b id="statusM3" class="red">60%</b>
             </article>
 
             <article
-                class="module-card"
-                data-status="completed"
-                onclick="openModule(2, 'Rules & Right-of-Way')"
-            >
-                <div class="module-info">
-                    <div class="module-title">
-                        <span class="module-id-label">M2</span>
-                        Rules & Right-of-Way
-                    </div>
-
-                    <div class="module-description">
-                        Intersections, roundabouts, priority procedures.
-                    </div>
-
-                    <div class="module-meta-row">
-                        <span>25 Questions</span>
-                        <span>• Min 80%</span>
-                    </div>
-                </div>
-
-                <div class="badge green">✓ 88%</div>
-            </article>
-
-            <article
-                class="module-card active-module"
-                data-status="progress"
-                onclick="openModule(3, 'Speed Limits & Lane Controls')"
-            >
-                <div class="module-info">
-                    <div class="module-title">
-                        <span class="module-id-label">M3</span>
-                        Speed Limits & Lane Controls
-                    </div>
-
-                    <div class="module-description">
-                        Freeway conditions, speed tiers, lane discipline.
-                    </div>
-
-                    <div class="module-meta-row">
-                        <span>15 Questions</span>
-                        <span>• Min 80%</span>
-                    </div>
-                </div>
-
-                <div id="statusM3" class="badge red">60%</div>
-            </article>
-
-            <article
-                class="module-card locked"
-                id="cardM4"
+                id="module4"
+                class="module locked"
                 data-status="locked"
-                onclick="openModule(4, 'Alcohol, Laws & Violations')"
             >
-                <div class="module-info">
-                    <div class="module-title">
-                        <span class="module-id-label">M4</span>
-                        Alcohol, Laws & Violations
-                    </div>
-
-                    <div class="module-description">
-                        Legal limits, penalties, liability issues.
-                    </div>
-
-                    <div class="module-meta-row">
-                        <span>15 Questions</span>
-                        <span>• Min 80%</span>
-                    </div>
+                <div>
+                    <h2>M4 Alcohol, Laws & Violations</h2>
+                    <p>Legal limits, penalties, and liability issues.</p>
+                    <small>15 Questions • Min 80%</small>
                 </div>
 
-                <div id="statusM4" class="badge gray">Locked</div>
+                <b id="statusM4" class="gray">Locked</b>
             </article>
         </div>
 
-        <div class="mock-exam-card">
-            <h2 class="mock-exam-title">Official Mock Exam</h2>
+        <div class="exam-box">
+            <h2>Official Mock Exam</h2>
 
-            <span id="examLockedTag" class="locked-label">
-                Locked
-            </span>
-
-            <div class="mock-exam-meta">
-                ⏱ 50 questions • 45 mins • Full simulator
-            </div>
-
-            <p id="examDesc" class="locked-exam-description">
+            <p id="examText">
                 Locked until all practice modules are completed.
             </p>
 
-            <button
-                type="button"
-                id="examBtn"
-                class="mock-exam-action-button"
-            >
+            <button id="examButton" class="exam-button">
                 Locked
             </button>
         </div>
     </section>
 
-    <!-- Progress -->
-    <section class="progress-section">
+    <section class="card">
         <h2>Learning Progress</h2>
 
-        <div class="progress-item">
-            <div class="progress-header">
-                <span>Road Signs & Signals</span>
-                <span class="percentage">95%</span>
-            </div>
+        <div class="progress-row">
+            <span>Road Signs & Signals</span>
+            <b>95%</b>
 
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 95%;"></div>
+            <div class="progress-track">
+                <div class="progress-fill" style="width:95%"></div>
             </div>
         </div>
 
-        <div class="progress-item">
-            <div class="progress-header">
-                <span>Rules & Right-of-Way</span>
-                <span class="percentage">88%</span>
-            </div>
+        <div class="progress-row">
+            <span>Rules & Right-of-Way</span>
+            <b>88%</b>
 
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 88%;"></div>
+            <div class="progress-track">
+                <div class="progress-fill" style="width:88%"></div>
             </div>
         </div>
 
-        <div class="progress-item">
-            <div class="progress-header">
-                <span>Speed Limits & Lane Controls</span>
-                <span class="percentage">60%</span>
-            </div>
+        <div class="progress-row">
+            <span>Speed Limits & Lane Controls</span>
+            <b>60%</b>
 
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 60%;"></div>
+            <div class="progress-track">
+                <div class="progress-fill" style="width:60%"></div>
             </div>
         </div>
     </section>
 
-    <!-- Streak pet -->
-    <section class="streak-pet-section">
-        <div class="streak-pet-header">
+    <section class="card">
+        <div class="section-header">
             <div>
                 <h2>Your Streak Pet</h2>
-                <p id="petMessage">
+                <p id="petMessage" class="muted">
                     Start practicing to take care of your pet.
                 </p>
             </div>
 
-            <div class="pet-name-area">
-                <label for="petName">Pet name</label>
-
+            <div class="pet-name">
                 <input
-                    type="text"
                     id="petName"
                     maxlength="20"
                     placeholder="Name your pet"
                 >
 
-                <button type="button" id="savePetName">
+                <button
+                    id="savePetName"
+                    class="secondary-button"
+                >
                     Save Name
                 </button>
             </div>
         </div>
 
-        <div class="pet-display">
-            <div id="streakPet" class="streak-pet">
-                <div class="pet-ear pet-ear-left"></div>
-                <div class="pet-ear pet-ear-right"></div>
+        <div class="pet-area">
+            <div id="streakPet" class="pet">
+                <i class="ear left"></i>
+                <i class="ear right"></i>
 
-                <div class="pet-face">
-                    <span class="pet-eye pet-eye-left"></span>
-                    <span class="pet-eye pet-eye-right"></span>
-                    <span class="pet-nose"></span>
-                    <span class="pet-mouth"></span>
-                </div>
+                <i class="face">
+                    <i class="eye left"></i>
+                    <i class="eye right"></i>
+                    <i class="nose"></i>
+                    <i class="mouth"></i>
+                </i>
 
-                <div class="pet-body">
-                    <span class="pet-leg pet-leg-left"></span>
-                    <span class="pet-leg pet-leg-right"></span>
-                </div>
-
-                <div class="pet-accessory"></div>
+                <i class="body"></i>
+                <i class="accessory"></i>
             </div>
 
-            <div class="pet-details">
-                <h3 id="petDisplayName">Your Pet</h3>
-
-                <p id="streakText">
-                    Current streak: 0 days
-                </p>
-
-                <p id="milestoneText">
-                    Starting Out
-                </p>
+            <div>
+                <h2 id="petTitle">Your Pet</h2>
+                <p id="streakText"></p>
+                <p id="milestone"></p>
             </div>
         </div>
     </section>
 
-    <!-- Calendar -->
-    <section class="calendar-section">
-        <div class="calendar-header-section">
+    <section class="card">
+        <div class="section-header">
             <div>
                 <h2>Practice Calendar</h2>
-
-                <p class="section-description">
+                <p class="muted">
                     Future dates remain uncolored until their date arrives.
                 </p>
             </div>
 
-            <div class="streak-info">
-                Current streak:
-                <span id="calendarStreak">0 days</span>
-            </div>
+            <b>
+                Streak:
+                <span id="calendarStreak"></span>
+            </b>
         </div>
 
         <div class="calendar">
-            <div class="calendar-month-year">
-                <button
-                    type="button"
-                    class="nav-btn"
-                    id="previousMonth"
-                >
-                    ‹
-                </button>
+            <div class="calendar-nav">
+                <button id="previousMonth">‹</button>
 
-                <div class="month-year-display">
-                    <span id="monthNumber"></span>
-                    <span class="separator">/</span>
+                <span>
+                    <strong id="monthNumber"></strong>
+                    /
                     <span id="yearNumber"></span>
-                    <span id="monthName"></span>
-                </div>
+                    <em id="monthName"></em>
+                </span>
 
-                <button
-                    type="button"
-                    class="nav-btn"
-                    id="nextMonth"
-                >
-                    ›
-                </button>
+                <button id="nextMonth">›</button>
             </div>
 
             <div id="calendarGrid" class="calendar-grid"></div>
 
-            <div class="calendar-legend">
-                <div class="legend-item">
-                    <span class="legend-box attended"></span>
-                    Attended
-                </div>
-
-                <div class="legend-item">
-                    <span class="legend-box absent"></span>
-                    Absent
-                </div>
-
-                <div class="legend-item">
-                    <span class="legend-box today"></span>
-                    Today
-                </div>
+            <div class="legend">
+                🟢 Attended　
+                🔴 Absent　
+                🔵 Today
             </div>
         </div>
     </section>
 </main>
 
-<!-- Authentication modal -->
-<div
-    id="profileAuthModal"
-    class="auth-modal"
-    role="dialog"
-    aria-modal="true"
-    hidden
->
-    <div class="auth-modal-content">
-        <button
-            type="button"
-            id="closeAuthModal"
-            class="auth-close"
-        >
-            ×
-        </button>
+<div id="profileModal" class="modal hidden">
+    <div class="modal-card">
+        <button id="closeModal" class="close">×</button>
 
         <h2>Verify Your Identity</h2>
 
-        <p>
+        <p class="muted">
             Enter your username and password to access your profile.
         </p>
 
-        <form id="profileAuthForm">
-            <label for="profileUsername">Username</label>
+        <form id="profileForm">
+            <label>
+                Username
+                <input id="profileUsername" required>
+            </label>
 
-            <input
-                type="text"
-                id="profileUsername"
-                autocomplete="username"
-                required
-            >
+            <label>
+                Password
+                <input
+                    id="profilePassword"
+                    type="password"
+                    required
+                >
+            </label>
 
-            <label for="profilePassword">Password</label>
+            <p id="profileError" class="error"></p>
 
-            <input
-                type="password"
-                id="profilePassword"
-                autocomplete="current-password"
-                required
-            >
-
-            <p id="authError" class="auth-error"></p>
-
-            <button type="submit" class="auth-submit">
+            <button class="primary-button">
                 Continue to Profile
             </button>
         </form>
@@ -461,414 +380,455 @@
 </div>
 
 <script>
-    const attendance = {
-        "2026-08-05": "attended",
-        "2026-08-06": "attended",
-        "2026-08-07": "attended",
-        "2026-08-08": "absent",
-        "2026-08-09": "attended",
-        "2026-08-10": "attended"
+const demoAccount = {
+    username: "learner",
+    password: "license123"
+};
+
+const attendance = {
+    "2026-08-05": "attended",
+    "2026-08-06": "attended",
+    "2026-08-07": "attended",
+    "2026-08-08": "absent",
+    "2026-08-09": "attended",
+    "2026-08-10": "attended"
+};
+
+let shownDate = new Date();
+shownDate = new Date(
+    shownDate.getFullYear(),
+    shownDate.getMonth(),
+    1
+);
+
+let module4Unlocked = false;
+let examUnlocked = false;
+
+const get = id => document.getElementById(id);
+
+function getAccounts() {
+    return JSON.parse(
+        localStorage.getItem("portalAccounts") || "{}"
+    );
+}
+
+function saveAccounts(accounts) {
+    localStorage.setItem(
+        "portalAccounts",
+        JSON.stringify(accounts)
+    );
+}
+
+function isValidLogin(username, password) {
+    const accounts = getAccounts();
+
+    return (
+        username === demoAccount.username &&
+        password === demoAccount.password
+    ) || (
+        accounts[username] &&
+        accounts[username].password === password
+    );
+}
+
+function showApp() {
+    get("authScreen").classList.add("hidden");
+    get("app").classList.remove("hidden");
+}
+
+function showLogin() {
+    get("app").classList.add("hidden");
+    get("authScreen").classList.remove("hidden");
+}
+
+document.querySelectorAll(".tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+        document
+            .querySelectorAll(".tab")
+            .forEach(item => item.classList.remove("active"));
+
+        tab.classList.add("active");
+
+        document
+            .querySelectorAll("#loginForm, #registerForm")
+            .forEach(form => form.classList.add("hidden"));
+
+        get(tab.dataset.form).classList.remove("hidden");
+
+        get("loginError").textContent = "";
+        get("registerMessage").textContent = "";
+    });
+});
+
+get("loginForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const username = get("loginUsername")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const password = get("loginPassword").value;
+
+    if (isValidLogin(username, password)) {
+        showApp();
+    } else {
+        get("loginError").textContent =
+            "Incorrect username or password.";
+    }
+});
+
+get("registerForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const username = get("registerUsername")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const password = get("registerPassword").value;
+    const accounts = getAccounts();
+
+    if (username.length < 3) {
+        get("registerMessage").textContent =
+            "Username must contain at least 3 characters.";
+        return;
+    }
+
+    if (password.length < 6) {
+        get("registerMessage").textContent =
+            "Password must contain at least 6 characters.";
+        return;
+    }
+
+    if (
+        username === demoAccount.username ||
+        accounts[username]
+    ) {
+        get("registerMessage").textContent =
+            "That username already exists.";
+        return;
+    }
+
+    accounts[username] = {
+        password: password
     };
 
-    let displayedDate = new Date();
+    saveAccounts(accounts);
 
-    displayedDate = new Date(
-        displayedDate.getFullYear(),
-        displayedDate.getMonth(),
-        1
+    get("registerMessage").style.color = "green";
+    get("registerMessage").textContent =
+        "Account created successfully. You can now log in.";
+
+    document
+        .querySelector('[data-form="loginForm"]')
+        .click();
+
+    get("loginUsername").value = username;
+});
+
+get("logoutButton").addEventListener("click", showLogin);
+
+function updatePortal() {
+    const module3Passed = get("module3Check").checked;
+    const module4Passed = get("module4Check").checked;
+
+    get("statusM3").className =
+        module3Passed ? "green" : "red";
+
+    get("statusM3").textContent =
+        module3Passed ? "✓ 100%" : "60%";
+
+    get("statusM4").className =
+        module4Passed
+            ? "green"
+            : module3Passed
+                ? "red"
+                : "gray";
+
+    get("statusM4").textContent =
+        module4Passed
+            ? "✓ 100%"
+            : module3Passed
+                ? "0%"
+                : "Locked";
+
+    module4Unlocked =
+        module3Passed || module4Passed;
+
+    get("module4").classList.toggle(
+        "locked",
+        !module4Unlocked
     );
 
-    let module4Unlocked = false;
-    let examUnlocked = false;
+    const progress =
+        (2 + Number(module3Passed) + Number(module4Passed)) * 25;
 
-    function getToday() {
-        const date = new Date();
+    get("progressText").textContent = progress + "%";
+    get("portalProgress").style.width = progress + "%";
 
-        return new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate()
-        );
-    }
+    examUnlocked =
+        module3Passed && module4Passed;
 
-    function getDateKey(date) {
-        return [
-            date.getFullYear(),
-            String(date.getMonth() + 1).padStart(2, "0"),
-            String(date.getDate()).padStart(2, "0")
-        ].join("-");
-    }
+    get("examButton").textContent =
+        examUnlocked ? "Take Mock Exam" : "Locked";
 
-    function updatePortal() {
-        const module3Passed =
-            document.getElementById("module3Check").checked;
+    get("examButton").classList.toggle(
+        "unlocked",
+        examUnlocked
+    );
 
-        const module4Passed =
-            document.getElementById("module4Check").checked;
+    get("examText").textContent =
+        examUnlocked
+            ? "All requirements met. Ready for test simulation."
+            : "Locked until all practice modules are completed.";
+}
 
-        const cardM4 = document.getElementById("cardM4");
-        const statusM3 = document.getElementById("statusM3");
-        const statusM4 = document.getElementById("statusM4");
+get("module3Check").addEventListener("change", updatePortal);
+get("module4Check").addEventListener("change", updatePortal);
 
-        if (module3Passed) {
-            statusM3.className = "badge green";
-            statusM3.textContent = "✓ 100%";
-        } else {
-            statusM3.className = "badge red";
-            statusM3.textContent = "60%";
-        }
+get("examButton").addEventListener("click", () => {
+    alert(
+        examUnlocked
+            ? "Starting Official Mock Exam..."
+            : "Pass all modules first."
+    );
+});
 
-        if (module4Passed) {
-            statusM4.className = "badge green";
-            statusM4.textContent = "✓ 100%";
-            cardM4.classList.remove("locked");
-            module4Unlocked = true;
-        } else if (module3Passed) {
-            statusM4.className = "badge red";
-            statusM4.textContent = "0%";
-            cardM4.classList.remove("locked");
-            module4Unlocked = true;
-        } else {
-            statusM4.className = "badge gray";
-            statusM4.textContent = "Locked";
-            cardM4.classList.add("locked");
-            module4Unlocked = false;
-        }
+document.querySelectorAll(".filter").forEach(button => {
+    button.addEventListener("click", () => {
+        document
+            .querySelectorAll(".filter")
+            .forEach(item => item.classList.remove("active"));
 
-        let passed = 2;
+        button.classList.add("active");
 
-        if (module3Passed) passed++;
-        if (module4Passed) passed++;
+        const filter = button.dataset.filter;
 
-        const percentage = passed / 4 * 100;
-
-        document.getElementById("portalProgressBar").style.width =
-            `${percentage}%`;
-
-        document.getElementById("progressText").textContent =
-            `${percentage}%`;
-
-        const examButton =
-            document.getElementById("examBtn");
-
-        const examTag =
-            document.getElementById("examLockedTag");
-
-        const examDescription =
-            document.getElementById("examDesc");
-
-        if (module3Passed && module4Passed) {
-            examUnlocked = true;
-            examButton.textContent = "Take Mock Exam";
-            examButton.classList.add("exam-unlocked");
-            examTag.style.display = "none";
-            examDescription.textContent =
-                "All requirements met. Ready for test simulation.";
-        } else {
-            examUnlocked = false;
-            examButton.textContent = "Locked";
-            examButton.classList.remove("exam-unlocked");
-            examTag.style.display = "inline-block";
-            examDescription.textContent =
-                "Locked until all practice modules are completed.";
-        }
-    }
-
-    document
-        .getElementById("module3Check")
-        .addEventListener("change", updatePortal);
-
-    document
-        .getElementById("module4Check")
-        .addEventListener("change", updatePortal);
-
-    function openModule(number, title) {
-        if (number === 4 && !module4Unlocked) {
-            alert("Module 4 is locked. Complete Module 3 first.");
-            return;
-        }
-
-        alert(`Opening Module ${number}: ${title}`);
-    }
-
-    document
-        .getElementById("examBtn")
-        .addEventListener("click", () => {
-            if (examUnlocked) {
-                alert("Starting Official Mock Exam...");
-            } else {
-                alert("Pass all 4 modules to unlock the official exam.");
-            }
-        });
-
-    document.querySelectorAll(".pill").forEach(button => {
-        button.addEventListener("click", () => {
-            document
-                .querySelectorAll(".pill")
-                .forEach(item => item.classList.remove("active"));
-
-            button.classList.add("active");
-
-            const filter = button.dataset.filter;
-
-            document
-                .querySelectorAll(".module-card")
-                .forEach(card => {
-                    const status = card.dataset.status;
-
-                    card.style.display =
-                        filter === "all" || filter === status
-                            ? "flex"
-                            : "none";
-                });
+        document.querySelectorAll(".module").forEach(module => {
+            module.style.display =
+                filter === "all" ||
+                module.dataset.status === filter
+                    ? "flex"
+                    : "none";
         });
     });
+});
 
-    function renderCalendar() {
-        const grid = document.getElementById("calendarGrid");
-        const year = displayedDate.getFullYear();
-        const month = displayedDate.getMonth();
-        const today = getToday();
+function getToday() {
+    const date = new Date();
 
-        grid.innerHTML = `
-            <div class="day-name">Mon</div>
-            <div class="day-name">Tue</div>
-            <div class="day-name">Wed</div>
-            <div class="day-name">Thu</div>
-            <div class="day-name">Fri</div>
-            <div class="day-name sat">Sat</div>
-            <div class="day-name sun">Sun</div>
+    return new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate()
+    );
+}
+
+function dateKey(date) {
+    return [
+        date.getFullYear(),
+        String(date.getMonth() + 1).padStart(2, "0"),
+        String(date.getDate()).padStart(2, "0")
+    ].join("-");
+}
+
+function renderCalendar() {
+    const grid = get("calendarGrid");
+    const year = shownDate.getFullYear();
+    const month = shownDate.getMonth();
+    const today = getToday();
+
+    grid.innerHTML = `
+        <b>Mon</b>
+        <b>Tue</b>
+        <b>Wed</b>
+        <b>Thu</b>
+        <b>Fri</b>
+        <b>Sat</b>
+        <b>Sun</b>
+    `;
+
+    let firstDay = new Date(year, month, 1).getDay();
+    firstDay = firstDay === 0 ? 6 : firstDay - 1;
+
+    for (let i = 0; i < firstDay; i++) {
+        grid.innerHTML += `
+            <span class="day empty"></span>
         `;
-
-        const firstDay = new Date(year, month, 1);
-        const daysInMonth =
-            new Date(year, month + 1, 0).getDate();
-
-        let firstPosition = firstDay.getDay();
-        firstPosition = firstPosition === 0 ? 6 : firstPosition - 1;
-
-        for (let i = 0; i < firstPosition; i++) {
-            const empty = document.createElement("div");
-            empty.className = "calendar-day empty";
-            grid.appendChild(empty);
-        }
-
-        for (let day = 1; day <= daysInMonth; day++) {
-            const date = new Date(year, month, day);
-            const key = getDateKey(date);
-
-            const cell = document.createElement("div");
-            cell.className = "calendar-day";
-
-            const number = document.createElement("span");
-            number.className = "calendar-day-number";
-            number.textContent = day;
-
-            if (date > today) {
-                cell.classList.add("future");
-            } else if (attendance[key] === "attended") {
-                cell.classList.add("attended");
-            } else if (attendance[key] === "absent") {
-                cell.classList.add("absent");
-            }
-
-            if (date.getTime() === today.getTime()) {
-                cell.classList.add("today");
-            }
-
-            cell.appendChild(number);
-            grid.appendChild(cell);
-        }
-
-        document.getElementById("monthNumber").textContent =
-            String(month + 1).padStart(2, "0");
-
-        document.getElementById("yearNumber").textContent = year;
-
-        document.getElementById("monthName").textContent =
-            displayedDate.toLocaleString("en-US", {
-                month: "long"
-            });
     }
 
-    document
-        .getElementById("previousMonth")
-        .addEventListener("click", () => {
-            displayedDate.setMonth(displayedDate.getMonth() - 1);
-            renderCalendar();
-        });
+    const days = new Date(year, month + 1, 0).getDate();
 
-    document
-        .getElementById("nextMonth")
-        .addEventListener("click", () => {
-            displayedDate.setMonth(displayedDate.getMonth() + 1);
-            renderCalendar();
-        });
+    for (let day = 1; day <= days; day++) {
+        const date = new Date(year, month, day);
+        const cell = document.createElement("span");
+        const number = document.createElement("i");
 
-    function getCurrentStreak() {
-        const dates = Object.keys(attendance)
-            .filter(date => attendance[date] === "attended")
-            .map(date => new Date(`${date}T00:00:00`))
-            .sort((a, b) => b - a);
+        cell.className = "day";
+        number.className = "number";
+        number.textContent = day;
 
-        if (!dates.length) return 0;
-
-        const today = getToday();
-        const latestDifference =
-            Math.floor((today - dates[0]) / 86400000);
-
-        if (latestDifference > 1) return 0;
-
-        let streak = 1;
-
-        for (let i = 1; i < dates.length; i++) {
-            const difference =
-                Math.floor((dates[i - 1] - dates[i]) / 86400000);
-
-            if (difference === 1) {
-                streak++;
-            } else {
-                break;
-            }
+        if (date > today) {
+            cell.classList.add("future");
+        } else if (attendance[dateKey(date)]) {
+            cell.classList.add(attendance[dateKey(date)]);
         }
 
-        return streak;
-    }
-
-    function updatePet() {
-        const pet = document.getElementById("streakPet");
-        const streak = getCurrentStreak();
-
-        const savedName =
-            localStorage.getItem("streakPetName");
-
-        document.getElementById("petDisplayName").textContent =
-            savedName || "Your Pet";
-
-        document.getElementById("streakText").textContent =
-            `Current streak: ${streak} day${streak === 1 ? "" : "s"}`;
-
-        document.getElementById("calendarStreak").textContent =
-            `${streak} day${streak === 1 ? "" : "s"}`;
-
-        pet.className = "streak-pet";
-
-        if (streak === 0) {
-            pet.classList.add("sad");
-
-            document.getElementById("milestoneText").textContent =
-                "Streak Lost";
-
-            document.getElementById("petMessage").textContent =
-                "Your pet is sad. Practice today to restore your streak.";
-
-            return;
+        if (date.getTime() === today.getTime()) {
+            cell.classList.add("today");
         }
 
-        if (streak >= 30) {
-            pet.classList.add("day-30");
-
-            document.getElementById("milestoneText").textContent =
-                "Day 30 – Ready to Ride!";
-
-            document.getElementById("petMessage").textContent =
-                "Your pet rides in a mini car with goggles.";
-        } else if (streak >= 10) {
-            pet.classList.add("day-10");
-
-            document.getElementById("milestoneText").textContent =
-                "Day 10 – Buckled Up!";
-
-            document.getElementById("petMessage").textContent =
-                "Your pet earned a seatbelt badge.";
-        } else if (streak >= 3) {
-            pet.classList.add("day-3");
-
-            document.getElementById("milestoneText").textContent =
-                "Day 3 – Stay on Track";
-
-            document.getElementById("petMessage").textContent =
-                "Your pet unlocked a toy traffic cone.";
-        } else {
-            document.getElementById("milestoneText").textContent =
-                "Day 1 – Starting Out";
-
-            document.getElementById("petMessage").textContent =
-                "Your pet is cheerful and ready to begin.";
-        }
+        cell.appendChild(number);
+        grid.appendChild(cell);
     }
 
-    document
-        .getElementById("savePetName")
-        .addEventListener("click", () => {
-            const input = document.getElementById("petName");
-            const name = input.value.trim();
+    get("monthNumber").textContent =
+        String(month + 1).padStart(2, "0");
 
-            if (!name) {
-                input.focus();
-                return;
-            }
+    get("yearNumber").textContent = year;
 
-            localStorage.setItem("streakPetName", name);
-            updatePet();
+    get("monthName").textContent =
+        shownDate.toLocaleString("en-US", {
+            month: "long"
         });
+}
 
-    document.getElementById("petName").value =
-        localStorage.getItem("streakPetName") || "";
-
-    const authModal =
-        document.getElementById("profileAuthModal");
-
-    document
-        .getElementById("openProfileButton")
-        .addEventListener("click", () => {
-            authModal.hidden = false;
-            document.getElementById("profileUsername").focus();
-        });
-
-    function closeAuthModal() {
-        authModal.hidden = true;
-        document.getElementById("profileAuthForm").reset();
-        document.getElementById("authError").textContent = "";
-    }
-
-    document
-        .getElementById("closeAuthModal")
-        .addEventListener("click", closeAuthModal);
-
-    document
-        .getElementById("profileAuthForm")
-        .addEventListener("submit", event => {
-            event.preventDefault();
-
-            const username =
-                document.getElementById("profileUsername").value.trim();
-
-            const password =
-                document.getElementById("profilePassword").value;
-
-            /*
-             * Demo only:
-             * Username: learner
-             * Password: license123
-             *
-             * Replace this with backend authentication.
-             */
-            if (
-                username === "learner" &&
-                password === "license123"
-            ) {
-                closeAuthModal();
-                alert("Profile access granted.");
-            } else {
-                document.getElementById("authError").textContent =
-                    "Incorrect username or password.";
-            }
-        });
-
-    updatePortal();
+get("previousMonth").addEventListener("click", () => {
+    shownDate.setMonth(shownDate.getMonth() - 1);
     renderCalendar();
+});
+
+get("nextMonth").addEventListener("click", () => {
+    shownDate.setMonth(shownDate.getMonth() + 1);
+    renderCalendar();
+});
+
+function currentStreak() {
+    const dates = Object.keys(attendance)
+        .filter(date => attendance[date] === "attended")
+        .map(date => new Date(date + "T00:00:00"))
+        .sort((a, b) => b - a);
+
+    if (!dates.length) {
+        return 0;
+    }
+
+    if (
+        Math.floor((getToday() - dates[0]) / 86400000) > 1
+    ) {
+        return 0;
+    }
+
+    let streak = 1;
+
+    for (let i = 1; i < dates.length; i++) {
+        const difference =
+            Math.floor(
+                (dates[i - 1] - dates[i]) / 86400000
+            );
+
+        if (difference === 1) {
+            streak++;
+        } else {
+            break;
+        }
+    }
+
+    return streak;
+}
+
+function updatePet() {
+    const streak = currentStreak();
+    const pet = get("streakPet");
+    const savedName =
+        localStorage.getItem("streakPetName") || "Your Pet";
+
+    get("petTitle").textContent = savedName;
+
+    get("streakText").textContent =
+        `Current streak: ${streak} day${streak === 1 ? "" : "s"}`;
+
+    get("calendarStreak").textContent =
+        `${streak} day${streak === 1 ? "" : "s"}`;
+
+    pet.className = "pet";
+
+    if (streak === 0) {
+        pet.classList.add("sad");
+        get("milestone").textContent = "Streak Lost";
+        get("petMessage").textContent =
+            "Your pet is sad. Practice today to restore your streak.";
+    } else if (streak >= 30) {
+        pet.classList.add("day30");
+        get("milestone").textContent =
+            "Day 30 – Ready to Ride!";
+    } else if (streak >= 10) {
+        pet.classList.add("day10");
+        get("milestone").textContent =
+            "Day 10 – Buckled Up!";
+    } else if (streak >= 3) {
+        pet.classList.add("day3");
+        get("milestone").textContent =
+            "Day 3 – Stay on Track";
+    } else {
+        get("milestone").textContent =
+            "Day 1 – Starting Out";
+    }
+}
+
+get("petName").value =
+    localStorage.getItem("streakPetName") || "";
+
+get("savePetName").addEventListener("click", () => {
+    const name = get("petName").value.trim();
+
+    if (!name) {
+        return;
+    }
+
+    localStorage.setItem("streakPetName", name);
     updatePet();
+});
+
+get("openProfileButton").addEventListener("click", () => {
+    get("profileModal").classList.remove("hidden");
+    get("profileUsername").focus();
+});
+
+function closeProfileModal() {
+    get("profileModal").classList.add("hidden");
+    get("profileForm").reset();
+    get("profileError").textContent = "";
+}
+
+get("closeModal").addEventListener(
+    "click",
+    closeProfileModal
+);
+
+get("profileForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const username = get("profileUsername")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const password = get("profilePassword").value;
+
+    if (isValidLogin(username, password)) {
+        closeProfileModal();
+        alert("Profile access granted.");
+    } else {
+        get("profileError").textContent =
+            "Incorrect username or password.";
+    }
+});
+
+updatePortal();
+renderCalendar();
+updatePet();
 </script>
 
 </body>
