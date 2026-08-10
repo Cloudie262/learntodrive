@@ -326,133 +326,200 @@ input {
     gap: 20px;
 }
 
-.pet-name {
-    display: flex;
-    gap: 7px;
-}
-
-.pet-name input {
-    width: 145px;
-}
-
 .pet-area {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    padding: 25px;
+    gap: 35px;
+    padding: 35px;
     background: var(--background);
-    border-radius: 8px;
+    border-radius: 10px;
+    perspective: 800px;
 }
 
 .pet {
     position: relative;
-    width: 150px;
-    height: 125px;
+    width: 170px;
+    height: 150px;
+    transform: rotateY(-12deg) rotateX(4deg);
+    transform-style: preserve-3d;
+    transition: transform 0.4s ease;
+    filter: drop-shadow(12px 16px 8px rgba(8, 32, 82, 0.22));
+}
+
+.pet:hover {
+    transform: rotateY(12deg) rotateX(-3deg) translateY(-5px);
 }
 
 .face {
     position: absolute;
-    z-index: 2;
-    top: 10px;
-    left: 35px;
-    width: 82px;
-    height: 70px;
-    background: white;
+    z-index: 3;
+    top: 12px;
+    left: 42px;
+    width: 92px;
+    height: 78px;
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            #ffffff 0 10%,
+            transparent 11%
+        ),
+        linear-gradient(145deg, #ffffff, #d9d9d9);
     border: 3px solid #222;
-    border-radius: 48%;
+    border-radius: 48% 48% 45% 45%;
+    box-shadow:
+        inset -8px -10px 12px rgba(0, 0, 0, 0.18),
+        inset 7px 5px 8px rgba(255, 255, 255, 0.9),
+        7px 10px 0 rgba(0, 0, 0, 0.08);
+    transform: translateZ(18px);
 }
 
 .ear {
     position: absolute;
-    z-index: 3;
-    top: 8px;
-    width: 35px;
-    height: 64px;
-    background: #222;
-    border-radius: 50%;
+    z-index: 4;
+    top: 9px;
+    width: 40px;
+    height: 72px;
+    background:
+        linear-gradient(135deg, #111111, #444444 55%, #050505);
+    border: 2px solid #111;
+    border-radius: 55%;
+    box-shadow:
+        inset -7px -8px 9px rgba(0, 0, 0, 0.4),
+        5px 8px 0 rgba(0, 0, 0, 0.12);
+    transform: translateZ(23px);
 }
 
 .ear.left {
-    left: 28px;
-    transform: rotate(28deg);
+    left: 31px;
+    transform:
+        translateZ(23px)
+        rotate(28deg);
 }
 
 .ear.right {
-    right: 28px;
-    transform: rotate(-28deg);
+    right: 25px;
+    transform:
+        translateZ(23px)
+        rotate(-28deg);
 }
 
 .eye {
     position: absolute;
-    top: 28px;
-    width: 7px;
-    height: 7px;
-    background: #222;
+    top: 30px;
+    width: 9px;
+    height: 9px;
+    background: #111;
     border-radius: 50%;
+    box-shadow:
+        2px 2px 0 #000,
+        1px 1px 3px #fff;
 }
 
 .eye.left {
-    left: 22px;
+    left: 24px;
 }
 
 .eye.right {
-    right: 22px;
+    right: 24px;
 }
 
 .nose {
     position: absolute;
-    top: 42px;
-    left: 35px;
-    width: 12px;
-    height: 9px;
-    background: #222;
+    top: 46px;
+    left: 39px;
+    width: 15px;
+    height: 11px;
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #777 0 12%,
+            transparent 13%
+        ),
+        linear-gradient(145deg, #333, #000);
     border-radius: 50%;
+    box-shadow:
+        3px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 .mouth {
     position: absolute;
-    top: 49px;
-    left: 40px;
-    width: 2px;
-    height: 10px;
+    top: 54px;
+    left: 45px;
+    width: 3px;
+    height: 13px;
     background: #222;
+    box-shadow: 3px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 .body {
     position: absolute;
-    top: 72px;
-    left: 25px;
-    width: 100px;
-    height: 48px;
-    background: white;
+    z-index: 2;
+    top: 79px;
+    left: 28px;
+    width: 112px;
+    height: 58px;
+    background:
+        linear-gradient(145deg, #ffffff, #d2d2d2);
     border: 3px solid #222;
-    border-radius: 50%;
+    border-radius: 55% 55% 38% 38%;
+    box-shadow:
+        inset -10px -12px 15px rgba(0, 0, 0, 0.2),
+        inset 8px 6px 12px rgba(255, 255, 255, 0.9),
+        8px 12px 0 rgba(0, 0, 0, 0.12);
+    transform: translateZ(8px);
 }
 
-.accessory {
+.body::after {
     position: absolute;
-    z-index: 4;
-    top: -4px;
-    left: 42px;
-    font-size: 32px;
+    top: 12px;
+    right: 10px;
+    width: 30px;
+    height: 25px;
+    content: "";
+    background: #222;
+    border-radius: 50%;
+    opacity: 0.9;
+}
+
+.pet::before {
+    position: absolute;
+    z-index: 1;
+    top: 137px;
+    left: 18px;
+    width: 130px;
+    height: 16px;
+    content: "";
+    background: rgba(8, 32, 82, 0.2);
+    border-radius: 50%;
+    filter: blur(5px);
+    transform: translateZ(-15px);
+}
+
+.pet.d3 .accessory::after {
+    content: "🚧";
+    text-shadow: 3px 5px 3px rgba(0, 0, 0, 0.25);
+}
+
+.pet.d10 .accessory::after {
+    content: "🔰";
+    text-shadow: 3px 5px 3px rgba(0, 0, 0, 0.25);
+}
+
+.pet.d30 .accessory::after {
+    content: "🥽";
+    text-shadow: 3px 5px 3px rgba(0, 0, 0, 0.25);
 }
 
 .pet.sad {
-    filter: grayscale(.3);
-    transform: rotate(-5deg);
+    filter: grayscale(0.35)
+        drop-shadow(8px 12px 7px rgba(8, 32, 82, 0.2));
+    transform: rotateY(-12deg) rotateZ(-5deg);
 }
 
-.pet.day3 .accessory::after {
-    content: "🚧";
-}
-
-.pet.day10 .accessory::after {
-    content: "🔰";
-}
-
-.pet.day30 .accessory::after {
-    content: "🥽";
+.pet.sad .mouth {
+    height: 10px;
+    transform: rotate(180deg);
 }
 
 .calendar {
