@@ -228,7 +228,7 @@ body {
   color: black;
   font-weight: bold;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 100px;
   transition: all 0.3s ease;
 }
 
