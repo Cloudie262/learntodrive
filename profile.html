@@ -6,432 +6,246 @@
     <title>Driving License Portal</title>
     <link rel="stylesheet" href="profile.css">
 </head>
-
 <body>
+
+<div class="controls">
+    <button id="langToggle" class="control-btn" title="Toggle language">🇲🇲</button>
+    <button id="themeToggle" class="control-btn" title="Toggle theme">🌙</button>
+</div>
 
 <section id="authScreen" class="auth-screen">
     <div class="auth-card">
-        <h1>Driving License Portal</h1>
-        <p class="muted">Practice and track your learning progress.</p>
+        <h1 data-en="Driving License Portal" data-mm="မောင်းနှင်ခွင့်လိုင်စင် ပေါ်တယ်">Driving License Portal</h1>
+        <p class="muted" data-en="Practice and track your learning progress." data-mm="လေ့ကျင့်ပြီး သင်ယူမှု တိုးတက်မှုကို ခြေရာခံပါ။">Practice and track your learning progress.</p>
 
         <div class="tabs">
-            <button class="tab active" data-form="loginForm">
-                Log In
-            </button>
-
-            <button class="tab" data-form="registerForm">
-                Create Account
-            </button>
+            <button class="tab active" data-form="loginForm" data-en="Log In" data-mm="ဝင်ရောက်မည်">Log In</button>
+            <button class="tab" data-form="registerForm" data-en="Create Account" data-mm="အကောင့်ဖွင့်မည်">Create Account</button>
         </div>
 
-        <form id="loginForm">
-            <label>
-                Username
+        <form id="loginForm" class="auth-form">
+            <div>
+                <label data-en="Username" data-mm="အသုံးပြုသူအမည်">Username</label>
                 <input id="loginUsername" required>
-            </label>
+            </div>
 
-            <label>
-                Password
-                <input
-                    id="loginPassword"
-                    type="password"
-                    required
-                >
-            </label>
+            <div>
+                <label data-en="Password" data-mm="စကားဝှက်">Password</label>
+                <input id="loginPassword" type="password" required>
+            </div>
 
             <p id="loginError" class="error"></p>
 
-            <button class="primary-button">
-                Log In
-            </button>
+            <button class="primary-button" type="submit" data-en="Log In" data-mm="ဝင်ရောက်မည်">Log In</button>
 
-            <small>
-                Demo account: learner / license123
-            </small>
+            <small data-en="Demo account: learner / license123" data-mm="စမ်းသုံးအကောင့်: learner / license123">Demo account: learner / license123</small>
         </form>
 
-        <form id="registerForm" class="hidden">
-            <label>
-                Username
+        <form id="registerForm" class="auth-form hidden">
+            <div>
+                <label data-en="Username" data-mm="အသုံးပြုသူအမည်">Username</label>
                 <input id="registerUsername" required>
-            </label>
+            </div>
 
-            <label>
-                Password
-                <input
-                    id="registerPassword"
-                    type="password"
-                    minlength="6"
-                    required
-                >
-            </label>
+            <div>
+                <label data-en="Password" data-mm="စကားဝှက်">Password</label>
+                <input id="registerPassword" type="password" minlength="6" required>
+            </div>
 
             <p id="registerMessage" class="message"></p>
 
-            <button class="primary-button">
-                Create Account
-            </button>
+            <button class="primary-button" type="submit" data-en="Create Account" data-mm="အကောင့်ဖွင့်မည်">Create Account</button>
         </form>
     </div>
 </section>
 
 <main id="app" class="hidden">
     <header class="topbar">
-        <strong>Driving License Learning Portal</strong>
-        <button id="logoutButton" class="secondary-button">
-            Log Out
-        </button>
+        <strong data-en="Driving License Learning Portal" data-mm="မောင်းနှင်ခွင့်လိုင်စင် သင်ယူရေး ပေါ်တယ်">Driving License Learning Portal</strong>
+        <div style="display:flex;align-items:center;gap:15px">
+            <span id="displayUsername" style="font-weight:bold"></span>
+            <button id="logoutButton" class="secondary-button" data-en="Log Out" data-mm="ထွက်မည်">Log Out</button>
+        </div>
     </header>
 
     <section class="card profile-section">
         <div class="profile-header">
             <div class="profile-pic">👤</div>
-
             <div>
-                <h1>Alex Driver</h1>
-
-                <p class="muted">
-                    Account status:
-                    <span class="status-badge">Active</span>
+                <h1 id="profileName">Alex Driver</h1>
+                <p class="muted" data-en="Account status:" data-mm="အကောင့် အခြေအနေ:">Account status:
+                    <span class="status-badge" data-en="Active" data-mm="တက်ကြွ">Active</span>
                 </p>
-
-                <p class="muted">
-                    Member since January 2026
-                </p>
-
-                <button
-                    id="openProfileButton"
-                    class="primary-button"
-                >
-                    Access Profile
-                </button>
+                <p class="muted" data-en="Member since January 2026" data-mm="ဇန်နဝါရီ ၂၀၂၆ မှစ၍ အဖွဲ့ဝင်">Member since January 2026</p>
             </div>
         </div>
     </section>
 
     <section class="card">
-        <h1>License Practice Portal</h1>
-
-        <p class="muted">
-            Pass all modules to unlock the Official Test Simulation.
-        </p>
+        <h1 data-en="License Practice Portal" data-mm="လိုင်စင် လေ့ကျင့်ရေး ပေါ်တယ်">License Practice Portal</h1>
+        <p class="muted" data-en="Pass all modules to unlock the Official Test Simulation." data-mm="တရားဝင် စမ်းသပ်မှုကို ဖွင့်ရန် မော်ဒျူအားလုံးကို အောင်မြင်ပါ။">Pass all modules to unlock the Official Test Simulation.</p>
 
         <div class="stats">
             <div class="stat-box">
-                <small>PORTAL PROGRESS</small>
+                <small data-en="PORTAL PROGRESS" data-mm="ပေါ်တယ် တိုးတက်မှု">PORTAL PROGRESS</small>
                 <h2 id="progressText">50%</h2>
-
                 <div class="progress-track">
-                    <div
-                        id="portalProgress"
-                        class="progress-fill portal-fill"
-                    ></div>
+                    <div id="portalProgress" class="progress-fill portal-fill"></div>
                 </div>
             </div>
 
             <div class="stat-box">
-                <small>OVERALL AVERAGE</small>
-                <h2>
-                    81%
-                    <em>best score</em>
-                </h2>
+                <small data-en="OVERALL AVERAGE" data-mm="စုစုပေါင်း ပျမ်းမျှ">OVERALL AVERAGE</small>
+                <h2>81% <em data-en="best score" data-mm="အကောင်းဆုံး ရမှတ်">best score</em></h2>
             </div>
         </div>
 
-        <h3>Dynamic Simulation</h3>
+        <h3 data-en="Dynamic Simulation" data-mm="ဒိုင်းနမစ် စမ်းသပ်မှု">Dynamic Simulation</h3>
 
         <div class="simulation">
-            <label>
-                <input id="module3Check" type="checkbox">
-                Module 3 Passed
-            </label>
-
-            <label>
-                <input id="module4Check" type="checkbox">
-                Module 4 Passed
-            </label>
+            <label><input id="module3Check" type="checkbox"> <span data-en="Module 3 Passed" data-mm="မော်ဒျူ ၃ အောင်မြင်">Module 3 Passed</span></label>
+            <label><input id="module4Check" type="checkbox"> <span data-en="Module 4 Passed" data-mm="မော်ဒျူ ၄ အောင်မြင်">Module 4 Passed</span></label>
         </div>
 
         <div class="filters">
-            <button class="filter active" data-filter="all">
-                All
-            </button>
-
-            <button class="filter" data-filter="completed">
-                Completed
-            </button>
-
-            <button class="filter" data-filter="progress">
-                In Progress
-            </button>
+            <button class="filter active" data-filter="all" data-en="All" data-mm="အားလုံး">All</button>
+            <button class="filter" data-filter="completed" data-en="Completed" data-mm="ပြီးဆုံး">Completed</button>
+            <button class="filter" data-filter="progress" data-en="In Progress" data-mm="လုပ်ဆောင်နေ">In Progress</button>
         </div>
 
         <div class="modules">
             <article class="module" data-status="completed">
                 <div>
-                    <h2>M1 Road Signs & Signals</h2>
-                    <p>Official regulatory signs, warnings, and markers.</p>
-                    <small>20 Questions • Min 80%</small>
+                    <h2 data-en="M1 Road Signs & Signals" data-mm="M1 လမ်းအမှတ်အသားများနှင့် အချက်ပြများ">M1 Road Signs & Signals</h2>
+                    <p data-en="Official regulatory signs, warnings, and markers." data-mm="တရားဝင် စည်းကမ်းအမှတ်အသားများ၊ သတိပေးချက်များနှင့် အမှတ်အသားများ။">Official regulatory signs, warnings, and markers.</p>
+                    <small data-en="20 Questions • Min 80%" data-mm="မေးခွန်း ၂၀ • အနည်းဆုံး ၈၀%">20 Questions • Min 80%</small>
                 </div>
-
-                <b class="green">✓ 95%</b>
+                <b class="green" data-en="✓ 95%" data-mm="✓ ၉၅%">✓ 95%</b>
             </article>
 
             <article class="module" data-status="completed">
                 <div>
-                    <h2>M2 Rules & Right-of-Way</h2>
-                    <p>Intersections, roundabouts, and priority procedures.</p>
-                    <small>25 Questions • Min 80%</small>
+                    <h2 data-en="M2 Rules & Right-of-Way" data-mm="M2 စည်းကမ်းများနှင့် အဦးစားပေး">M2 Rules & Right-of-Way</h2>
+                    <p data-en="Intersections, roundabouts, and priority procedures." data-mm="လမ်းဆုံလမ်းခွများ၊ လမ်းဝိုင်းများနှင့် ဦးစားပေး လုပ်ထုံးလုပ်နည်းများ။">Intersections, roundabouts, and priority procedures.</p>
+                    <small data-en="25 Questions • Min 80%" data-mm="မေးခွန်း ၂၅ • အနည်းဆုံး ၈၀%">25 Questions • Min 80%</small>
                 </div>
-
-                <b class="green">✓ 88%</b>
+                <b class="green" data-en="✓ 88%" data-mm="✓ ၈၈%">✓ 88%</b>
             </article>
 
             <article class="module active" data-status="progress">
                 <div>
-                    <h2>M3 Speed Limits & Lane Controls</h2>
-                    <p>Freeway conditions, speed tiers, and lane discipline.</p>
-                    <small>15 Questions • Min 80%</small>
+                    <h2 data-en="M3 Speed Limits & Lane Controls" data-mm="M3 အမြန်နှုန်း သတ်မှတ်ချက်နှင့် လမ်းကြောင်း ထိန်းချုပ်မှု">M3 Speed Limits & Lane Controls</h2>
+                    <p data-en="Freeway conditions, speed tiers, and lane discipline." data-mm="အမြန်လမ်း အခြေအနေများ၊ အမြန်နှုန်း အဆင့်များနှင့် လမ်းကြောင်း စည်းကမ်း။">Freeway conditions, speed tiers, and lane discipline.</p>
+                    <small data-en="15 Questions • Min 80%" data-mm="မေးခွန်း ၁၅ • အနည်းဆုံး ၈၀%">15 Questions • Min 80%</small>
                 </div>
-
                 <b id="statusM3" class="red">60%</b>
             </article>
 
-            <article
-                id="module4"
-                class="module locked"
-                data-status="locked"
-            >
+            <article id="module4" class="module locked" data-status="locked">
                 <div>
-                    <h2>M4 Alcohol, Laws & Violations</h2>
-                    <p>Legal limits, penalties, and liability issues.</p>
-                    <small>15 Questions • Min 80%</small>
+                    <h2 data-en="M4 Alcohol, Laws & Violations" data-mm="M4 အရက်၊ ဥပဒေများနှင့် ချိုးဖောက်မှုများ">M4 Alcohol, Laws & Violations</h2>
+                    <p data-en="Legal limits, penalties, and liability issues." data-mm="တရားဝင် ကန့်သတ်ချက်များ၊ ပြစ်ဒဏ်များနှင့် တာဝန်ယူမှု ဆိုင်ရာ ကိစ္စရပ်များ။">Legal limits, penalties, and liability issues.</p>
+                    <small data-en="15 Questions • Min 80%" data-mm="မေးခွန်း ၁၅ • အနည်းဆုံး ၈၀%">15 Questions • Min 80%</small>
                 </div>
-
-                <b id="statusM4" class="gray">Locked</b>
+                <b id="statusM4" class="gray" data-en="Locked" data-mm="ပိတ်ထားသည်">Locked</b>
             </article>
         </div>
 
         <div class="exam-box">
-            <h2>Official Mock Exam</h2>
-
-            <p id="examText">
-                Locked until all practice modules are completed.
-            </p>
-
-            <button id="examButton" class="exam-button">
-                Locked
-            </button>
+            <h2 data-en="Official Mock Exam" data-mm="တရားဝင် စမ်းသပ်မှု">Official Mock Exam</h2>
+            <p id="examText" data-en="Locked until all practice modules are completed." data-mm="လေ့ကျင့်ရေး မော်ဒျူအားလုံး ပြီးဆုံးသည်အထိ ပိတ်ထားသည်။">Locked until all practice modules are completed.</p>
+            <button id="examButton" class="exam-button" data-en="Locked" data-mm="ပိတ်ထားသည်">Locked</button>
         </div>
     </section>
 
     <section class="card">
-        <h2>Learning Progress</h2>
+        <h2 data-en="Learning Progress" data-mm="သင်ယူမှု တိုးတက်မှု">Learning Progress</h2>
 
         <div class="progress-row">
-            <span>Road Signs & Signals</span>
+            <span data-en="Road Signs & Signals" data-mm="လမ်းအမှတ်အသားများနှင့် အချက်ပြများ">Road Signs & Signals</span>
             <b>95%</b>
-
             <div class="progress-track">
                 <div class="progress-fill" style="width:95%"></div>
             </div>
         </div>
 
         <div class="progress-row">
-            <span>Rules & Right-of-Way</span>
+            <span data-en="Rules & Right-of-Way" data-mm="စည်းကမ်းများနှင့် အဦးစားပေး">Rules & Right-of-Way</span>
             <b>88%</b>
-
             <div class="progress-track">
                 <div class="progress-fill" style="width:88%"></div>
             </div>
         </div>
 
         <div class="progress-row">
-            <span>Speed Limits & Lane Controls</span>
+            <span data-en="Speed Limits & Lane Controls" data-mm="အမြန်နှုန်း သတ်မှတ်ချက်နှင့် လမ်းကြောင်း ထိန်းချုပ်မှု">Speed Limits & Lane Controls</span>
             <b>60%</b>
-
             <div class="progress-track">
                 <div class="progress-fill" style="width:60%"></div>
             </div>
         </div>
     </section>
-
-    <section class="card">
-        <div class="section-header">
-            <div>
-                <h2>Your Streak Pet</h2>
-                <p id="petMessage" class="muted">
-                    Start practicing to take care of your pet.
-                </p>
-            </div>
-
-            <div class="pet-name">
-                <input
-                    id="petName"
-                    maxlength="20"
-                    placeholder="Name your pet"
-                >
-
-                <button
-                    id="savePetName"
-                    class="secondary-button"
-                >
-                    Save Name
-                </button>
-            </div>
-        </div>
-
-        <div class="pet-area">
-            <div id="streakPet" class="pet">
-                <i class="ear left"></i>
-                <i class="ear right"></i>
-
-                <i class="face">
-                    <i class="eye left"></i>
-                    <i class="eye right"></i>
-                    <i class="nose"></i>
-                    <i class="mouth"></i>
-                </i>
-
-                <i class="body"></i>
-                <i class="accessory"></i>
-            </div>
-
-            <div>
-                <h2 id="petTitle">Your Pet</h2>
-                <p id="streakText"></p>
-                <p id="milestone"></p>
-            </div>
-        </div>
-    </section>
-
-    <section class="card">
-        <div class="section-header">
-            <div>
-                <h2>Practice Calendar</h2>
-                <p class="muted">
-                    Future dates remain uncolored until their date arrives.
-                </p>
-            </div>
-
-            <b>
-                Streak:
-                <span id="calendarStreak"></span>
-            </b>
-        </div>
-
-        <div class="calendar">
-            <div class="calendar-nav">
-                <button id="previousMonth">‹</button>
-
-                <span>
-                    <strong id="monthNumber"></strong>
-                    /
-                    <span id="yearNumber"></span>
-                    <em id="monthName"></em>
-                </span>
-
-                <button id="nextMonth">›</button>
-            </div>
-
-            <div id="calendarGrid" class="calendar-grid"></div>
-
-            <div class="legend">
-                🟢 Attended　
-                🔴 Absent　
-                🔵 Today
-            </div>
-        </div>
-    </section>
 </main>
 
-<div id="profileModal" class="modal hidden">
-    <div class="modal-card">
-        <button id="closeModal" class="close">×</button>
-
-        <h2>Verify Your Identity</h2>
-
-        <p class="muted">
-            Enter your username and password to access your profile.
-        </p>
-
-        <form id="profileForm">
-            <label>
-                Username
-                <input id="profileUsername" required>
-            </label>
-
-            <label>
-                Password
-                <input
-                    id="profilePassword"
-                    type="password"
-                    required
-                >
-            </label>
-
-            <p id="profileError" class="error"></p>
-
-            <button class="primary-button">
-                Continue to Profile
-            </button>
-        </form>
-    </div>
-</div>
-
 <script>
-const demoAccount = {
-    username: "learner",
-    password: "license123"
-};
-
-const attendance = {
-    "2026-08-05": "attended",
-    "2026-08-06": "attended",
-    "2026-08-07": "attended",
-    "2026-08-08": "absent",
-    "2026-08-09": "attended",
-    "2026-08-10": "attended"
-};
-
-let shownDate = new Date();
-shownDate = new Date(
-    shownDate.getFullYear(),
-    shownDate.getMonth(),
-    1
-);
-
-let module4Unlocked = false;
-let examUnlocked = false;
-
+const demoAccount = { username: "learner", password: "license123" };
 const get = id => document.getElementById(id);
 
+let currentUser = null;
+
+// Language toggle
+let currentLang = localStorage.getItem("lang") || "en";
+const langToggle = get("langToggle");
+langToggle.textContent = currentLang === "mm" ? "🇬🇧" : "🇲🇲";
+
+function setLanguage(lang) {
+    document.querySelectorAll("[data-en]").forEach(el => {
+        const text = el.getAttribute(`data-${lang}`);
+        if (text) el.textContent = text;
+    });
+    localStorage.setItem("lang", lang);
+    langToggle.textContent = lang === "mm" ? "🇬🇧" : "🇲🇲";
+}
+
+langToggle.addEventListener("click", () => {
+    currentLang = currentLang === "en" ? "mm" : "en";
+    setLanguage(currentLang);
+});
+
+setLanguage(currentLang);
+
+// Theme toggle
+const themeToggle = get("themeToggle");
+const savedTheme = localStorage.getItem("theme") || "light";
+document.documentElement.setAttribute("data-theme", savedTheme);
+themeToggle.textContent = savedTheme === "dark" ? "☀️" : "🌙";
+
+themeToggle.addEventListener("click", () => {
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+    themeToggle.textContent = next === "dark" ? "☀️" : "🌙";
+});
+
 function getAccounts() {
-    return JSON.parse(
-        localStorage.getItem("portalAccounts") || "{}"
-    );
+    return JSON.parse(localStorage.getItem("portalAccounts") || "{}");
 }
 
 function saveAccounts(accounts) {
-    localStorage.setItem(
-        "portalAccounts",
-        JSON.stringify(accounts)
-    );
+    localStorage.setItem("portalAccounts", JSON.stringify(accounts));
 }
 
 function isValidLogin(username, password) {
     const accounts = getAccounts();
-
-    return (
-        username === demoAccount.username &&
-        password === demoAccount.password
-    ) || (
-        accounts[username] &&
-        accounts[username].password === password
-    );
+    return (username === demoAccount.username && password === demoAccount.password) ||
+           (accounts[username] && accounts[username].password === password);
 }
 
-function showApp() {
+function showApp(username) {
+    currentUser = username;
+    get("displayUsername").textContent = username;
+    get("profileName").textContent = username.charAt(0).toUpperCase() + username.slice(1);
     get("authScreen").classList.add("hidden");
     get("app").classList.remove("hidden");
 }
@@ -439,22 +253,17 @@ function showApp() {
 function showLogin() {
     get("app").classList.add("hidden");
     get("authScreen").classList.remove("hidden");
+    get("loginForm").reset();
+    get("loginError").textContent = "";
+    currentUser = null;
 }
 
 document.querySelectorAll(".tab").forEach(tab => {
     tab.addEventListener("click", () => {
-        document
-            .querySelectorAll(".tab")
-            .forEach(item => item.classList.remove("active"));
-
+        document.querySelectorAll(".tab").forEach(item => item.classList.remove("active"));
         tab.classList.add("active");
-
-        document
-            .querySelectorAll("#loginForm, #registerForm")
-            .forEach(form => form.classList.add("hidden"));
-
+        document.querySelectorAll("#loginForm, #registerForm").forEach(form => form.classList.add("hidden"));
         get(tab.dataset.form).classList.remove("hidden");
-
         get("loginError").textContent = "";
         get("registerMessage").textContent = "";
     });
@@ -462,68 +271,41 @@ document.querySelectorAll(".tab").forEach(tab => {
 
 get("loginForm").addEventListener("submit", event => {
     event.preventDefault();
-
-    const username = get("loginUsername")
-        .value
-        .trim()
-        .toLowerCase();
-
+    const username = get("loginUsername").value.trim().toLowerCase();
     const password = get("loginPassword").value;
-
+    
     if (isValidLogin(username, password)) {
-        showApp();
+        showApp(username);
     } else {
-        get("loginError").textContent =
-            "Incorrect username or password.";
+        get("loginError").textContent = "Incorrect username or password.";
     }
 });
 
 get("registerForm").addEventListener("submit", event => {
     event.preventDefault();
-
-    const username = get("registerUsername")
-        .value
-        .trim()
-        .toLowerCase();
-
+    const username = get("registerUsername").value.trim().toLowerCase();
     const password = get("registerPassword").value;
     const accounts = getAccounts();
 
     if (username.length < 3) {
-        get("registerMessage").textContent =
-            "Username must contain at least 3 characters.";
+        get("registerMessage").textContent = "Username must contain at least 3 characters.";
         return;
     }
-
     if (password.length < 6) {
-        get("registerMessage").textContent =
-            "Password must contain at least 6 characters.";
+        get("registerMessage").textContent = "Password must contain at least 6 characters.";
+        return;
+    }
+    if (username === demoAccount.username || accounts[username]) {
+        get("registerMessage").textContent = "That username already exists.";
         return;
     }
 
-    if (
-        username === demoAccount.username ||
-        accounts[username]
-    ) {
-        get("registerMessage").textContent =
-            "That username already exists.";
-        return;
-    }
-
-    accounts[username] = {
-        password: password
-    };
-
+    accounts[username] = { password: password };
     saveAccounts(accounts);
 
     get("registerMessage").style.color = "green";
-    get("registerMessage").textContent =
-        "Account created successfully. You can now log in.";
-
-    document
-        .querySelector('[data-form="loginForm"]')
-        .click();
-
+    get("registerMessage").textContent = "Account created successfully. You can now log in.";
+    document.querySelector('[data-form="loginForm"]').click();
     get("loginUsername").value = username;
 });
 
@@ -533,302 +315,45 @@ function updatePortal() {
     const module3Passed = get("module3Check").checked;
     const module4Passed = get("module4Check").checked;
 
-    get("statusM3").className =
-        module3Passed ? "green" : "red";
+    get("statusM3").className = module3Passed ? "green" : "red";
+    get("statusM3").textContent = module3Passed ? "✓ 100%" : "60%";
 
-    get("statusM3").textContent =
-        module3Passed ? "✓ 100%" : "60%";
+    get("statusM4").className = module4Passed ? "green" : module3Passed ? "red" : "gray";
+    get("statusM4").textContent = module4Passed ? "✓ 100%" : module3Passed ? "0%" : "Locked";
 
-    get("statusM4").className =
-        module4Passed
-            ? "green"
-            : module3Passed
-                ? "red"
-                : "gray";
+    const module4Unlocked = module3Passed || module4Passed;
+    get("module4").classList.toggle("locked", !module4Unlocked);
 
-    get("statusM4").textContent =
-        module4Passed
-            ? "✓ 100%"
-            : module3Passed
-                ? "0%"
-                : "Locked";
-
-    module4Unlocked =
-        module3Passed || module4Passed;
-
-    get("module4").classList.toggle(
-        "locked",
-        !module4Unlocked
-    );
-
-    const progress =
-        (2 + Number(module3Passed) + Number(module4Passed)) * 25;
-
+    const progress = (2 + Number(module3Passed) + Number(module4Passed)) * 25;
     get("progressText").textContent = progress + "%";
     get("portalProgress").style.width = progress + "%";
 
-    examUnlocked =
-        module3Passed && module4Passed;
-
-    get("examButton").textContent =
-        examUnlocked ? "Take Mock Exam" : "Locked";
-
-    get("examButton").classList.toggle(
-        "unlocked",
-        examUnlocked
-    );
-
-    get("examText").textContent =
-        examUnlocked
-            ? "All requirements met. Ready for test simulation."
-            : "Locked until all practice modules are completed.";
+    const examUnlocked = module3Passed && module4Passed;
+    get("examButton").textContent = examUnlocked ? "Take Mock Exam" : "Locked";
+    get("examButton").classList.toggle("unlocked", examUnlocked);
+    get("examText").textContent = examUnlocked ? "All requirements met. Ready for test simulation." : "Locked until all practice modules are completed.";
 }
 
 get("module3Check").addEventListener("change", updatePortal);
 get("module4Check").addEventListener("change", updatePortal);
 
 get("examButton").addEventListener("click", () => {
-    alert(
-        examUnlocked
-            ? "Starting Official Mock Exam..."
-            : "Pass all modules first."
-    );
+    const examUnlocked = get("module3Check").checked && get("module4Check").checked;
+    alert(examUnlocked ? "Starting Official Mock Exam..." : "Pass all modules first.");
 });
 
 document.querySelectorAll(".filter").forEach(button => {
     button.addEventListener("click", () => {
-        document
-            .querySelectorAll(".filter")
-            .forEach(item => item.classList.remove("active"));
-
+        document.querySelectorAll(".filter").forEach(item => item.classList.remove("active"));
         button.classList.add("active");
-
         const filter = button.dataset.filter;
-
         document.querySelectorAll(".module").forEach(module => {
-            module.style.display =
-                filter === "all" ||
-                module.dataset.status === filter
-                    ? "flex"
-                    : "none";
+            module.style.display = filter === "all" || module.dataset.status === filter ? "flex" : "none";
         });
     });
 });
 
-function getToday() {
-    const date = new Date();
-
-    return new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate()
-    );
-}
-
-function dateKey(date) {
-    return [
-        date.getFullYear(),
-        String(date.getMonth() + 1).padStart(2, "0"),
-        String(date.getDate()).padStart(2, "0")
-    ].join("-");
-}
-
-function renderCalendar() {
-    const grid = get("calendarGrid");
-    const year = shownDate.getFullYear();
-    const month = shownDate.getMonth();
-    const today = getToday();
-
-    grid.innerHTML = `
-        <b>Mon</b>
-        <b>Tue</b>
-        <b>Wed</b>
-        <b>Thu</b>
-        <b>Fri</b>
-        <b>Sat</b>
-        <b>Sun</b>
-    `;
-
-    let firstDay = new Date(year, month, 1).getDay();
-    firstDay = firstDay === 0 ? 6 : firstDay - 1;
-
-    for (let i = 0; i < firstDay; i++) {
-        grid.innerHTML += `
-            <span class="day empty"></span>
-        `;
-    }
-
-    const days = new Date(year, month + 1, 0).getDate();
-
-    for (let day = 1; day <= days; day++) {
-        const date = new Date(year, month, day);
-        const cell = document.createElement("span");
-        const number = document.createElement("i");
-
-        cell.className = "day";
-        number.className = "number";
-        number.textContent = day;
-
-        if (date > today) {
-            cell.classList.add("future");
-        } else if (attendance[dateKey(date)]) {
-            cell.classList.add(attendance[dateKey(date)]);
-        }
-
-        if (date.getTime() === today.getTime()) {
-            cell.classList.add("today");
-        }
-
-        cell.appendChild(number);
-        grid.appendChild(cell);
-    }
-
-    get("monthNumber").textContent =
-        String(month + 1).padStart(2, "0");
-
-    get("yearNumber").textContent = year;
-
-    get("monthName").textContent =
-        shownDate.toLocaleString("en-US", {
-            month: "long"
-        });
-}
-
-get("previousMonth").addEventListener("click", () => {
-    shownDate.setMonth(shownDate.getMonth() - 1);
-    renderCalendar();
-});
-
-get("nextMonth").addEventListener("click", () => {
-    shownDate.setMonth(shownDate.getMonth() + 1);
-    renderCalendar();
-});
-
-function currentStreak() {
-    const dates = Object.keys(attendance)
-        .filter(date => attendance[date] === "attended")
-        .map(date => new Date(date + "T00:00:00"))
-        .sort((a, b) => b - a);
-
-    if (!dates.length) {
-        return 0;
-    }
-
-    if (
-        Math.floor((getToday() - dates[0]) / 86400000) > 1
-    ) {
-        return 0;
-    }
-
-    let streak = 1;
-
-    for (let i = 1; i < dates.length; i++) {
-        const difference =
-            Math.floor(
-                (dates[i - 1] - dates[i]) / 86400000
-            );
-
-        if (difference === 1) {
-            streak++;
-        } else {
-            break;
-        }
-    }
-
-    return streak;
-}
-
-function updatePet() {
-    const streak = currentStreak();
-    const pet = get("streakPet");
-    const savedName =
-        localStorage.getItem("streakPetName") || "Your Pet";
-
-    get("petTitle").textContent = savedName;
-
-    get("streakText").textContent =
-        `Current streak: ${streak} day${streak === 1 ? "" : "s"}`;
-
-    get("calendarStreak").textContent =
-        `${streak} day${streak === 1 ? "" : "s"}`;
-
-    pet.className = "pet";
-
-    if (streak === 0) {
-        pet.classList.add("sad");
-        get("milestone").textContent = "Streak Lost";
-        get("petMessage").textContent =
-            "Your pet is sad. Practice today to restore your streak.";
-    } else if (streak >= 30) {
-        pet.classList.add("day30");
-        get("milestone").textContent =
-            "Day 30 – Ready to Ride!";
-    } else if (streak >= 10) {
-        pet.classList.add("day10");
-        get("milestone").textContent =
-            "Day 10 – Buckled Up!";
-    } else if (streak >= 3) {
-        pet.classList.add("day3");
-        get("milestone").textContent =
-            "Day 3 – Stay on Track";
-    } else {
-        get("milestone").textContent =
-            "Day 1 – Starting Out";
-    }
-}
-
-get("petName").value =
-    localStorage.getItem("streakPetName") || "";
-
-get("savePetName").addEventListener("click", () => {
-    const name = get("petName").value.trim();
-
-    if (!name) {
-        return;
-    }
-
-    localStorage.setItem("streakPetName", name);
-    updatePet();
-});
-
-get("openProfileButton").addEventListener("click", () => {
-    get("profileModal").classList.remove("hidden");
-    get("profileUsername").focus();
-});
-
-function closeProfileModal() {
-    get("profileModal").classList.add("hidden");
-    get("profileForm").reset();
-    get("profileError").textContent = "";
-}
-
-get("closeModal").addEventListener(
-    "click",
-    closeProfileModal
-);
-
-get("profileForm").addEventListener("submit", event => {
-    event.preventDefault();
-
-    const username = get("profileUsername")
-        .value
-        .trim()
-        .toLowerCase();
-
-    const password = get("profilePassword").value;
-
-    if (isValidLogin(username, password)) {
-        closeProfileModal();
-        alert("Profile access granted.");
-    } else {
-        get("profileError").textContent =
-            "Incorrect username or password.";
-    }
-});
-
 updatePortal();
-renderCalendar();
-updatePet();
 </script>
 
 </body>
