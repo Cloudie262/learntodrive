@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Learn2Drive - Mock Test</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+   
+</head>
+
+<body>
+
+<div class="mock-container">
+
+    <!-- Header -->
+    <div class="mock-header">
+
+        <div>
+            <h1><i class="fa-solid fa-person-chalkboard"></i> စုစုပေါင်း အစမ်းစာမေးပွဲ</h1>
+
+            <p>
+                ယာဉ်မောင်းလိုင်စင် အစမ်းလေ့ကျင့်ရေး
+            </p>
+        </div>
+
+        <!-- Timer -->
+        <div class="timer-box">
+
+            <span><i class="fa-regular fa-clock"></i> ကျန်ရှိချိန်</span>
+
+            <strong id="timer">
+                ၁:၃၀:၀၀
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- Progress -->
+    <div class="mock-progress">
+
+        <div class="progress-info">
+
+            <span id="questionNumber">
+                မေးခွန်း ၁ / ၅၀
+            </span>
+
+            <span id="answeredCount">
+                ဖြေပြီး: ၀ / ၅၀
+            </span>
+
+        </div>
+
+        <div class="mock-progress-bar">
+
+            <div id="mockProgressBar"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Question -->
+    <div class="mock-question-card">
+
+        <h2 id="mockQuestion">
+            မေးခွန်း
+        </h2>
+
+        <div id="mockOptions"
+             class="mock-options">
+        </div>
+
+    </div>
+
+
+    <!-- Navigation -->
+    <div class="mock-navigation">
+
+        <button id="previousBtn">
+            <i class="fa-solid fa-circle-chevron-left"></i> နောက်သို့
+        </button>
+
+        <button id="nextBtn">
+            နောက်မေးခွန်းသို့
+        </button>
+
+    </div>
+
+
+    <!-- Question Numbers -->
+    <div class="question-navigation">
+
+        <h3><i class="fa-solid fa-square-poll-horizontal"></i>မေးခွန်းများ</h3>
+
+        <div id="questionNumbers">
+        </div>
+
+    </div>
+
+
+    <!-- Submit -->
+    <div class="submit-area">
+
+        <button id="submitBtn">
+            <i class="fa-solid fa-upload"></i> စာမေးပွဲတင်မည်
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="question.js"></script>
+<script src="mock-test.js"></script>
+
+</body>
+
+</html>

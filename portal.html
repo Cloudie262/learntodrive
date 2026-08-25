@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn2Drive</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- fontawesome css1 -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Learn2Drive</h1>
+  <p class="subtitle">ယာဉ်မောင်းလိုင်စင်ရေးဖြေစာမေးပွဲ လေ့ကျင့်ရေးပလက်ဖောင်း</p>
+
+  <!-- Portal Progress -->
+  <div class="stats">
+
+    <div class="card">
+      <h4><i class="fa-solid fa-medal"></i> သင်ခန်းစာ တိုးတက်မှု</h4>
+
+      <h2><span id="portalProgress">၀</span>%</h2>
+
+      <div class="bar">
+        <div id="progressBar"></div>
+      </div>
+
+      <small>သင်ခန်းစာပြီးမြောက်ထားမှု ရာခိုင်နှုန်း</small>
+    </div>
+
+    <!-- Overall Average -->
+    <div class="card">
+      <h4><i class="fa-solid fa-crown"></i> ပျမ်းမျှရမှတ်</h4>
+
+      <h2><span id="averageScore">၀</span>%</h2>
+
+      <small>အကောင်းဆုံး ပျမ်းမျှရမှတ်</small>
+    </div>
+
+  </div>
+
+  <!-- သင်ခန်းစာ ၁ -->
+  <!-- သင်ခန်းစာ ၁ -->
+<div class="module">
+
+    <div class="module-header" onclick="toggle('lesson1')">
+        <span><i class="fa-solid fa-book"></i> သင်ခန်းစာ ၁</span>
+        <span>▼</span>
+    </div>
+
+    <div id="lesson1" class="lesson-list">
+
+        <div class="lesson" onclick="openQuiz(1, 1)">
+            ၁.၁ ယာဉ်မောင်းကောင်းတစ်ယောက်၏ အရည်အချင်းများ
+        </div>
+
+        <div class="lesson" onclick="openQuiz(1, 2)">
+            ၁.၂ ယာဉ်မောင်းနှင်ခြင်းမပြုမီစစ်ဆေးရမည့်အချက်နှင့်စထွက်ခြင်း
+        </div>
+
+        <div class="lesson" onclick="openQuiz(1, 3)">
+            ၁.၃ အဝေးပြေးလမ်း / အမြန်လမ်း
+        </div>
+
+        <div class="lesson" onclick="openQuiz(1, 4)">
+            ၁.၄ ရာသီဥတု / မြင်ကွင်းအခြေအနေ
+        </div>
+
+        <div class="lesson" onclick="openQuiz(1, 5)">
+            ၁.၅ မီးပွိုင့်နှင့်လမ်းဆုံတွင်လိုက်နာရမည့်အချက်များ
+        </div>
+
+        <div class="lesson" onclick="openQuiz(1, 6)">
+            ၁.၆ မှိုင်နှုန်း / အရှိန်
+        </div>
+
+        <div class="lesson" onclick="openQuiz(1, 7)">
+            ၁.၇ ရပ်ခြင်း ၊ ရပ်ဆိုင်း ၊ ရပ်နားခြင်းဆိုင်ရာလိုက်နာရမည့်အချက်များ
+        </div>
+
+    </div>
+
+</div> <!-- ⭐ ဒီတစ်ခုက Module 1 ကိုပိတ်တာ -->
+
+  <!-- သင်ခန်းစာ ၂ -->
+  <div class="module">
+
+    <div class="module-header" onclick="toggle('lesson2')">
+      <span><i class="fa-solid fa-book"></i> သင်ခန်းစာ ၂</span>
+      <span>▼</span>
+    </div>
+
+    <div id="lesson2" class="lesson-list">
+      <div class="lesson" onclick="openQuiz(2, 1)">၂.၁ အခြားယာဉ်​၏နောက်မှ/ရှေ့မှလိုက်ခြင်း</div>
+      <div class="lesson" onclick="openQuiz(2, 2)">၂.၂ မျက်နှာချင်းဆိုင်ယာဉ်နှင့်တိမ်းရှောင်ခြင်း</div>
+      <div class="lesson" onclick="openQuiz(2, 3)">၂.၃ မညီညာသောလမ်း/ရေလွှမ်းသောလမ်း/စိုစွတ်သောလမ်းတွင် မောင်းနှင်ခြင်း</div>
+      <div class="lesson" onclick="openQuiz(2, 4)">၂.၄ ဘီး/တာယာ</div>
+      <div class="lesson" onclick="openQuiz(2, 5)">၂.၅ မတော်တဆမှု</div>
+      <div class="lesson" onclick="openQuiz(2, 6)">၂.၆ အချက်ပြခြင်း/ဟွန်းတီးခြင်း/မီးအသုံးပြုခြင်း</div>
+      <div class="lesson" onclick="openQuiz(2, 7)">၂.၇ အပူချိန်လွန်ကဲခြင်း</div>
+    </div>
+
+  </div>
+
+  <!-- သင်ခန်းစာ ၃ -->
+  <div class="module">
+
+    <div class="module-header" onclick="toggle('lesson3')">
+      <span><i class="fa-solid fa-book"></i> သင်ခန်းစာ ၃</span>
+      <span>▼</span>
+    </div>
+
+    <div id="lesson3" class="lesson-list">
+      <div class="lesson" onclick="openQuiz(3, 1)">၃.၁ ဦးစားပေးခြင်း</div>
+      <div class="lesson" onclick="openQuiz(3, 2)">၃.၂ ကုန်းဆင်း/တက်၊ တောင်တက်/ဆင်းလမ်း</div>
+      <div class="lesson" onclick="openQuiz(3, 3)">၃.၃ ဂီယာအသုံးပြုခြင်း</div>
+      <div class="lesson" onclick="openQuiz(3, 4)">၃.၄ လီဗာအသုံးပြုခြင်း</div>
+      <div class="lesson" onclick="openQuiz(3, 5)">၃.၅ စတီယာရင်အသုံးပြုခြင်း</div>
+      <div class="lesson" onclick="openQuiz(3, 6)">၃.၆ လေကာမှန်/နောက်ကြည့်မှန်/နေကာ</div>
+      <div class="lesson" onclick="openQuiz(3, 7)">၃.၇ ကလပ်နင်းခြင်း</div>
+    </div>
+
+  </div>
+
+  <!-- သင်ခန်းစာ ၄ -->
+  <div class="module">
+
+    <div class="module-header" onclick="toggle('lesson4')">
+      <span><i class="fa-solid fa-book"></i> သင်ခန်းစာ ၄</span>
+      <span>▼</span>
+    </div>
+
+    <div id="lesson4" class="lesson-list">
+      <div class="lesson" onclick="openQuiz(4, 1)">၄.၁ ဘရိတ်အသုံးပြုခြင်း</div>
+      <div class="lesson" onclick="openQuiz(4, 2)">၄.၂ ကျော်တက်ရာတွင် သတိပြုရမည့်အချက်များ</div>
+      <div class="lesson" onclick="openQuiz(4, 3)">၄.၃ ယာဉ်ကွေ့ရာတွင်သတိပြုရမည့်အချက်များ</div>
+      <div class="lesson" onclick="openQuiz(4, 4)">၄.၄ နောက်ဆုတ်ရာတွင်သတိပြုရမည့်အချက်များ</div>
+      <div class="lesson" onclick="openQuiz(4, 5)">၄.၅ လူကူးမျဉ်းကြား/လမ်းအသုံးပြုသူများ</div>
+      <div class="lesson" onclick="openQuiz(4, 6)">၄.၆ ဖြတ်သန်းခြင်း</div>
+      <div class="lesson" onclick="openQuiz(4, 7)">၄.၇ ယာဉ်ကြောအတိုင်းမောင်းခြင်း/ပြောင်းခြင်း</div>
+    </div>
+
+  </div>
+
+  <!-- Overall Mock Test -->
+  <div class="mock">
+
+    <h2> စုစုပေါင်း အစမ်းစာမေးပွဲ</h2>
+
+    <p>မေးခွန်း ၅၀ • အချိန် ၁ နာရီ ၃၀ မိနစ်</p>
+
+    <button
+    id="mockBtn"
+    onclick="startMockTest()"
+    style="cursor: pointer;">
+    
+     <i class="fa-solid fa-wand-magic-sparkles"></i> အစမ်းစာမေးပွဲ စတင်ရန်
+
+</button>
+
+</div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
