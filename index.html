@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn2Drive</title>
+  <link rel="stylesheet" href="drive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.2/css/boxicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Toggle Button -->
+  <button class="sidebar-toggle" id="sidebarToggle">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <!-- Sidebar -->
+ <aside class="sidebar">
+  <!-- Profile Section -->
+<div class="profile-section">
+    <div class="profile-container">
+        <img 
+            src="download (5).jpg"
+            alt="Emily Johnson Profile Picture" 
+            class="profile-avatar"
+        >
+        <div class="profile-info">
+            <h3 class="profile-name">Emily Johnson</h3>
+            <p class="profile-role">Learner</p>
+        </div>
+    </div>
+</div>
+
+
+  <nav>
+    <ul class="menu">
+      <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="Knowledge.html"><i class="fa-solid fa-lightbulb"></i> Knowledge Sharing</a></li>
+      <li><a href="portal.html"><i class="fa-solid fa-file-pen"></i> Practice Test</a></li>
+      <li><a href="roadsign.html"><i class="fa-solid fa-triangle-exclamation"></i> Road Signs</a></li>
+      <li><a href="#"><i class="fa-solid fa-phone"></i> Hotline</a></li>
+      <li><a href="profile.html"><i class="fa-solid fa-user"></i> My Profile</a></li>
+      <li><a href="#"><i class="fa-solid fa-clock"></i> Test History</a></li>
+      <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+      <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+    </ul>
+  </nav>
+</aside>
+
+  <!-- Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Main content -->
+  <main class="content">
+    <section class="banner">
+      <h1>Prepare. Practice. Drive with Confidence.</h1>
+      <p>Your one-stop platform for driver license test practice, knowledge sharing, road signs and important contacts.</p>
+      <button>Start Practice</button>
+      <button>View Hotline →</button>
+    </section>
+
+    <section class="container">
+      <div class="box blue">
+        <h3>Knowledge Sharing Session</h3>
+        <p>Learn driving rules, safety tips, and important information.</p>
+      </div>
+      <div class="box blue">
+        <h3>Practice Test</h3>
+        <p>Take practice tests similar to the real exam and check your knowledge.</p>
+      </div>
+      <div class="box blue">
+        <h3>Road Sign Session</h3>
+        <p>Learn all road signs and their meanings with easy examples.</p>
+      </div>
+      <div class="box blue">
+        <h3>Hotline Number</h3>
+        <p>Important contact numbers for emergencies and assistance.</p>
+      </div>
+    </section>
+
+    <footer>
+      ©DriveLearn. All rights reserved. | About Us | Privacy Policy | Terms of Use
+    </footer>
+  </main>
+
+  <script>
+    // Profile section hover effect
+const profileSection = document.querySelector('.profile-section' );
+
+profileSection.addEventListener('mouseenter', function() {
+    this.style.backgroundColor = '#fafafa';
+    this.style.cursor = 'pointer';
+});
+
+profileSection.addEventListener('mouseleave', function() {
+    this.style.backgroundColor = 'white';
+});
+
+// Profile click handler
+profileSection.addEventListener('click', function() {
+    console.log('Profile clicked: Emily Johnson');
+    alert('Profile clicked! Navigate to profile page.');
+});
+
+// Dynamic profile update function
+function updateProfile(name, role, avatarUrl) {
+    document.querySelector('.profile-name').textContent = name;
+    document.querySelector('.profile-role').textContent = role;
+    document.querySelector('.profile-avatar').src = avatarUrl;
+    console.log('Profile updated: ' + name);
+}
+
+    const sidebar = document.querySelector('.sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    // Open sidebar
+    sidebarToggle.addEventListener('click', function() {
+      sidebar.classList.add('active');
+      sidebarOverlay.classList.add('active');
+    });
+
+    // Close sidebar
+    function closeSidebar() {
+      sidebar.classList.remove('active');
+      sidebarOverlay.classList.remove('active');
+    }
+
+    sidebarOverlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar when clicking on menu items
+    const menuItems = document.querySelectorAll('.sidebar .menu li a');
+    menuItems.forEach(item => {
+      item.addEventListener('click', closeSidebar);
+    });
+  </script>
+</body>
+</html>

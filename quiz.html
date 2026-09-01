@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn2Drive - ယာဉ်မောင်းလိုင်စင် အစမ်းစာမေးပွဲ</title>
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+
+<div class="container">
+
+  <div id="quiz-page">
+    <h1>Learn2Drive</h1>
+
+    <div class="top-bar">
+      <span id="progress">မေးခွန်း ၁ / ၂၉</span>
+      <span id="score">ရမှတ်: ၀</span>
+    </div>
+
+    <div class="question-box">
+      <h2 id="question"></h2>
+    </div>
+
+    <div id="options" class="options"></div>
+
+    <p id="feedback"></p>
+
+    <button id="next-btn">နောက်မေးခွန်းသို့</button>
+  </div>
+
+  <div id="result-page" class="hidden">
+    <h1>စမ်းသပ်မှုရလဒ်</h1>
+
+    <div class="result-card">
+      <h2 id="result-title"></h2>
+
+      <div class="big-score" id="final-score"></div>
+
+      <p id="percentage"></p>
+
+      <p id="status-text"></p>
+
+      <button id="restart-btn">ထပ်မံကြိုးစားရန်</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="question.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>

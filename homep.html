@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveLearn - Driver License Test Practice</title>
+    <link rel="stylesheet" href="drive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- SIDEBAR OVERLAY (Sidebar ပွင့်ချိန် အနောက်အမှောင်ရိုက်ရန်) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- LEFT SIDEBAR (Default မှာ ပုန်းနေပြီး ☰ နှိပ်မှ Slide-in မိုရှင်းဖြင့် ပေါ်လာမည်) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="user-brief">
+                <img src="download (5).jpg" alt="Profile Picture" class="avatar">
+                <div class="user-details">
+                    <h4>Emily Johnson</h4>
+                    <p>Learner</p>
+                </div>
+            </div>
+            <!-- Sidebar ပြန်ပိတ်ရန် X ခလုတ် -->
+            <button class="close-sidebar-btn" id="closeSidebarBtn">&times;</button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active"><a href="home.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="Knowledge.html"><i class="fa-solid fa-book-open"></i> Knowledge Sharing</a></li>
+                <li><a href="PracticeTest.html"><i class="fa-solid fa-square-check"></i> Practice Test</a></li>
+                <li><a href="RoadSigns.html"><i class="fa-solid fa-triangle-exclamation"></i> Road Signs</a></li>
+                <li><a href="Hotline.html"><i class="fa-solid fa-phone"></i> Hotline</a></li>
+                <li><a href="MyProfile.html"><i class="fa-solid fa-user"></i> My Profile</a></li>
+                <li><a href="TestHistory.html"><i class="fa-solid fa-clock-rotate-left"></i> Test History</a></li>
+                <li><a href="Settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="logout.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </aside>
+
+    <!-- MAIN WRAPPER ( Sidebar မရှိချိန် full width ရရှိမည် ) -->
+    <div class="main-wrapper">
+        
+        <!-- TOP HEADER -->
+        <header class="top-header">
+            <div class="header-left">
+                <!-- အချောင်းသုံးချောင်း Hamburger Icon -->
+                <button class="hamburger-btn" id="toggleSidebarBtn" title="Open Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="brand-logo">
+                    <h2>Drive<span>Learn</span></h2>
+                    <p>Driver License Test Practice</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <!-- ညာဘက် Profile Icon (Profile Drawer ပွင့်ရန်) -->
+                <button class="profile-trigger-btn" id="toggleProfileBtn" title="View Profile Information">
+                    <i class="fa-solid fa-circle-user"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN PAGE CONTENT -->
+        <main class="content-container">
+            
+            <!-- HERO BANNER -->
+            <section class="hero-banner">
+                <div class="hero-text">
+                    <h1>Pass Your<br>Driver License Test<br>with <span>Confidence</span></h1>
+                    <p>Learn the rules, practice tests, recognize road signs and be a safe driver.</p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary">Start Practice Test &rarr;</button>
+                        <button class="btn btn-secondary">Learn More <i class="fa-solid fa-book-open"></i></button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="driving.jpg" alt="Driving Illustration">
+                </div>
+            </section>
+
+            <!-- CARDS GRID -->
+            <section class="cards-grid">
+                
+                <div class="card">
+                    <div class="card-icon icon-blue">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <h3>Knowledge Sharing</h3>
+                    <p>Learn driving rules, safety tips, and important information.</p>
+                    <a href="Knowledge.html" class="card-link">Explore &rarr;</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon icon-blue">
+                        <i class="fa-solid fa-clipboard-list"></i>
+                    </div>
+                    <h3>Practice Test</h3>
+                    <p>Take practice tests similar to the real exam and check your knowledge.</p>
+                    <a href="PracticeTest.html" class="card-link">Start Test &rarr;</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon icon-blue">
+                        <i class="fa-solid fa-diamond-turn-right"></i>
+                    </div>
+                    <h3>Road Signs</h3>
+                    <p>Learn all road signs and their meanings with easy examples.</p>
+                    <a href="roadsign.html" class="card-link">View Signs &rarr;</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon icon-blue">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <h3>Hotline</h3>
+                    <p>Important contact numbers in case of emergency or assistance.</p>
+                    <a href="Hotline.html" class="card-link">View Hotline &rarr;</a>
+                </div>
+
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>&copy; 2024 DriveLearn. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <span>|</span>
+                <a href="#">Privacy Policy</a>
+                <span>|</span>
+                <a href="#">Terms of Use</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- RIGHT SLIDE-OUT PROFILE DRAWER -->
+    <div class="profile-drawer-overlay" id="drawerOverlay"></div>
+    <aside class="profile-drawer" id="profileDrawer">
+        <button class="close-drawer-btn" id="closeDrawerBtn">&times;</button>
+        <div class="drawer-content">
+            <div class="profile-header">
+                <img src="download (5).jpg" alt="Emily Johnson" class="drawer-avatar">
+                <h3>Emily Johnson</h3>
+                <span class="badge">Active Learner</span>
+            </div>
+            
+            <div class="profile-details">
+                <h4>Personal Information</h4>
+                <hr>
+                <div class="detail-row">
+                    <span class="label">License Type:</span>
+                    <span class="value">Class C (Car)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Date of Birth:</span>
+                    <span class="value">12 May 2004</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Email:</span>
+                    <span class="value">emily@gmail.com</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Phone:</span>
+                    <span class="value">09 123 456 789</span>
+                </div>
+            </div>
+
+            <a href="MyProfile.html" class="btn btn-full">Full Profile Settings</a>
+        </div>
+    </aside>
+
+    <!-- JAVASCRIPT FOR SIDEBAR & PROFILE TOGGLES -->
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
+        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+
+        const profileDrawer = document.getElementById('profileDrawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const toggleProfileBtn = document.getElementById('toggleProfileBtn');
+        const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+
+        // Sidebar Motion Functionality
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('active');
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+        }
+
+        toggleSidebarBtn.addEventListener('click', openSidebar);
+        closeSidebarBtn.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Profile Drawer Functionality
+        function openProfile() {
+            profileDrawer.classList.add('active');
+            drawerOverlay.classList.add('active');
+        }
+
+        function closeProfile() {
+            profileDrawer.classList.remove('active');
+            drawerOverlay.classList.remove('active');
+        }
+
+        toggleProfileBtn.addEventListener('click', openProfile);
+        closeDrawerBtn.addEventListener('click', closeProfile);
+        drawerOverlay.addEventListener('click', closeProfile);
+    </script>
+</body>
+</html>
