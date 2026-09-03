@@ -1,315 +1,513 @@
-/* Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-
-    background:#F7F9FC;
-    color:#3B2617;
+:root {
+    --body-bg: #f7f9fc;
+    --card-bg: #ffffff;
+    --text-color: #3b2617;
+    --paragraph-color: #666666;
+    --button-bg: #ffffff;
+    --button-text: #3b2617;
+    --border-color: #9ec7f8;
+    --tip-bg: #ddeeff;
+    --modal-bg: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.08);
 }
 
-.container{
-
-    width:90%;
-    margin:auto;
-    padding:40px 0;
+html[data-theme="dark"] {
+    --body-bg: #111315;
+    --card-bg: #1f2328;
+    --text-color: #f4e8dc;
+    --paragraph-color: #b9bec5;
+    --button-bg: #292d32;
+    --button-text: #f4e8dc;
+    --border-color: #52779e;
+    --tip-bg: #1c344d;
+    --modal-bg: #1f2328;
+    --shadow: rgba(0, 0, 0, 0.35);
 }
 
-/*================ HEADER ================*/
-
-.header{
-
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    flex-wrap:wrap;
-    gap:20px;
+html {
+    scroll-behavior: smooth;
 }
 
-.title h1{
-
-    font-size:60px;
-    font-family:Georgia, serif;
-    color:#3B2617;
+body {
+    min-height: 100vh;
+    background: var(--body-bg);
+    color: var(--text-color);
+    font-family:
+        "Noto Sans Myanmar",
+        "Poppins",
+        sans-serif;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
-.title p{
-
-    margin-top:10px;
-    color:#555;
-    font-size:18px;
-    line-height:30px;
+body.modal-open {
+    overflow: hidden;
 }
 
-/*================ SEARCH ================*/
-
-.search-box{
-
-    width:420px;
-    height:60px;
-
-    background:white;
-
-    border:2px solid #9EC7F8;
-
-    border-radius:15px;
-
-    display:flex;
-    align-items:center;
-
-    padding:0 20px;
-
+.container {
+    width: min(92%, 1450px);
+    margin: auto;
+    padding: 40px 0 60px;
 }
 
-.search-box i{
+/* Header */
 
-    color:#666;
-    font-size:22px;
+.header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
-.search-box input{
-
-    flex:1;
-
-    border:none;
-
-    outline:none;
-
-    font-size:18px;
-
-    margin-left:15px;
-
-    background:transparent;
+.title {
+    flex: 1;
+    min-width: 280px;
 }
 
-/*================ CATEGORY ================*/
-
-.category{
-
-    margin:40px 0;
-
-    display:flex;
-
-    gap:15px;
-
-    flex-wrap:wrap;
+.title h1 {
+    color: var(--text-color);
+    font-size: clamp(32px, 5vw, 60px);
+    line-height: 1.3;
+    font-weight: 700;
 }
 
-.category button{
-
-    padding:14px 28px;
-
-    border:none;
-
-    border-radius:14px;
-
-    background:white;
-
-    box-shadow:0 3px 10px rgba(0,0,0,.08);
-
-    cursor:pointer;
-
-    font-size:16px;
-
-    transition:.3s;
+.title p {
+    max-width: 850px;
+    margin-top: 14px;
+    color: var(--paragraph-color);
+    font-size: 17px;
+    line-height: 1.9;
 }
 
-.category button:hover{
-
-    transform:translateY(-3px);
+.header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
 }
 
-.category .active{
+/* Search */
 
-    background:#4A2F20;
-
-    color:white;
+.search-box {
+    width: min(100%, 430px);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    background: var(--card-bg);
+    box-shadow: 0 4px 12px rgba(45, 127, 249, 0.08);
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease;
 }
 
-/*================ ROAD SIGN GRID ================*/
-
-.road-signs{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-
-    gap:25px;
+.search-box:focus-within {
+    border-color: #2d7ff9;
+    box-shadow: 0 0 0 4px rgba(45, 127, 249, 0.15);
 }
 
-/*================ CARD ================*/
-
-.card{
-
-    background:white;
-
-    border-radius:18px;
-
-    padding:25px;
-
-    text-align:center;
-
-    box-shadow:0 6px 20px rgba(0,0,0,.08);
-
-    transition:.3s;
-
-    cursor:pointer;
-
-    min-height:340px;
+.search-box i {
+    color: var(--paragraph-color);
+    font-size: 21px;
 }
 
-.card:hover{
-
-    transform:translateY(-8px);
-
-    box-shadow:0 12px 25px rgba(0,0,0,.12);
-
-    border:2px solid #B8D9FF;
+.search-box input {
+    flex: 1;
+    width: 100%;
+    border: none;
+    outline: none;
+    margin-left: 14px;
+    background: transparent;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 16px;
 }
 
-.card img{
-
-    width:110px;
-
-    height:110px;
-
-    object-fit:contain;
-
-    transition:.3s;
+.search-box input::placeholder {
+    color: var(--paragraph-color);
 }
 
-.card:hover img{
+/* Controls */
 
-    transform:scale(1.08);
+.controls {
+    display: flex;
+    gap: 10px;
 }
 
-.card h3{
-
-    margin-top:15px;
-
-    color:#3B2617;
-
-    font-size:24px;
+.control-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 9px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--button-bg);
+    color: var(--button-text);
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
 }
 
-.card p{
-
-    margin-top:12px;
-
-    color:#666;
-
-    font-size:15px;
-
-    line-height:25px;
+.control-button:hover {
+    transform: translateY(-2px);
+    border-color: #2d7ff9;
 }
 
-/*================ SAFE DRIVING TIP ================*/
+/* Categories */
 
-.tip{
-
-    margin-top:50px;
-
-    background:#DDEEFF;
-
-    border-radius:20px;
-
-    padding:25px 35px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:25px;
+.category {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 40px 0 30px;
 }
 
-.tip-icon{
-
-    width:70px;
-
-    height:70px;
-
-    border-radius:50%;
-
-    background:#2D7FF9;
-
-    color:white;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:30px;
+.category button {
+    padding: 13px 25px;
+    border: none;
+    border-radius: 14px;
+    background: var(--button-bg);
+    color: var(--button-text);
+    box-shadow: 0 3px 10px var(--shadow);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 15px;
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease,
+        background-color 0.3s ease;
 }
 
-.tip-text h3{
-
-    color:#123;
-
-    font-size:25px;
-
-    margin-bottom:8px;
+.category button:hover {
+    transform: translateY(-3px);
+    color: #2d7ff9;
 }
 
-.tip-text p{
-
-    color:#444;
-
-    line-height:28px;
+.category button.active {
+    background: #4a2f20;
+    color: #ffffff;
 }
 
-/*================ RESPONSIVE ================*/
-
-@media(max-width:900px){
-
-.header{
-
-    flex-direction:column;
+html[data-theme="dark"] .category button.active {
+    background: #916b50;
+    color: #ffffff;
 }
 
-.search-box{
+/* Cards Grid */
 
-    width:100%;
+.road-signs {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
 }
 
-.title h1{
+/* Card */
 
-    font-size:45px;
+.card {
+    min-height: 360px;
+    padding: 25px 22px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    border-radius: 18px;
+    background: var(--card-bg);
+    text-align: center;
+    box-shadow: 0 6px 20px var(--shadow);
+    cursor: pointer;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease,
+        background-color 0.3s ease;
 }
 
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #b8d9ff;
+    box-shadow: 0 12px 25px var(--shadow);
 }
 
-@media(max-width:600px){
-
-.card{
-
-    min-height:300px;
+.card.selected {
+    transform: translateY(-8px) scale(1.02);
+    border-color: #2d7ff9;
+    box-shadow: 0 14px 30px rgba(45, 127, 249, 0.25);
 }
 
-.card img{
-
-    width:90px;
-    height:90px;
+.card img {
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
 }
 
-.title h1{
-
-    font-size:38px;
+.card:hover img,
+.card.selected img {
+    transform: scale(1.08);
 }
 
-.tip{
-
-    flex-direction:column;
-
-    text-align:center;
+.card h3 {
+    margin-top: 16px;
+    color: var(--text-color);
+    font-size: 21px;
+    line-height: 1.6;
 }
 
+.card p {
+    margin-top: 12px;
+    color: var(--paragraph-color);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+/* Tip */
+
+.tip {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-top: 50px;
+    padding: 25px 35px;
+    border-radius: 20px;
+    background: var(--tip-bg);
+    transition: background-color 0.3s ease;
+}
+
+.tip-icon {
+    flex: 0 0 70px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #2d7ff9;
+    color: #ffffff;
+    font-size: 30px;
+}
+
+.tip-text h3 {
+    margin-bottom: 8px;
+    color: var(--text-color);
+    font-size: 22px;
+    line-height: 1.6;
+}
+
+.tip-text p {
+    color: var(--paragraph-color);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+/* Modal */
+
+.modal-overlay {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    width: min(100%, 500px);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 35px 30px;
+    border-radius: 24px;
+    background: var(--modal-bg);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    animation: modalPop 0.3s ease;
+}
+
+.modal-card {
+    min-height: auto;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    cursor: default;
+}
+
+.modal-card:hover {
+    transform: none;
+    border: none;
+    box-shadow: none;
+}
+
+.modal-card img {
+    width: 150px;
+    height: 150px;
+}
+
+.modal-card h3 {
+    font-size: 26px;
+}
+
+.modal-card p {
+    font-size: 16px;
+    line-height: 2;
+}
+
+.modal-close {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    z-index: 2;
+    border: none;
+    background: transparent;
+    color: var(--text-color);
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    color: #2d7ff9;
+}
+
+@keyframes modalPop {
+    from {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .container {
+        width: 92%;
+        padding-top: 30px;
+    }
+
+    .header {
+        flex-direction: column;
+    }
+
+    .header-right {
+        width: 100%;
+        align-items: stretch;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 94%;
+        padding-top: 25px;
+    }
+
+    .title h1 {
+        font-size: 32px;
+    }
+
+    .title p {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .search-box {
+        height: 54px;
+        padding: 0 15px;
+    }
+
+    .search-box input {
+        font-size: 14px;
+    }
+
+    .controls {
+        width: 100%;
+    }
+
+    .control-button {
+        flex: 1;
+        padding: 9px 10px;
+        font-size: 13px;
+    }
+
+    .category {
+        gap: 10px;
+        margin: 30px 0 25px;
+    }
+
+    .category button {
+        flex: 1 1 auto;
+        padding: 11px 14px;
+        font-size: 13px;
+    }
+
+    .road-signs {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .card {
+        min-height: auto;
+        padding: 22px 18px;
+    }
+
+    .card img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .card h3 {
+        font-size: 19px;
+    }
+
+    .card p {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .tip {
+        flex-direction: column;
+        padding: 25px 20px;
+        text-align: center;
+    }
+
+    .tip-text h3 {
+        font-size: 19px;
+    }
+
+    .tip-text p {
+        font-size: 14px;
+    }
 }

@@ -1,544 +1,500 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Road Signs</title>
+
+    <title>ယာဉ်စည်းကမ်း လမ်းညွှန်အမှတ်အသားများ</title>
 
     <link rel="stylesheet" href="roadsign.css">
 
-    <!-- Font Awesome -->
     <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <!-- Page Header -->
+        <!-- Header -->
+        <header class="header">
 
-    <div class="header">
+            <div class="title">
 
-        <div class="title">
+                <h1>
+                    ယာဉ်စည်းကမ်း လမ်းညွှန်အမှတ်အသားများ
+                </h1>
 
-            <h1>လမ်းညွှန်အမှတ်အသားများ</h1>
+                <p>
+                    ယာဉ်မောင်းလိုင်စင် စာမေးပွဲ မဖြေဆိုမီ
+                    လမ်းညွှန်အမှတ်အသားများကို လေ့လာပါ။
+                </p>
 
-            <p>
-                Learn road signs before taking your driver's license test.
-            </p>
+            </div>
 
-        </div>
+            <div class="header-right">
 
-        <div class="search-box">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
 
-            <i class="fa-solid fa-magnifying-glass"></i>
+                    <input
+                        type="text"
+                        id="search"
+                        placeholder="လမ်းညွှန်အမှတ်အသားများ ရှာဖွေရန်...">
+                </div>
 
-            <input
-                type="text"
-                id="search"
-                placeholder="Search road signs...">
+                <div class="controls">
 
-        </div>
+                    <button
+                        id="language-toggle"
+                        class="control-button"
+                        type="button">
+                        English
+                    </button>
+
+                    <button
+                        id="theme-toggle"
+                        class="control-button"
+                        type="button">
+
+                        <i class="fa-solid fa-moon"></i>
+                        <span>Dark</span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- Category Buttons -->
+        <nav class="category">
+
+            <button class="active" data-filter="all">
+                အားလုံး
+            </button>
+
+            <button data-filter="warning">
+                သတိပေးချက်များ
+            </button>
+
+            <button data-filter="regulatory">
+                စည်းကမ်းချက်များ
+            </button>
+
+            <button data-filter="guide">
+                လမ်းညွှန်ချက်များ
+            </button>
+
+        </nav>
+
+        <!-- Cards -->
+        <section class="road-signs">
+
+            <article class="card" data-category="warning">
+
+                <img src="Road Signs/stop.jpg.jpg" alt="Stop">
+
+
+                <h3>ရပ်ပါ</h3>
+
+                <p>
+                    ဆက်မသွားမီ ယာဉ်ကို အပြီးအပိုင်
+                    ခေတ္တရပ်တန့်ပါ။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="guide">
+
+                <img src="Road Signs/zebracrossing.jpg.jpg" alt="Zebra Crossing">
+
+                <h3>လူကူးမျဉ်းကျား</h3>
+
+                <p>
+                    လူကူးမျဉ်းကျား လမ်းညွှန်အမှတ်အသားသည်
+                    လူများ လမ်းဖြတ်ကူးနိုင်သော နေရာကို ညွှန်ပြသည်။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="guide">
+
+                <img
+                    src="Road Signs/speedlimit.jpg.jpg"
+                    alt="Speed Limit">
+
+                <h3>အရှိန်ကန့်သတ်ချက်</h3>
+
+                <p>
+                    ထိုလမ်းပိုင်းတွင် မောင်းနှင်ရန်
+                    ခွင့်ပြုထားသော အမြင့်ဆုံးအရှိန်ကို ညွှန်ပြသည်။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="warning">
+
+                <img
+                    src="Road Signs/nouturn.jpg.jpg"
+                    alt="No U-Turn">
+
+                <h3>ကွေ့ရိုကျနျမပွုရ (U-Turn မကွေ့ရ)</h3>
+
+                <p>
+                    ထိုနေရာတွင် ယာဉ်များ U-Turn
+                    မကွေ့ရဟု တားမြစ်ထားကြောင်း ညွှန်ပြသည်။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="warning">
+
+                <img
+                    src="Road Signs/noleftturn.jpg.jpg"
+                    alt="No Left Turn">
+
+                <h3>ဘယ်ဘက်မကွေ့ရ</h3>
+
+                <p>
+                    ထိုလမ်းဆုံ သို့မဟုတ် လမ်းခွဲတွင်
+                    ဘယ်ဘက်သို့ ကွေ့ခွင့်မရှိကြောင်း ညွှန်ပြသည်။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="warning">
+
+                <img
+                    src="Road Signs/noovertaking.jpg.jpg"
+                    alt="No Overtaking">
+
+                <h3>ကျော်မတက်ရ</h3>
+
+                <p>
+                    ထိုလမ်းပိုင်းတွင် ရှေ့ယာဉ်များကို
+                    ကျော်တက်ခွင့်မရှိကြောင်း ညွှန်ပြသည်။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="warning">
+
+                <img
+                    src="Road Signs/no parking.jpg.jpg"
+                    alt="No Parking">
+
+                <h3>ကားမရပ်ရ</h3>
+
+                <p>
+                    သတ်မှတ်ထားသော ဧရိယာတွင် ယာဉ်ရပ်တန့်ခြင်း
+                    သို့မဟုတ် ပါကင်ထိုးခြင်း မပြုရပါ။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="regulatory">
+
+                <img
+                    src="Road Signs/menatwork.jpg.jpg"
+                    alt="Road Works">
+
+                <h3>လမ်းပြင်နေသည်</h3>
+
+                <p>
+                    ရှေ့တွင် လမ်းပြင်ဆင်ရေးလုပ်ငန်းများ ရှိသောကြောင့်
+                    အရှိန်လျှော့၍ မောင်းနှင်ပါ။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="guide">
+
+                <img
+                    src="Road Signs/maxspeed.jpg.jpg"
+                    alt="Maximum Speed">
+
+                <h3>အမြင့်ဆုံး အရှိန်နှုန်း</h3>
+
+                <p>
+                    မောင်းနှင်ရန် ခွင့်ပြုထားသော
+                    အမြင့်ဆုံး အရှိန်နှုန်း ဖြစ်သည်။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="guide">
+
+                <img
+                    src="Road Signs/2waytraffic.jpg.jpg"
+                    alt="Two-Way Traffic">
+
+                <h3>နှစ်ဖက်သွား လမ်း</h3>
+
+                <p>
+                    လမ်းတွင် ယာဉ်များ နှစ်ဖက်စလုံးသို့
+                    မောင်းနှင်မည်ဖြစ်ကြောင်း ညွှန်ပြသည်။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="warning">
+
+                <img
+                    src="Road Signs/hornprohibited.jpg.jpg"
+                    alt="No Horn">
+
+                <h3>ဟွန်းမတီးရ</h3>
+
+                <p>
+                    ထိုဧရိယာအတွင်း ဟွန်းတီးခွင့်
+                    မရှိကြောင်း ညွှန်ပြသည်။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="guide">
+
+                <img
+                    src="Road Signs/parking.jpg.jpg"
+                    alt="Parking">
+
+                <h3>ကားရပ်နားရန်နေရာ</h3>
+
+                <p>
+                    သတ်မှတ်ထားသော ဧရိယာတွင် ယာဉ်များကို
+                    ရပ်နားခွင့်ပြုကြောင်း ညွှန်ပြသည်။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="guide">
+
+                <img
+                    src="Road Signs/restaurant.jpg.jpg"
+                    alt="Restaurant">
+
+                <h3>စားသောက်ဆိုင်</h3>
+
+                <p>
+                    အစားအသောက်များ ရရှိနိုင်သော
+                    စားသောက်ဆိုင် အနီးအနားတွင် ရှိသည်။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="guide">
+
+                <img
+                    src="Road Signs/handwashandrestroom.jpg.jpg"
+                    alt="Restroom">
+
+                <h3>သန့်စင်ခန်း</h3>
+
+                <p>
+                    အများသုံး အိမ်သာနှင့် သန့်စင်ခန်းများ
+                    အနီးအနားတွင် ရှိကြောင်း ညွှန်ပြသည်။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="guide">
+
+                <img
+                    src="Road Signs/hotel.jpg.jpg"
+                    alt="Hotel">
+
+                <h3>ဟိုတယ်</h3>
+
+                <p>
+                    ခရီးသွားများ တည်းခိုရန် ဟိုတယ်များ
+                    အနီးအနားတွင် ရှိကြောင်း ညွှန်ပြသည်။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="guide">
+
+                <img
+                    src="Road Signs/hospital.jpg.jpg"
+                    alt="Hospital">
+
+                <h3>ဆေးရုံ</h3>
+
+                <p>
+                    ဆေးရုံ သို့မဟုတ် ဆေးခန်းများ
+                    အနီးအနားတွင် ရှိကြောင်း ညွှန်ပြသည်။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="guide">
+
+                <img
+                    src="Road Signs/hotline.jpg.jpg"
+                    alt="Emergency Hotline">
+
+                <h3>အရေးပေါ် ဖုန်းလိုင်း</h3>
+
+                <p>
+                    အရေးပေါ် အကူအညီတောင်းခံနိုင်သော
+                    ဖုန်းဝန်ဆောင်မှု ရှိကြောင်း ညွှန်ပြသည်။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="regulatory">
+
+                <img
+                    src="Road Signs/crossingroad.jpg.jpg"
+                    alt="Pedestrian Crossing">
+
+                <h3>လူကူးလမ်း</h3>
+
+                <p>
+                    လူများ ဘေးကင်းစွာ လမ်းဖြတ်ကူးနိုင်သည့်
+                    သတ်မှတ်ထားသော လူကူးဧရိယာ ဖြစ်သည်။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="regulatory">
+
+                <img
+                    src="Road Signs/leftturnahead.jpg.jpg"
+                    alt="Left Turn Ahead">
+
+                <h3>ရှေ့တွင် ဘယ်ဘက်သို့ ကွေ့ရန်ရှိသည်</h3>
+
+                <p>
+                    ရှေ့တွင် ဘယ်ဘက်သို့ ကွေ့ရမည်ဖြစ်သောကြောင့်
+                    အရှိန်လျှော့၍ ပြင်ဆင်မောင်းနှင်ပါ။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="regulatory">
+
+                <img
+                    src="Road Signs/rightcurveahead.jpg.jpg"
+                    alt="Right Curve Ahead">
+
+                <h3>ရှေ့တွင် ညာဘက် လမ်းကွေးရှိသည်</h3>
+
+                <p>
+                    မကြာမီ လမ်းသည် ညာဘက်သို့ ကွေးသွားမည်ဖြစ်၍
+                    အရှိန်လျှော့မောင်းနှင်ပါ။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="regulatory">
+
+                <img
+                    src="Road Signs/slipperywhenwet.jpg.jpg"
+                    alt="Slippery When Wet">
+
+                <h3>မိုးရွာလျှင် လမ်းချော်နိုင်သည်</h3>
+
+                <p>
+                    ရေစိုသောအခြေအနေတွင် လမ်းမျက်နှာပြင်
+                    ချောနေနိုင်သောကြောင့် အရှိန်လျှော့ပါ။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="regulatory">
+
+                <img
+                    src="Road Signs/signelahead.jpg.jpg"
+                    alt="Traffic Lights Ahead">
+
+                <h3>ရှေ့တွင် မီးပွိုင့်ရှိသည်</h3>
+
+                <p>
+                    ရှေ့တွင် မီးပွိုင့်ရှိသောကြောင့်
+                    အရှိန်လျှော့ပြီး ရပ်တန့်ရန် ပြင်ဆင်ပါ။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="regulatory">
+
+                <img
+                    src="Road Signs/roadnarrow.jpg.jpg"
+                    alt="Road Narrows">
+
+                <h3>ရှေ့တွင် လမ်းကျဉ်းမည်</h3>
+
+                <p>
+                    ရှေ့တွင် လမ်းအကျယ် ကျဉ်းသွားမည်ဖြစ်၍
+                    အရှိန်လျှော့ပြီး သတိပြုမောင်းနှင်ပါ။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="regulatory">
+
+                <img
+                    src="Road Signs/circularintersection.jpg.jpg"
+                    alt="Roundabout">
+
+                <h3>အဝိုင်းပတ် လမ်းဆုံ</h3>
+
+                <p>
+                    ရှေ့တွင် အဝိုင်းပတ်ရှိသောကြောင့်
+                    အရှိန်လျှော့ပြီး သတိပြုမောင်းနှင်ပါ။
+                </p>
+
+            </article>
+
+            <article class="card" data-category="regulatory">
+
+                <img
+                    src="Road Signs/advisoryspeed.jpg.jpg"
+                    alt="Advisory Speed">
+
+                <h3>အကြံပြု အရှိန်နှုန်း</h3>
+
+                <p>
+                    လမ်းကွေး သို့မဟုတ် အန္တရာယ်ရှိသောနေရာများတွင်
+                    မောင်းနှင်ရန် အကြံပြုထားသော အရှိန်နှုန်း ဖြစ်သည်။
+                </p>
+
+            </article>
+
+        </section>
+
+        <!-- Safe Driving Tip -->
+        <section class="tip">
+
+            <div class="tip-icon">
+                <i class="fa-solid fa-lightbulb"></i>
+            </div>
+
+            <div class="tip-text">
+
+                <h3>ဘေးကင်းစွာ မောင်းနှင်ရေး အကြံပြုချက်</h3>
+
+                <p>
+                    ယာဉ်စည်းကမ်း လမ်းညွှန်အမှတ်အသားများကို
+                    နားလည်သဘောပေါက်ခြင်းသည် ဘေးကင်းပြီး
+                    တာဝန်သိသော ယာဉ်မောင်းတစ်ဦး ဖြစ်လာစေရန်
+                    ပထမခြေလှမ်း ဖြစ်သည်။
+                </p>
+
+            </div>
+
+        </section>
 
     </div>
 
-    <div>
-        <div class="category">
+    <!-- Modal will be created by JavaScript -->
 
-    <button class="active" data-filter="all">
-        All
-    </button>
-
-    <button data-filter="warning">
-        Warning
-    </button>
-
-    <button data-filter="regulatory">
-        Regulatory
-    </button>
-
-    <button data-filter="guide">
-        Guide
-    </button>
-
-</div>
-    </div>
-
-    <!-- Road Sign Cards -->
-
-    <section class="road-signs">
-
-        <!-- Card 1 -->
-
-        <div class="card" data-category="warning">
-
-            <img src="Road Signs/stop.jpg.jpg" alt="Stop" >
-
-            <h3>Stop</h3>
-
-            <p>
-                Come to a complete stop before proceeding.
-            </p>
-
-        </div>
-
-
-        <!-- Card 2 -->
-
-        <div class="card" data-category="guide">
-
-            <img src="Road Signs/zebracrossing.jpg.jpg" alt="Zebracrossing">
-
-            <h3>Zebra Crossing</h3>
-
-            <p>
-                A zebra crossing road sign indicates a pedestrian crossing zone marked with black‑and‑white stripes for safe road crossing.
-            </p>
-
-        </div>
-
-
-        <!-- Card 3 -->
-
-        <div class="card" data-category="Guide">
-
-            <img src="Road Signs/speedlimit.jpg.jpg" alt="Speedlimit">
-
-            <h3>Speed Limit</h3>
-
-            <p>
-                A speed limit road sign indicates the maximum legal driving speed allowed on that section of the road.
-            </p>
-
-        </div>
-
-
-        <!-- Card 4 -->
-
-        <div class="card" data-category="warning">
-
-            <img src="Road Signs/nouturn.jpg.jpg" alt="NO-U-Turn">
-
-            <h3>No U Turn</h3>
-
-            <p>
-               A "No U‑Turn" road sign indicates that drivers are prohibited from making a U‑turn at that location.
-            </p>
-
-        </div>
-
-        
-
-         <div class="card" data-category="warning">
-
-            <img src="Road Signs/noleftturn.jpg.jpg" alt="noleftturn">
-
-            <h3>No Left Turn </h3>
-
-            <p>
-               A "No Left Turn" road sign indicates that vehicles are prohibited from turning left at that intersection or junction.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="warning">
-
-            <img src="Road Signs/noovertaking.jpg.jpg" alt="noovertaking">
-
-            <h3>No Overtaking</h3>
-
-            <p>
-                A "No Overtaking" road sign indicates that drivers are prohibited from passing or overtaking other vehicles on that stretch of road.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="warning">
-
-            <img src="Road Signs/no parking.jpg.jpg" alt="noparking">
-
-            <h3>No Parking</h3>
-
-            <p>
-                A "No Parking" road sign indicates that vehicles are not allowed to stop or park in the designated area.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/menatwork.jpg.jpg" alt="menatwork">
-
-            <h3>Men at work</h3>
-
-            <p>
-                A "Men at Work" road sign indicates that road construction or maintenance is in progress ahead, warning drivers to slow down and proceed with caution.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="guide">
-
-            <img src="Road Signs/maxspeed.jpg.jpg" alt="maxspeed">
-
-            <h3>Max Speed</h3>
-
-            <p>
-                Maximum speed allowed.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="guide">
-
-            <img src="Road Signs/2waytraffic.jpg.jpg" alt="twoway">
-
-            <h3>Two Way Traffic</h3>
-
-            <p>
-               A "Two‑Way Traffic" road sign indicates that vehicles will be moving in both directions on the road ahead.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="warning">
-
-            <img src="Road Signs/hornprohibited.jpg.jpg" alt="hornprohibited">
-
-            <h3>Horn Prohibited</h3>
-
-            <p>
-                A "Horn Prohibited" road sign indicates that drivers are not allowed to use their vehicle horns in that area.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="guide">
-
-            <img src="Road Signs/parking.jpg.jpg" alt="parking" width="100px" height="100px">
-
-            <h3>Parking</h3>
-
-            <p>
-                A "Parking" road sign indicates that vehicles are permitted to stop and park in the designated area.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="guide">
-
-            <img src="Road Signs/restaurant.jpg.jpg" alt="restaurant">
-
-            <h3>Restaurant</h3>
-
-            <p>
-                A "Restaurant" road sign indicates the presence of a nearby dining facility where food and refreshments are available.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="guide">
-
-            <img src="Road Signs/handwashandrestroom.jpg.jpg" alt="restroom">
-
-            <h3>Rest Room</h3>
-
-            <p>
-                A "Rest Room" road sign indicates the availability of nearby public toilet facilities for travelers.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="guide">
-
-            <img src="Road Signs/hotel.jpg.jpg" alt="hotel">
-
-            <h3>Hotel</h3>
-
-            <p>
-               A "Hotel" road sign indicates the presence of nearby lodging or accommodation facilities for travelers.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="guide">
-
-            <img src="Road Signs/hospital.jpg.jpg" alt="hospital">
-
-            <h3>Hospital</h3>
-
-            <p>
-                A "Hospital" road sign indicates the presence of nearby medical facilities where healthcare services are available.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="guide">
-
-            <img src="Road Signs/hotline.jpg.jpg" alt="hotline">
-
-            <h3>Hotline</h3>
-
-            <p>
-                A "Hotline" road sign indicates the presence of an emergency or help phone service available nearby for immediate assistance.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/crossingroad.jpg.jpg" alt="crossingroad">
-
-            <h3>Crossing Road</h3>
-
-            <p>
-               A "Crossing Road" sign indicates a designated pedestrian crossing area where people may safely walk across the road.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/leftturnahead.jpg.jpg" alt="leftturn">
-
-            <h3>Left Turn</h3>
-
-            <p>
-                A "Left Turn Ahead" road sign warns drivers that the road will curve or turn to the left shortly, so they should slow down and prepare to navigate the turn safely.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/leftreverseturnahead.jpg.jpg" alt="leftreverse">
-
-            <h3>Left Reverse Turn Ahead</h3>
-
-            <p>
-               A "Left Reverse Turn Ahead" road sign warns drivers that the road will curve sharply to the left in a reverse bend, meaning the turn is more pronounced than a simple curve. It alerts drivers to slow down and prepare for a sharp leftward change in direction.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/rightcurveahead.jpg.jpg" alt="rightcurve">
-
-            <h3>Right Curve Ahead</h3>
-
-            <p>
-                A "Right Curve Ahead" road sign warns drivers that the road will bend to the right shortly. It signals them to reduce speed and prepare to steer smoothly through the curve.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/sideroadleft.jpg.jpg" alt="sideleft">
-
-            <h3>Side Road Left</h3>
-
-            <p>
-               A "Side Road Left" road sign warns drivers that a smaller road will join or intersect from the left side ahead. It alerts them to watch for vehicles entering or crossing from that direction.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/windingroadleftahead.jpg.jpg" alt="windingroadleft">
-
-            <h3>Winding Road Left Ahead</h3>
-
-            <p>
-                A "Winding Road Left Ahead" road sign warns drivers that the road will curve leftward multiple times in succession. It alerts them to slow down and be prepared for continuous bends rather than a single turn.
-
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/slipperywhenwet.jpg.jpg" alt="slipperywhenwet">
-
-            <h3>Slippery When Wet</h3>
-
-            <p>
-                A "Slippery When Wet" road sign warns drivers that the road surface ahead may become slippery in rainy or wet conditions. It signals them to reduce speed, drive carefully, and maintain a safe distance from other vehicles to avoid skidding.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/signelahead.jpg.jpg" alt="signelahead">
-
-            <h3>Signel Ahead</h3>
-
-            <p>
-               A "Signal Ahead" road sign warns drivers that traffic lights are coming up ahead. It alerts them to slow down, be prepared to stop, and follow the upcoming traffic signals.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/roadnarrow.jpg.jpg" alt="roadnarrow">
-
-            <h3>Road Narrow</h3>
-
-            <p>
-                A "Road Narrow" road sign warns drivers that the road ahead will become narrower than the current section. It signals them to reduce speed, stay alert, and be cautious of oncoming traffic since the space for vehicles will be limited.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/lanereductionright.jpg.jpg" alt="lanereduction">
-
-            <h3>Lane Reduction From Right</h3>
-
-            <p>
-                A "Lane Reduction from Right" road sign warns drivers that the number of lanes ahead will decrease, specifically from the right side. It signals them to merge safely to the left, watch for vehicles shifting lanes, and adjust speed to maintain smooth traffic flow.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/hill.jpg.jpg" alt="hill">
-
-            <h3>Hill</h3>
-
-            <p>
-                A "Hill" road sign warns drivers that there is a steep slope ahead, either uphill or downhill. It alerts them to adjust speed, gear, and braking accordingly to maintain control and safety while navigating the incline.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/hairpincurve.jpg.jpg" alt="hairpincurve">
-
-            <h3>Hair Pin Curve</h3>
-
-            <p>
-                A "Hairpin Curve" road sign warns drivers of a very sharp bend ahead, resembling the shape of a hairpin. It signals them to slow down significantly and prepare for a tight turn, often found in hilly or mountainous roads.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/enteringlaneaddedfromright.jpg.jpg" alt="laneaddedfromright">
-
-            <h3>Lane Added From Right</h3>
-
-            <p>
-                A "Lane Added from Right" road sign informs drivers that a new lane will be joining the main roadway from the right side ahead. Unlike a lane reduction, this sign indicates extra space for traffic flow, so drivers should be aware of merging vehicles entering from the right.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/curvetotheright.jpg.jpg" alt="curvetoright">
-
-            <h3>Curve To The Right</h3>
-
-            <p>
-               A "Curve to the Right" road sign warns drivers that the road ahead will bend gently to the right. It signals them to reduce speed slightly, stay alert, and steer smoothly through the curve to maintain control and safety.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/crossroad.jpg.jpg" alt="crossroad">
-
-            <h3>Crossroad</h3>
-
-            <p>
-               A "Crossroad" road sign warns drivers that another road intersects the main road ahead, forming a cross‑shaped junction. It alerts them to slow down, watch for crossing traffic, and be prepared to yield or stop as necessary.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/circularintersection.jpg.jpg" alt="circularintersection">
-
-            <h3>Circular Intersection</h3>
-
-            <p>
-                A "Circular Intersection" road sign warns drivers that a roundabout is ahead. It signals them to slow down, yield to traffic already in the circle, and navigate carefully through the circular flow of vehicles.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/addedlanfromleft.jpg.jpg" alt="addlanefromleft">
-
-            <h3>Added Lane from Left</h3>
-
-            <p>
-                An "Added Lane from Left" road sign informs drivers that a new lane will be joining the main roadway from the left side ahead. Unlike a merge, this lane addition means traffic flow gains extra space, so drivers should be aware of vehicles entering from the left but don’t need to merge themselves.
-            </p>
-
-        </div>
-
-         <div class="card" data-category="regulatory">
-
-            <img src="Road Signs/advisoryspeed.jpg.jpg" alt="advisoryspeed">
-
-            <h3>Advisory Speed</h3>
-
-            <p>
-               An "Advisory Speed" road sign indicates the recommended safe speed for driving through a specific section of road, such as a curve, hill, or construction zone. Unlike a regulatory speed limit, it’s not legally enforceable but serves as guidance to help drivers navigate safely under normal conditions. It’s usually shown on a yellow sign with black numbers.
-            </p>
-
-        </div>
-
-        
-
-        
-
-    </section>
-
-
-
-    <!-- Safe Driving Tip -->
-
-    <section class="tip">
-
-        <div class="tip-icon">
-
-            <i class="fa-solid fa-lightbulb"></i>
-
-        </div>
-
-        <div class="tip-text">
-
-            <h3>Safe Driving Tip</h3>
-
-            <p>
-
-                Understanding road signs is the first step to becoming
-                a safe and responsible driver.
-
-            </p>
-
-        </div>
-
-    </section>
-
-</div>
-<script src="roadsign.js"></script>
+    <script src="roadsign.js"></script>
 
 </body>
-</body>
+
 </html>
