@@ -43,6 +43,8 @@ body {
   backdrop-filter: blur(10px);
 
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+
+  position: relative;
 }
 
 
@@ -54,6 +56,59 @@ body {
   color: #194f7f;
 
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ==============================
+   Header Controls
+   ============================== */
+
+.header-controls {
+  position: absolute;
+  top: 50%;
+  right: 28px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  transform: translateY(-50%);
+}
+
+.header-controls button {
+  min-height: 40px;
+  padding: 8px 14px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #194f7f;
+  color: white;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.header-controls button:hover {
+  background: #2879b9;
+  transform: translateY(-2px);
+}
+
+#theme-toggle {
+  width: 40px;
+  padding: 8px;
+}
+
+#lang-toggle img {
+  width: 32px;
+  height: 21px;
+  display: block;
+  object-fit: cover;
+  border-radius: 2px;
 }
 
 
@@ -173,6 +228,43 @@ footer {
 
 
 /* ==============================
+   Dark Theme
+   ============================== */
+
+body.dark-theme {
+  background-color: #101820;
+}
+
+body.dark-theme .page-header,
+body.dark-theme .knowledge-box {
+  background: rgba(30, 42, 54, 0.96);
+}
+
+body.dark-theme .page-header h1,
+body.dark-theme .knowledge-box h2 {
+  color: #cee6f9;
+}
+
+body.dark-theme .knowledge-box:hover {
+  background: #263b4d;
+}
+
+body.dark-theme footer {
+  background: rgba(30, 42, 54, 0.96);
+  color: #f7f9f9;
+}
+
+body.dark-theme .header-controls button {
+  background: #cee6f9;
+  color: #194f7f;
+}
+
+body.dark-theme .header-controls button:hover {
+  background: white;
+}
+
+
+/* ==============================
    Tablet
    ============================== */
 
@@ -196,11 +288,18 @@ footer {
   }
 
   .page-header {
-    padding: 24px 18px;
+    padding: 78px 18px 24px;
   }
 
   .page-header h1 {
     font-size: 30px;
+  }
+
+  .header-controls {
+    top: 18px;
+    right: 18px;
+
+    transform: none;
   }
 
   .knowledge-container {
