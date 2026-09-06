@@ -417,417 +417,143 @@ footer {
     font-size: 12px;
   }
 }
-@media (max-width: 560px) {
-
-  .container {
-    grid-template-columns: 1fr;
-  }
-
-  .banner button {
-    width: 100%;
-    max-width: 260px;
-    margin: 5px auto;
-  }
-
-  footer {
-    font-size: 12px;
-  }
-
-}
-/* ==================================================
-   ADDED FEATURES
-   Myanmar / English + Light / Dark
-   Everything above is original CSS
-================================================== */
-
-
-/* ==============================================
-   TOP-RIGHT SETTINGS
-============================================== */
+/* =========================================
+   LANGUAGE + THEME CONTROLS
+========================================= */
 
 .l2d-settings {
+  position: fixed !important;
+  top: 20px !important;
+  right: 25px !important;
+  left: auto !important;
 
-  position: fixed;
-
-  top: 18px;
-  right: 22px;
-
-  z-index: 1100;
+  z-index: 9999;
 
   display: flex;
-
   align-items: center;
-
-  gap: 7px;
+  gap: 8px;
 
   padding: 7px 9px;
 
-  background:
-    rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #d6e0ea;
+  border-radius: 12px;
 
-  border:
-    1px solid #d7e1ea;
-
-  border-radius: 13px;
-
-  box-shadow:
-    0 4px 14px
-    rgba(0, 0, 0, 0.15);
-
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 
-/* ==============================================
-   LANGUAGE BUTTONS
-============================================== */
-
-.l2d-language-btn {
-
-  width: 44px;
-  height: 36px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  padding: 0;
-
-  border:
-    1px solid #cbd5e1;
-
-  border-radius: 8px;
-
-  background: white;
-
-  font-size: 23px;
-
-  line-height: 1;
-
-  cursor: pointer;
-
-  transition:
-    all 0.2s ease;
-
-}
-
-
-.l2d-language-btn:hover {
-
-  background: #edf6ff;
-
-  transform:
-    translateY(-1px);
-
-}
-
-
-.l2d-language-btn.active {
-
-  border:
-    2px solid #194f7f;
-
-  background:
-    #dbeafe;
-
-}
-
-
-/* ==============================================
-   THEME BUTTON
-============================================== */
-
-.l2d-theme-btn {
-
+.l2d-setting-btn {
   width: 42px;
   height: 36px;
 
-  padding: 0;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
-  border:
-    1px solid #cbd5e1;
-
-  border-radius: 8px;
+  padding: 0;
 
   background: white;
 
-  font-size: 18px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  font-size: 21px;
 
   cursor: pointer;
 
-  transition:
-    all 0.2s ease;
-
+  transition: 0.2s ease;
 }
 
 
-.l2d-theme-btn:hover {
-
-  background:
-    #edf6ff;
-
-  transform:
-    translateY(-1px);
-
+.l2d-setting-btn:hover {
+  background: #e8f3ff;
+  transform: translateY(-2px);
 }
 
 
+.l2d-setting-btn.active {
+  background: #dbeafe;
+  border: 2px solid #194f7f;
+}
 
-/* ==================================================
+
+/* =========================
    DARK MODE
-================================================== */
+========================= */
 
 body.l2d-dark {
-
-  background-color:
-    #0f172a;
-
-  color:
-    #f8fafc;
-
+  background-color: #0f172a !important;
+  color: #f8fafc;
 }
 
 
-
-/* ==============================================
-   SIDEBAR
-============================================== */
-
-body.l2d-dark
-.sidebar {
-
-  background:
-    #111827;
-
+body.l2d-dark .sidebar {
+  background: #111827;
 }
 
 
-body.l2d-dark
-.profile-section {
-
-  background:
-    #1e293b !important;
-
-  border-color:
-    #334155;
-
+body.l2d-dark .profile-section {
+  background: #1e293b !important;
 }
 
 
-body.l2d-dark
-.profile-name {
-
-  color:
-    #f8fafc;
-
+body.l2d-dark .profile-name {
+  color: white;
 }
 
 
-body.l2d-dark
-.profile-role {
-
-  color:
-    #cbd5e1;
-
+body.l2d-dark .profile-role {
+  color: #cbd5e1;
 }
 
 
-body.l2d-dark
-.sidebar .menu li a {
-
-  color:
-    #f8fafc;
-
+body.l2d-dark .blue {
+  background: #1e293b;
 }
 
 
-body.l2d-dark
-.sidebar .menu li a:hover {
-
-  background:
-    #1d4ed8;
-
+body.l2d-dark .box {
+  color: #f8fafc;
 }
 
 
-
-/* ==============================================
-   MAIN
-============================================== */
-
-body.l2d-dark
-.content {
-
-  color:
-    #f8fafc;
-
+body.l2d-dark footer {
+  background: #1e293b;
+  color: #f8fafc;
 }
 
 
-
-/* ==============================================
-   BANNER
-============================================== */
-
-body.l2d-dark
-.banner {
-
-  box-shadow:
-    0 10px 30px
-    rgba(0, 0, 0, 0.45);
-
+body.l2d-dark .l2d-settings {
+  background: #1e293b;
+  border-color: #475569;
 }
 
 
-
-/* ==============================================
-   FEATURE BOXES
-============================================== */
-
-body.l2d-dark
-.box {
-
-  color:
-    #f8fafc;
-
-  box-shadow:
-    0 5px 14px
-    rgba(0, 0, 0, 0.3);
-
+body.l2d-dark .l2d-setting-btn {
+  background: #334155;
+  color: white;
+  border-color: #64748b;
 }
 
 
-body.l2d-dark
-.blue {
-
-  background:
-    rgba(30, 41, 59, 0.96);
-
+body.l2d-dark .l2d-setting-btn.active {
+  background: #1d4ed8;
+  border-color: #93c5fd;
 }
 
 
-
-/* ==============================================
-   FOOTER
-============================================== */
-
-body.l2d-dark
-footer {
-
-  background:
-    rgba(30, 41, 59, 0.95);
-
-  color:
-    #e2e8f0;
-
-}
-
-
-
-/* ==============================================
-   SETTINGS - DARK
-============================================== */
-
-body.l2d-dark
-.l2d-settings {
-
-  background:
-    #1e293b;
-
-  border-color:
-    #475569;
-
-}
-
-
-body.l2d-dark
-.l2d-language-btn,
-
-body.l2d-dark
-.l2d-theme-btn {
-
-  background:
-    #334155;
-
-  color:
-    white;
-
-  border-color:
-    #475569;
-
-}
-
-
-body.l2d-dark
-.l2d-language-btn:hover,
-
-body.l2d-dark
-.l2d-theme-btn:hover {
-
-  background:
-    #475569;
-
-}
-
-
-body.l2d-dark
-.l2d-language-btn.active {
-
-  background:
-    #1d4ed8;
-
-  border-color:
-    #93c5fd;
-
-}
-
-
-
-/* ==================================================
-   MOBILE SETTINGS
-================================================== */
-
+/* Mobile */
 @media (max-width: 560px) {
 
   .l2d-settings {
-
-    top: 12px;
-
-    right: 12px;
-
-    gap: 4px;
-
-    padding: 5px 6px;
-
+    top: 12px !important;
+    right: 12px !important;
   }
 
-
-  .l2d-language-btn {
-
-    width: 38px;
-
-    height: 32px;
-
-    font-size: 20px;
-
-  }
-
-
-  .l2d-theme-btn {
-
+  .l2d-setting-btn {
     width: 36px;
-
     height: 32px;
-
-    font-size: 16px;
-
+    font-size: 18px;
   }
-
 }

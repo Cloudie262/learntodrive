@@ -10,44 +10,23 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-  <!-- ==================================================
-     ADDED: LANGUAGE + THEME CONTROLS
-     Original HTML is unchanged
-================================================== -->
-
+<!-- ADDED: Language + Theme Buttons -->
 <div class="l2d-settings">
-
-  <button
-    type="button"
-    id="l2dMy"
-    class="l2d-language-btn"
-    title="Myanmar"
-    aria-label="Myanmar Language"
-  >
+  
+  <button type="button" id="l2dMy" class="l2d-setting-btn" title="Myanmar">
     🇲🇲
   </button>
 
-  <button
-    type="button"
-    id="l2dEn"
-    class="l2d-language-btn active"
-    title="English"
-    aria-label="English Language"
-  >
+  <button type="button" id="l2dEn" class="l2d-setting-btn active" title="English">
     🇬🇧
   </button>
 
-  <button
-    type="button"
-    id="l2dThemeBtn"
-    class="l2d-theme-btn"
-    title="Light / Dark Mode"
-    aria-label="Change Theme"
-  >
+  <button type="button" id="l2dThemeBtn" class="l2d-setting-btn" title="Light / Dark Mode">
     <span id="l2dThemeIcon">🌙</span>
   </button>
 
 </div>
+
   <!-- Toggle Button -->
   <button class="sidebar-toggle" id="sidebarToggle">
     <i class="fa-solid fa-bars"></i>
@@ -170,500 +149,405 @@ function updateProfile(name, role, avatarUrl) {
       item.addEventListener('click', closeSidebar);
     });
   </script>
-  <script>
-
-/* ==================================================
-   ADDED: LANGUAGE + THEME
-   Original JavaScript above is unchanged
-================================================== */
+  
+ <script>
+/* =========================================
+   LANGUAGE + THEME SETTINGS
+========================================= */
 
 (function () {
 
-  const LANGUAGE_KEY =
-    "learn2driveLanguage";
+  const myBtn = document.getElementById("l2dMy");
+  const enBtn = document.getElementById("l2dEn");
+  const themeBtn = document.getElementById("l2dThemeBtn");
+  const themeIcon = document.getElementById("l2dThemeIcon");
 
-  const THEME_KEY =
-    "learn2driveTheme";
-
-
-  let language =
-    localStorage.getItem(LANGUAGE_KEY) || "en";
-
-  let theme =
-    localStorage.getItem(THEME_KEY) || "light";
+  const LANGUAGE_KEY = "learn2driveLanguage";
+  const THEME_KEY = "learn2driveTheme";
 
 
-  /* ==============================================
-     TRANSLATIONS
-  ============================================== */
+  /* =========================================
+     ORIGINAL ENGLISH TEXT
+  ========================================= */
 
-  const translations = {
+  const english = {
 
-    "Learner":
-      "လေ့လာသူ",
+    role: "Learner",
 
-    "Home":
-      "ပင်မစာမျက်နှာ",
-
-    "Knowledge Sharing":
-      "ဗဟုသုတ မျှဝေခြင်း",
-
-    "Practice Test":
-      "လေ့ကျင့်ခန်း စာမေးပွဲ",
-
-    "Road Signs":
-      "လမ်းအမှတ်အသားများ",
-
-    "Hotline":
+    menu: [
+      "Home",
+      "Knowledge Sharing",
+      "Practice Test",
+      "Road Signs",
       "Hotline",
+      "My Profile"
+    ],
 
-    "My Profile":
-      "ကျွန်ုပ်၏ ပရိုဖိုင်",
+    title:
+      "Prepare. Practice. Drive with Confidence.",
 
-    "Prepare. Practice. Drive with Confidence.":
-      "ပြင်ဆင်ပါ။ လေ့ကျင့်ပါ။ ယုံကြည်မှုရှိစွာ မောင်းနှင်ပါ။",
+    description:
+      "Your one-stop platform for driver license test practice, knowledge sharing, road signs and important contacts.",
 
-    "Your one-stop platform for driver license test practice, knowledge sharing, road signs and important contacts.":
-      "ယာဉ်မောင်းလိုင်စင် စာမေးပွဲလေ့ကျင့်ခြင်း၊ ဗဟုသုတမျှဝေခြင်း၊ လမ်းအမှတ်အသားများနှင့် အရေးကြီးသော ဆက်သွယ်ရန်အချက်အလက်များကို တစ်နေရာတည်းတွင် လေ့လာနိုင်ပါသည်။",
+    buttons: [
+      "Start Practice",
+      "View Hotline →"
+    ],
 
-    "Start Practice":
-      "လေ့ကျင့်မှု စတင်မည်",
+    boxTitles: [
+      "Knowledge Sharing Session",
+      "Practice Test",
+      "Road Sign Session",
+      "Hotline Number"
+    ],
 
-    "View Hotline →":
-      "Hotline ကြည့်မည် →",
+    boxDescriptions: [
+      "Learn driving rules, safety tips, and important information.",
 
-    "Knowledge Sharing Session":
-      "ဗဟုသုတ မျှဝေခြင်း",
+      "Take practice tests similar to the real exam and check your knowledge.",
 
-    "Learn driving rules, safety tips, and important information.":
-      "ယာဉ်မောင်းစည်းမျဉ်းများ၊ ဘေးကင်းရေး အကြံပြုချက်များနှင့် အရေးကြီးသော အချက်အလက်များကို လေ့လာပါ။",
+      "Learn all road signs and their meanings with easy examples.",
 
-    "Take practice tests similar to the real exam and check your knowledge.":
-      "တကယ့် စာမေးပွဲနှင့် ဆင်တူသော လေ့ကျင့်ခန်းများကို ဖြေဆိုပြီး သင့်ဗဟုသုတကို စစ်ဆေးပါ။",
+      "Important contact numbers for emergencies and assistance."
+    ],
 
-    "Road Sign Session":
-      "လမ်းအမှတ်အသားများ လေ့လာခြင်း",
-
-    "Learn all road signs and their meanings with easy examples.":
-      "လမ်းအမှတ်အသားများနှင့် ၎င်းတို့၏ အဓိပ္ပာယ်များကို လွယ်ကူသော ဥပမာများဖြင့် လေ့လာပါ။",
-
-    "Hotline Number":
-      "Hotline ဖုန်းနံပါတ်များ",
-
-    "Important contact numbers for emergencies and assistance.":
-      "အရေးပေါ်အခြေအနေများနှင့် အကူအညီလိုအပ်သည့်အခါ ဆက်သွယ်နိုင်သော အရေးကြီး ဖုန်းနံပါတ်များ။",
-
-    "©DriveLearn. All rights reserved. | About Us | Privacy Policy | Terms of Use":
-      "©DriveLearn. မူပိုင်ခွင့်အားလုံး ရယူထားသည်။ | ကျွန်ုပ်တို့အကြောင်း | ကိုယ်ရေးအချက်အလက် မူဝါဒ | အသုံးပြုမှု စည်းမျဉ်းများ"
-
+    footer:
+      "©DriveLearn. All rights reserved. | About Us | Privacy Policy | Terms of Use"
   };
 
 
-  /* Reverse translation */
+  /* =========================================
+     MYANMAR TEXT
+  ========================================= */
 
-  const reverseTranslations = {};
+  const myanmar = {
 
-  Object.keys(translations).forEach(
-    function (english) {
+    role: "လေ့လာသူ",
 
-      reverseTranslations[
-        translations[english]
-      ] = english;
+    menu: [
+      "ပင်မစာမျက်နှာ",
+      "ဗဟုသုတ မျှဝေခြင်း",
+      "လေ့ကျင့်ခန်း စာမေးပွဲ",
+      "လမ်းအမှတ်အသားများ",
+      "Hotline",
+      "ကျွန်ုပ်၏ ပရိုဖိုင်"
+    ],
 
-    }
-  );
+    title:
+      "ပြင်ဆင်ပါ။ လေ့ကျင့်ပါ။ ယုံကြည်မှုရှိစွာ မောင်းနှင်ပါ။",
+
+    description:
+      "ယာဉ်မောင်းလိုင်စင် စာမေးပွဲ လေ့ကျင့်ခြင်း၊ ဗဟုသုတ မျှဝေခြင်း၊ လမ်းအမှတ်အသားများနှင့် အရေးကြီးသော ဆက်သွယ်ရန် အချက်အလက်များကို တစ်နေရာတည်းတွင် လေ့လာနိုင်ပါသည်။",
+
+    buttons: [
+      "လေ့ကျင့်မှု စတင်မည်",
+      "Hotline ကြည့်မည် →"
+    ],
+
+    boxTitles: [
+      "ဗဟုသုတ မျှဝေခြင်း",
+      "လေ့ကျင့်ခန်း စာမေးပွဲ",
+      "လမ်းအမှတ်အသားများ လေ့လာခြင်း",
+      "Hotline ဖုန်းနံပါတ်များ"
+    ],
+
+    boxDescriptions: [
+      "ယာဉ်မောင်း စည်းမျဉ်းများ၊ ဘေးကင်းရေး အကြံပြုချက်များနှင့် အရေးကြီးသော အချက်အလက်များကို လေ့လာပါ။",
+
+      "တကယ့် စာမေးပွဲနှင့် ဆင်တူသော လေ့ကျင့်ခန်းများကို ဖြေဆိုပြီး သင့်ဗဟုသုတကို စစ်ဆေးပါ။",
+
+      "လမ်းအမှတ်အသားများနှင့် ၎င်းတို့၏ အဓိပ္ပာယ်များကို လွယ်ကူသော ဥပမာများဖြင့် လေ့လာပါ။",
+
+      "အရေးပေါ် အခြေအနေများနှင့် အကူအညီလိုအပ်သည့်အခါ ဆက်သွယ်နိုင်သော အရေးကြီး ဖုန်းနံပါတ်များ။"
+    ],
+
+    footer:
+      "©DriveLearn. မူပိုင်ခွင့်အားလုံး ရယူထားသည်။ | ကျွန်ုပ်တို့အကြောင်း | ကိုယ်ရေးအချက်အလက် မူဝါဒ | အသုံးပြုမှု စည်းမျဉ်းများ"
+  };
 
 
-  /* ==============================================
-     CHANGE TEXT FUNCTION
-  ============================================== */
+  /* =========================================
+     CHANGE MENU TEXT WITHOUT REMOVING ICONS
+  ========================================= */
 
-  function changeText(
-    element,
-    targetLanguage
-  ) {
+  function setMenuText(link, text) {
 
-    if (!element) {
-      return;
-    }
+    let textNode = null;
 
+    link.childNodes.forEach(function (node) {
 
-    const currentText =
-      element.textContent.trim();
-
-
-    if (targetLanguage === "my") {
-
-      if (translations[currentText]) {
-
-        element.textContent =
-          translations[currentText];
-
+      if (
+        node.nodeType === Node.TEXT_NODE &&
+        node.textContent.trim() !== ""
+      ) {
+        textNode = node;
       }
 
+    });
+
+    if (textNode) {
+      textNode.textContent = " " + text;
     }
-
-    else {
-
-      if (reverseTranslations[currentText]) {
-
-        element.textContent =
-          reverseTranslations[currentText];
-
-      }
-
-    }
-
   }
 
 
-  /* ==============================================
+  /* =========================================
      APPLY LANGUAGE
-  ============================================== */
+  ========================================= */
 
-  function applyLanguage() {
+  function applyLanguage(language) {
+
+    const data =
+      language === "my"
+        ? myanmar
+        : english;
 
 
     /* Profile role */
+    const role =
+      document.querySelector(".profile-role");
 
-    changeText(
-      document.querySelector(".profile-role"),
-      language
-    );
+    if (role) {
+      role.textContent = data.role;
+    }
 
 
-    /* Sidebar menu */
-
+    /* Sidebar */
     const menuLinks =
       document.querySelectorAll(
         ".sidebar .menu li a"
       );
 
+    menuLinks.forEach(function (link, index) {
 
-    menuLinks.forEach(
-      function (link) {
-
-        /*
-          Preserve the Font Awesome icon.
-          Only translate its text node.
-        */
-
-        const nodes =
-          Array.from(link.childNodes);
-
-
-        nodes.forEach(
-          function (node) {
-
-            if (
-              node.nodeType ===
-              Node.TEXT_NODE
-            ) {
-
-              const current =
-                node.textContent.trim();
-
-
-              if (!current) {
-                return;
-              }
-
-
-              if (
-                language === "my" &&
-                translations[current]
-              ) {
-
-                node.textContent =
-                  " " +
-                  translations[current];
-
-              }
-
-
-              else if (
-                language === "en" &&
-                reverseTranslations[current]
-              ) {
-
-                node.textContent =
-                  " " +
-                  reverseTranslations[current];
-
-              }
-
-            }
-
-          }
+      if (data.menu[index]) {
+        setMenuText(
+          link,
+          data.menu[index]
         );
-
       }
-    );
+
+    });
 
 
     /* Banner */
+    const bannerTitle =
+      document.querySelector(".banner h1");
 
-    changeText(
-      document.querySelector(
-        ".banner h1"
-      ),
-      language
-    );
+    const bannerDescription =
+      document.querySelector(".banner p");
+
+    if (bannerTitle) {
+      bannerTitle.textContent =
+        data.title;
+    }
+
+    if (bannerDescription) {
+      bannerDescription.textContent =
+        data.description;
+    }
 
 
-    changeText(
-      document.querySelector(
-        ".banner p"
-      ),
-      language
-    );
-
-
+    /* Banner buttons */
     const bannerButtons =
       document.querySelectorAll(
         ".banner button"
       );
 
-
     bannerButtons.forEach(
-      function (button) {
+      function (button, index) {
 
-        changeText(
-          button,
-          language
-        );
+        if (data.buttons[index]) {
+          button.textContent =
+            data.buttons[index];
+        }
 
       }
     );
 
 
-    /* Feature boxes */
-
+    /* Box titles */
     const boxTitles =
-      document.querySelectorAll(
-        ".box h3"
-      );
-
+      document.querySelectorAll(".box h3");
 
     boxTitles.forEach(
-      function (title) {
+      function (title, index) {
 
-        changeText(
-          title,
-          language
-        );
+        if (data.boxTitles[index]) {
+          title.textContent =
+            data.boxTitles[index];
+        }
 
       }
     );
 
 
-    const boxParagraphs =
-      document.querySelectorAll(
-        ".box p"
-      );
+    /* Box descriptions */
+    const descriptions =
+      document.querySelectorAll(".box p");
 
+    descriptions.forEach(
+      function (paragraph, index) {
 
-    boxParagraphs.forEach(
-      function (paragraph) {
-
-        changeText(
-          paragraph,
-          language
-        );
+        if (data.boxDescriptions[index]) {
+          paragraph.textContent =
+            data.boxDescriptions[index];
+        }
 
       }
     );
 
 
     /* Footer */
+    const footer =
+      document.querySelector("footer");
 
-    changeText(
-      document.querySelector(
-        "footer"
-      ),
-      language
+    if (footer) {
+      footer.textContent =
+        data.footer;
+    }
+
+
+    /* Active flag */
+    myBtn.classList.toggle(
+      "active",
+      language === "my"
     );
 
+    enBtn.classList.toggle(
+      "active",
+      language === "en"
+    );
 
-    /* HTML language */
 
     document.documentElement.lang =
       language === "my"
         ? "my"
         : "en";
-
-
-    /* Buttons */
-
-    const myButton =
-      document.getElementById(
-        "l2dMy"
-      );
-
-    const enButton =
-      document.getElementById(
-        "l2dEn"
-      );
-
-
-    myButton.classList.toggle(
-      "active",
-      language === "my"
-    );
-
-
-    enButton.classList.toggle(
-      "active",
-      language === "en"
-    );
-
   }
 
 
-  /* ==============================================
-     SET LANGUAGE
-  ============================================== */
+  /* =========================================
+     MYANMAR BUTTON
+  ========================================= */
 
-  function setLanguage(
-    nextLanguage
-  ) {
+  myBtn.addEventListener(
+    "click",
+    function () {
 
-    language =
-      nextLanguage;
+      localStorage.setItem(
+        LANGUAGE_KEY,
+        "my"
+      );
 
+      applyLanguage("my");
 
-    localStorage.setItem(
-      LANGUAGE_KEY,
-      language
-    );
-
-
-    applyLanguage();
-
-
-    window.dispatchEvent(
-      new CustomEvent(
-        "l2dLanguageChanged",
-        {
-          detail: {
-            language: language
+      window.dispatchEvent(
+        new CustomEvent(
+          "l2dLanguageChanged",
+          {
+            detail: {
+              language: "my"
+            }
           }
-        }
-      )
-    );
+        )
+      );
+    }
+  );
 
-  }
+
+  /* =========================================
+     ENGLISH BUTTON
+  ========================================= */
+
+  enBtn.addEventListener(
+    "click",
+    function () {
+
+      localStorage.setItem(
+        LANGUAGE_KEY,
+        "en"
+      );
+
+      applyLanguage("en");
+
+      window.dispatchEvent(
+        new CustomEvent(
+          "l2dLanguageChanged",
+          {
+            detail: {
+              language: "en"
+            }
+          }
+        )
+      );
+    }
+  );
 
 
-  /* ==============================================
+  /* =========================================
      APPLY THEME
-  ============================================== */
+  ========================================= */
 
-  function applyTheme() {
+  function applyTheme(theme) {
+
+    const dark =
+      theme === "dark";
 
     document.body.classList.toggle(
       "l2d-dark",
-      theme === "dark"
+      dark
     );
 
+    themeIcon.textContent =
+      dark ? "☀️" : "🌙";
+  }
 
-    const icon =
-      document.getElementById(
-        "l2dThemeIcon"
+
+  /* =========================================
+     THEME BUTTON
+  ========================================= */
+
+  themeBtn.addEventListener(
+    "click",
+    function () {
+
+      const darkNow =
+        document.body.classList.contains(
+          "l2d-dark"
+        );
+
+      const newTheme =
+        darkNow
+          ? "light"
+          : "dark";
+
+      localStorage.setItem(
+        THEME_KEY,
+        newTheme
       );
 
-
-    if (theme === "dark") {
-
-      icon.textContent = "☀️";
-
+      applyTheme(newTheme);
     }
-
-    else {
-
-      icon.textContent = "🌙";
-
-    }
-
-  }
+  );
 
 
-  /* ==============================================
-     TOGGLE THEME
-  ============================================== */
-
-  function toggleTheme() {
-
-    if (theme === "dark") {
-
-      theme = "light";
-
-    }
-
-    else {
-
-      theme = "dark";
-
-    }
-
-
-    localStorage.setItem(
-      THEME_KEY,
-      theme
-    );
-
-
-    applyTheme();
-
-  }
-
-
-  /* ==============================================
-     BUTTON EVENTS
-  ============================================== */
-
-  document
-    .getElementById("l2dMy")
-    .addEventListener(
-      "click",
-      function () {
-
-        setLanguage("my");
-
-      }
-    );
-
-
-  document
-    .getElementById("l2dEn")
-    .addEventListener(
-      "click",
-      function () {
-
-        setLanguage("en");
-
-      }
-    );
-
-
-  document
-    .getElementById(
-      "l2dThemeBtn"
-    )
-    .addEventListener(
-      "click",
-      toggleTheme
-    );
-
-
-  /* ==============================================
+  /* =========================================
      LOAD SAVED SETTINGS
-  ============================================== */
+  ========================================= */
 
-  applyTheme();
+  const savedLanguage =
+    localStorage.getItem(
+      LANGUAGE_KEY
+    ) || "en";
 
-  applyLanguage();
+  const savedTheme =
+    localStorage.getItem(
+      THEME_KEY
+    ) || "light";
 
+  applyLanguage(savedLanguage);
+  applyTheme(savedTheme);
 
 })();
 </script>
