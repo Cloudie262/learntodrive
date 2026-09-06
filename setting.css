@@ -1,0 +1,524 @@
+/* =========================================================
+   settings.css
+========================================================= */
+
+
+/* =========================================================
+   TOP CONTROL BAR
+========================================================= */
+
+.l2d-settings {
+
+    max-width: 1100px;
+
+    margin: 14px auto 0;
+
+    padding: 0 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    position: relative;
+
+    z-index: 9999;
+}
+
+
+.l2d-language-switch {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    padding: 4px;
+
+    background:
+        rgba(255, 255, 255, 0.70);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+.l2d-language-switch button {
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #472F26;
+
+    padding: 8px 13px;
+
+    border-radius: 24px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    font-family: inherit;
+
+    transition:
+        background 0.2s,
+        color 0.2s,
+        transform 0.2s;
+}
+
+
+.l2d-language-switch button:hover {
+
+    background:
+        rgba(255, 255, 255, 0.85);
+
+    transform:
+        translateY(-1px);
+}
+
+
+.l2d-language-switch button.active {
+
+    background: #023e8a;
+
+    color: #ffffff;
+}
+
+
+.l2d-language-switch img {
+
+    width: 28px;
+
+    height: 19px;
+
+    object-fit: cover;
+
+    border-radius: 3px;
+}
+
+
+/* =========================================================
+   SUN / MOON BUTTON
+========================================================= */
+
+.l2d-theme-button {
+
+    width: 44px;
+
+    height: 44px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0, 0, 0, 0.10);
+
+    transition:
+        transform 0.2s,
+        background 0.2s;
+}
+
+
+.l2d-theme-button:hover {
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.l2d-dark {
+
+    background: #0f172a !important;
+
+    color: #f8fafc !important;
+}
+
+
+body.l2d-dark h1,
+body.l2d-dark h2,
+body.l2d-dark h3,
+body.l2d-dark h4 {
+
+    color: #f8fafc !important;
+}
+
+
+body.l2d-dark .subtitle {
+
+    color: #cbd5e1 !important;
+}
+
+
+/* Dashboard cards */
+
+body.l2d-dark .card {
+
+    background: #1e293b !important;
+
+    color: #f8fafc !important;
+
+    border-color: #475569 !important;
+}
+
+
+body.l2d-dark .card small {
+
+    color: #cbd5e1 !important;
+}
+
+
+/* Modules */
+
+body.l2d-dark .module-header {
+
+    background: #1e293b !important;
+
+    color: #f8fafc !important;
+
+    border-color: #475569 !important;
+}
+
+
+body.l2d-dark .module-header:hover {
+
+    background: #334155 !important;
+}
+
+
+body.l2d-dark .lesson-list {
+
+    background: #172033 !important;
+
+    border-color: #475569 !important;
+}
+
+
+body.l2d-dark .lesson {
+
+    background: #273449 !important;
+
+    color: #f8fafc !important;
+
+    border-color: #475569 !important;
+}
+
+
+body.l2d-dark .lesson:hover {
+
+    background: #334155 !important;
+}
+
+
+/* Portal mock card */
+
+body.l2d-dark .mock {
+
+    background: #1e293b !important;
+
+    color: #f8fafc !important;
+
+    border-color: #475569 !important;
+}
+
+
+body.l2d-dark .mock p {
+
+    color: #cbd5e1 !important;
+}
+
+
+/* Quiz */
+
+body.l2d-dark .container {
+
+    color: #f8fafc;
+}
+
+
+body.l2d-dark #quiz-page,
+body.l2d-dark #result-page {
+
+    color: #f8fafc;
+}
+
+
+body.l2d-dark .question-box {
+
+    background: #1e293b !important;
+
+    color: #f8fafc !important;
+
+    border-color: #475569 !important;
+}
+
+
+body.l2d-dark .option-btn {
+
+    background: #334155 !important;
+
+    color: #f8fafc !important;
+
+    border-color: #64748b !important;
+}
+
+
+body.l2d-dark .option-btn:hover {
+
+    background: #475569 !important;
+}
+
+
+body.l2d-dark .option-btn.correct {
+
+    background: #22863a !important;
+
+    color: white !important;
+}
+
+
+body.l2d-dark .option-btn.wrong {
+
+    background: #c53030 !important;
+
+    color: white !important;
+}
+
+
+/* Mock test */
+
+body.l2d-dark .mock-container {
+
+    color: #f8fafc !important;
+}
+
+
+body.l2d-dark .mock-header,
+body.l2d-dark .mock-progress,
+body.l2d-dark .mock-question-card,
+body.l2d-dark .question-navigation {
+
+    background: #1e293b !important;
+
+    color: #f8fafc !important;
+
+    border-color: #475569 !important;
+}
+
+
+body.l2d-dark .mock-header p {
+
+    color: #cbd5e1 !important;
+}
+
+
+body.l2d-dark .timer-box {
+
+    background: #334155 !important;
+}
+
+
+body.l2d-dark .mock-option {
+
+    background: #334155 !important;
+
+    color: #f8fafc !important;
+
+    border-color: #64748b !important;
+}
+
+
+body.l2d-dark .mock-option:hover {
+
+    background: #475569 !important;
+}
+
+
+body.l2d-dark .mock-option.selected {
+
+    background: #2563eb !important;
+
+    color: white !important;
+
+    border-color: #60a5fa !important;
+}
+
+
+body.l2d-dark #questionNumbers button {
+
+    background: #334155;
+
+    color: #f8fafc;
+
+    border-color: #64748b;
+}
+
+
+body.l2d-dark #questionNumbers button.current {
+
+    background: #2563eb;
+
+    color: white;
+}
+
+
+body.l2d-dark #questionNumbers button.answered {
+
+    background: #166534;
+
+    color: white;
+}
+
+
+/* Results */
+
+body.l2d-dark .result-card {
+
+    background: #1e293b !important;
+
+    color: #f8fafc !important;
+}
+
+
+/* Toolbar dark */
+
+body.l2d-dark .l2d-language-switch {
+
+    background: #1e293b;
+}
+
+
+body.l2d-dark
+.l2d-language-switch button {
+
+    color: #f8fafc;
+}
+
+
+body.l2d-dark
+.l2d-language-switch button.active {
+
+    background: #2563eb;
+
+    color: white;
+}
+
+
+body.l2d-dark
+.l2d-theme-button {
+
+    background: #1e293b;
+
+    color: white;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .l2d-settings {
+
+        padding: 0 12px;
+
+        gap: 7px;
+    }
+
+
+    .l2d-language-switch button {
+
+        padding: 7px 9px;
+    }
+
+
+    .l2d-language-switch button span {
+
+        display: none;
+    }
+
+
+    .l2d-theme-button {
+
+        width: 40px;
+
+        height: 40px;
+    }
+
+}
+/* =========================================
+   QUIZ PAGE - LANGUAGE BUTTON TOP RIGHT
+========================================= */
+
+body:has(#quiz-page) .l2d-settings {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    left: auto;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    width: auto;
+}
+
+body:has(#quiz-page) .l2d-language-switch {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+body:has(#quiz-page) .l2d-language-btn {
+    cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    body:has(#quiz-page) .l2d-settings {
+        top: 10px;
+        right: 10px;
+    }
+
+}
