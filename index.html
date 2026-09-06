@@ -10,6 +10,44 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+  <!-- ==================================================
+     ADDED: LANGUAGE + THEME CONTROLS
+     Original HTML is unchanged
+================================================== -->
+
+<div class="l2d-settings">
+
+  <button
+    type="button"
+    id="l2dMy"
+    class="l2d-language-btn"
+    title="Myanmar"
+    aria-label="Myanmar Language"
+  >
+    🇲🇲
+  </button>
+
+  <button
+    type="button"
+    id="l2dEn"
+    class="l2d-language-btn active"
+    title="English"
+    aria-label="English Language"
+  >
+    🇬🇧
+  </button>
+
+  <button
+    type="button"
+    id="l2dThemeBtn"
+    class="l2d-theme-btn"
+    title="Light / Dark Mode"
+    aria-label="Change Theme"
+  >
+    <span id="l2dThemeIcon">🌙</span>
+  </button>
+
+</div>
   <!-- Toggle Button -->
   <button class="sidebar-toggle" id="sidebarToggle">
     <i class="fa-solid fa-bars"></i>
@@ -132,5 +170,502 @@ function updateProfile(name, role, avatarUrl) {
       item.addEventListener('click', closeSidebar);
     });
   </script>
+  <script>
+
+/* ==================================================
+   ADDED: LANGUAGE + THEME
+   Original JavaScript above is unchanged
+================================================== */
+
+(function () {
+
+  const LANGUAGE_KEY =
+    "learn2driveLanguage";
+
+  const THEME_KEY =
+    "learn2driveTheme";
+
+
+  let language =
+    localStorage.getItem(LANGUAGE_KEY) || "en";
+
+  let theme =
+    localStorage.getItem(THEME_KEY) || "light";
+
+
+  /* ==============================================
+     TRANSLATIONS
+  ============================================== */
+
+  const translations = {
+
+    "Learner":
+      "လေ့လာသူ",
+
+    "Home":
+      "ပင်မစာမျက်နှာ",
+
+    "Knowledge Sharing":
+      "ဗဟုသုတ မျှဝေခြင်း",
+
+    "Practice Test":
+      "လေ့ကျင့်ခန်း စာမေးပွဲ",
+
+    "Road Signs":
+      "လမ်းအမှတ်အသားများ",
+
+    "Hotline":
+      "Hotline",
+
+    "My Profile":
+      "ကျွန်ုပ်၏ ပရိုဖိုင်",
+
+    "Prepare. Practice. Drive with Confidence.":
+      "ပြင်ဆင်ပါ။ လေ့ကျင့်ပါ။ ယုံကြည်မှုရှိစွာ မောင်းနှင်ပါ။",
+
+    "Your one-stop platform for driver license test practice, knowledge sharing, road signs and important contacts.":
+      "ယာဉ်မောင်းလိုင်စင် စာမေးပွဲလေ့ကျင့်ခြင်း၊ ဗဟုသုတမျှဝေခြင်း၊ လမ်းအမှတ်အသားများနှင့် အရေးကြီးသော ဆက်သွယ်ရန်အချက်အလက်များကို တစ်နေရာတည်းတွင် လေ့လာနိုင်ပါသည်။",
+
+    "Start Practice":
+      "လေ့ကျင့်မှု စတင်မည်",
+
+    "View Hotline →":
+      "Hotline ကြည့်မည် →",
+
+    "Knowledge Sharing Session":
+      "ဗဟုသုတ မျှဝေခြင်း",
+
+    "Learn driving rules, safety tips, and important information.":
+      "ယာဉ်မောင်းစည်းမျဉ်းများ၊ ဘေးကင်းရေး အကြံပြုချက်များနှင့် အရေးကြီးသော အချက်အလက်များကို လေ့လာပါ။",
+
+    "Take practice tests similar to the real exam and check your knowledge.":
+      "တကယ့် စာမေးပွဲနှင့် ဆင်တူသော လေ့ကျင့်ခန်းများကို ဖြေဆိုပြီး သင့်ဗဟုသုတကို စစ်ဆေးပါ။",
+
+    "Road Sign Session":
+      "လမ်းအမှတ်အသားများ လေ့လာခြင်း",
+
+    "Learn all road signs and their meanings with easy examples.":
+      "လမ်းအမှတ်အသားများနှင့် ၎င်းတို့၏ အဓိပ္ပာယ်များကို လွယ်ကူသော ဥပမာများဖြင့် လေ့လာပါ။",
+
+    "Hotline Number":
+      "Hotline ဖုန်းနံပါတ်များ",
+
+    "Important contact numbers for emergencies and assistance.":
+      "အရေးပေါ်အခြေအနေများနှင့် အကူအညီလိုအပ်သည့်အခါ ဆက်သွယ်နိုင်သော အရေးကြီး ဖုန်းနံပါတ်များ။",
+
+    "©DriveLearn. All rights reserved. | About Us | Privacy Policy | Terms of Use":
+      "©DriveLearn. မူပိုင်ခွင့်အားလုံး ရယူထားသည်။ | ကျွန်ုပ်တို့အကြောင်း | ကိုယ်ရေးအချက်အလက် မူဝါဒ | အသုံးပြုမှု စည်းမျဉ်းများ"
+
+  };
+
+
+  /* Reverse translation */
+
+  const reverseTranslations = {};
+
+  Object.keys(translations).forEach(
+    function (english) {
+
+      reverseTranslations[
+        translations[english]
+      ] = english;
+
+    }
+  );
+
+
+  /* ==============================================
+     CHANGE TEXT FUNCTION
+  ============================================== */
+
+  function changeText(
+    element,
+    targetLanguage
+  ) {
+
+    if (!element) {
+      return;
+    }
+
+
+    const currentText =
+      element.textContent.trim();
+
+
+    if (targetLanguage === "my") {
+
+      if (translations[currentText]) {
+
+        element.textContent =
+          translations[currentText];
+
+      }
+
+    }
+
+    else {
+
+      if (reverseTranslations[currentText]) {
+
+        element.textContent =
+          reverseTranslations[currentText];
+
+      }
+
+    }
+
+  }
+
+
+  /* ==============================================
+     APPLY LANGUAGE
+  ============================================== */
+
+  function applyLanguage() {
+
+
+    /* Profile role */
+
+    changeText(
+      document.querySelector(".profile-role"),
+      language
+    );
+
+
+    /* Sidebar menu */
+
+    const menuLinks =
+      document.querySelectorAll(
+        ".sidebar .menu li a"
+      );
+
+
+    menuLinks.forEach(
+      function (link) {
+
+        /*
+          Preserve the Font Awesome icon.
+          Only translate its text node.
+        */
+
+        const nodes =
+          Array.from(link.childNodes);
+
+
+        nodes.forEach(
+          function (node) {
+
+            if (
+              node.nodeType ===
+              Node.TEXT_NODE
+            ) {
+
+              const current =
+                node.textContent.trim();
+
+
+              if (!current) {
+                return;
+              }
+
+
+              if (
+                language === "my" &&
+                translations[current]
+              ) {
+
+                node.textContent =
+                  " " +
+                  translations[current];
+
+              }
+
+
+              else if (
+                language === "en" &&
+                reverseTranslations[current]
+              ) {
+
+                node.textContent =
+                  " " +
+                  reverseTranslations[current];
+
+              }
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+    /* Banner */
+
+    changeText(
+      document.querySelector(
+        ".banner h1"
+      ),
+      language
+    );
+
+
+    changeText(
+      document.querySelector(
+        ".banner p"
+      ),
+      language
+    );
+
+
+    const bannerButtons =
+      document.querySelectorAll(
+        ".banner button"
+      );
+
+
+    bannerButtons.forEach(
+      function (button) {
+
+        changeText(
+          button,
+          language
+        );
+
+      }
+    );
+
+
+    /* Feature boxes */
+
+    const boxTitles =
+      document.querySelectorAll(
+        ".box h3"
+      );
+
+
+    boxTitles.forEach(
+      function (title) {
+
+        changeText(
+          title,
+          language
+        );
+
+      }
+    );
+
+
+    const boxParagraphs =
+      document.querySelectorAll(
+        ".box p"
+      );
+
+
+    boxParagraphs.forEach(
+      function (paragraph) {
+
+        changeText(
+          paragraph,
+          language
+        );
+
+      }
+    );
+
+
+    /* Footer */
+
+    changeText(
+      document.querySelector(
+        "footer"
+      ),
+      language
+    );
+
+
+    /* HTML language */
+
+    document.documentElement.lang =
+      language === "my"
+        ? "my"
+        : "en";
+
+
+    /* Buttons */
+
+    const myButton =
+      document.getElementById(
+        "l2dMy"
+      );
+
+    const enButton =
+      document.getElementById(
+        "l2dEn"
+      );
+
+
+    myButton.classList.toggle(
+      "active",
+      language === "my"
+    );
+
+
+    enButton.classList.toggle(
+      "active",
+      language === "en"
+    );
+
+  }
+
+
+  /* ==============================================
+     SET LANGUAGE
+  ============================================== */
+
+  function setLanguage(
+    nextLanguage
+  ) {
+
+    language =
+      nextLanguage;
+
+
+    localStorage.setItem(
+      LANGUAGE_KEY,
+      language
+    );
+
+
+    applyLanguage();
+
+
+    window.dispatchEvent(
+      new CustomEvent(
+        "l2dLanguageChanged",
+        {
+          detail: {
+            language: language
+          }
+        }
+      )
+    );
+
+  }
+
+
+  /* ==============================================
+     APPLY THEME
+  ============================================== */
+
+  function applyTheme() {
+
+    document.body.classList.toggle(
+      "l2d-dark",
+      theme === "dark"
+    );
+
+
+    const icon =
+      document.getElementById(
+        "l2dThemeIcon"
+      );
+
+
+    if (theme === "dark") {
+
+      icon.textContent = "☀️";
+
+    }
+
+    else {
+
+      icon.textContent = "🌙";
+
+    }
+
+  }
+
+
+  /* ==============================================
+     TOGGLE THEME
+  ============================================== */
+
+  function toggleTheme() {
+
+    if (theme === "dark") {
+
+      theme = "light";
+
+    }
+
+    else {
+
+      theme = "dark";
+
+    }
+
+
+    localStorage.setItem(
+      THEME_KEY,
+      theme
+    );
+
+
+    applyTheme();
+
+  }
+
+
+  /* ==============================================
+     BUTTON EVENTS
+  ============================================== */
+
+  document
+    .getElementById("l2dMy")
+    .addEventListener(
+      "click",
+      function () {
+
+        setLanguage("my");
+
+      }
+    );
+
+
+  document
+    .getElementById("l2dEn")
+    .addEventListener(
+      "click",
+      function () {
+
+        setLanguage("en");
+
+      }
+    );
+
+
+  document
+    .getElementById(
+      "l2dThemeBtn"
+    )
+    .addEventListener(
+      "click",
+      toggleTheme
+    );
+
+
+  /* ==============================================
+     LOAD SAVED SETTINGS
+  ============================================== */
+
+  applyTheme();
+
+  applyLanguage();
+
+
+})();
+</script>
 </body>
 </html>

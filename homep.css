@@ -490,3 +490,314 @@ body {
         max-width: 100%;
     }
 }
+/* ==================================================
+   LANGUAGE + LIGHT / DARK MODE
+================================================== */
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+
+.l2d-settings {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 6px 8px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+.l2d-language-switch {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.l2d-language-btn,
+.l2d-theme-btn {
+    height: 36px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    background: white;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s;
+}
+
+
+.l2d-language-btn {
+    width: 45px;
+}
+
+
+.l2d-theme-btn {
+    width: 40px;
+
+    font-size: 18px;
+}
+
+
+.flag-emoji {
+    font-size: 25px;
+
+    line-height: 1;
+}
+
+
+.l2d-language-btn:hover,
+.l2d-theme-btn:hover {
+    background: #eff6ff;
+
+    transform: translateY(-1px);
+}
+
+
+.l2d-language-btn.active {
+    border: 2px solid #3b82f6;
+
+    background: #dbeafe;
+}
+
+
+
+/* ==================================================
+   DARK MODE
+================================================== */
+
+body.l2d-dark {
+    --bg-light: #0f172a;
+
+    --text-dark: #f8fafc;
+
+    --text-muted: #cbd5e1;
+
+    --card-bg: #1e293b;
+
+    --border-color: #334155;
+
+    background: #0f172a;
+
+    color: #f8fafc;
+}
+
+
+body.l2d-dark .top-header {
+    background: #111827;
+
+    border-color: #334155;
+}
+
+
+body.l2d-dark .brand-logo h2 {
+    color: #f8fafc;
+}
+
+
+body.l2d-dark .brand-logo p {
+    color: #94a3b8;
+}
+
+
+body.l2d-dark .hamburger-btn {
+    color: #f8fafc;
+}
+
+
+body.l2d-dark .hamburger-btn:hover {
+    background: #1e293b;
+}
+
+
+body.l2d-dark .profile-trigger-btn {
+    color: #f8fafc;
+}
+
+
+body.l2d-dark .content-container {
+    background: #0f172a;
+}
+
+
+body.l2d-dark .hero-banner {
+    background: #172554;
+}
+
+
+body.l2d-dark .hero-text h1 {
+    color: #f8fafc;
+}
+
+
+body.l2d-dark .hero-text p {
+    color: #cbd5e1;
+}
+
+
+body.l2d-dark .card {
+    background: #1e293b;
+
+    border-color: #334155;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+body.l2d-dark .card h3 {
+    color: #f8fafc;
+}
+
+
+body.l2d-dark .card p {
+    color: #cbd5e1;
+}
+
+
+body.l2d-dark .footer {
+    color: #94a3b8;
+
+    border-color: #334155;
+}
+
+
+body.l2d-dark .footer-links a {
+    color: #94a3b8;
+}
+
+
+
+/* Profile drawer */
+
+body.l2d-dark .profile-drawer {
+    background: #1e293b;
+
+    color: #f8fafc;
+}
+
+
+body.l2d-dark .profile-details h4 {
+    color: #cbd5e1;
+}
+
+
+body.l2d-dark .detail-row .label {
+    color: #94a3b8;
+}
+
+
+body.l2d-dark .close-drawer-btn {
+    color: #cbd5e1;
+}
+
+
+
+/* Language controls */
+
+body.l2d-dark .l2d-settings {
+    background: #1e293b;
+
+    border-color: #475569;
+}
+
+
+body.l2d-dark .l2d-language-btn,
+body.l2d-dark .l2d-theme-btn {
+    background: #334155;
+
+    border-color: #475569;
+
+    color: white;
+}
+
+
+body.l2d-dark .l2d-language-btn:hover,
+body.l2d-dark .l2d-theme-btn:hover {
+    background: #475569;
+}
+
+
+body.l2d-dark .l2d-language-btn.active {
+    background: #1d4ed8;
+
+    border-color: #93c5fd;
+}
+
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 768px) {
+
+    .top-header {
+        padding:
+            10px 15px;
+    }
+
+
+    .header-right {
+        gap:
+            6px;
+    }
+
+
+    .l2d-settings {
+        gap:
+            4px;
+
+        padding:
+            5px;
+    }
+
+
+    .l2d-language-btn {
+        width:
+            38px;
+
+        height:
+            32px;
+    }
+
+
+    .l2d-theme-btn {
+        width:
+            36px;
+
+        height:
+            32px;
+
+        font-size:
+            16px;
+    }
+
+
+    .flag-emoji {
+        font-size:
+            21px;
+    }
+
+}
