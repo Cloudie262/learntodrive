@@ -70,8 +70,13 @@
     <section class="banner">
       <h1>Prepare. Practice. Drive with Confidence.</h1>
       <p>Your one-stop platform for driver license test practice, knowledge sharing, road signs and important contacts.</p>
-      <button><a href="portal.html">Start Practice</a></button>
-      <button><a href="hotline.html">View Hotline →</a></button>
+      <button type="button" onclick="window.location.href='portal.html'">
+  Start Practice
+</button>
+
+<button type="button" onclick="window.location.href='hotline.html'">
+  View Hotline →
+</button>
     </section>
 
     <section class="container">
@@ -349,23 +354,11 @@ function updateProfile(name, role, avatarUrl) {
 
 
     /* Banner buttons */
-   bannerButtons.forEach(
-  function (button, index) {
-
-    if (data.buttons[index]) {
-
-      const link = button.querySelector("a");
-
-      if (link) {
-        link.textContent = data.buttons[index];
-      } else {
-        button.textContent = data.buttons[index];
-      }
-
-    }
-
+  bannerButtons.forEach(function (button, index) {
+  if (data.buttons[index]) {
+    button.textContent = data.buttons[index];
   }
-);
+});
 
 
     /* Box titles */
