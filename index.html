@@ -299,127 +299,130 @@ function updateProfile(name, role, avatarUrl) {
   /* =========================================
      APPLY LANGUAGE
   ========================================= */
+function applyLanguage(language) {
 
-  function applyLanguage(language) {
-
-    const data =
-      language === "my"
-        ? myanmar
-        : english;
-
-
-    /* Profile role */
-    const role =
-      document.querySelector(".profile-role");
-
-    if (role) {
-      role.textContent = data.role;
-    }
+  const data =
+    language === "my"
+      ? myanmar
+      : english;
 
 
-    /* Sidebar */
-    const menuLinks =
-      document.querySelectorAll(
-        ".sidebar .menu li a"
+  /* Profile role */
+  const role =
+    document.querySelector(".profile-role");
+
+  if (role) {
+    role.textContent = data.role;
+  }
+
+
+  /* Sidebar */
+  const menuLinks =
+    document.querySelectorAll(
+      ".sidebar .menu li a"
+    );
+
+  menuLinks.forEach(function (link, index) {
+
+    if (data.menu[index]) {
+      setMenuText(
+        link,
+        data.menu[index]
       );
-
-    menuLinks.forEach(function (link, index) {
-
-      if (data.menu[index]) {
-        setMenuText(
-          link,
-          data.menu[index]
-        );
-      }
-
-    });
-
-
-    /* Banner */
-    const bannerTitle =
-      document.querySelector(".banner h1");
-
-    const bannerDescription =
-      document.querySelector(".banner p");
-
-    if (bannerTitle) {
-      bannerTitle.textContent =
-        data.title;
     }
 
-    if (bannerDescription) {
-      bannerDescription.textContent =
-        data.description;
-    }
+  });
 
 
-    /* Banner buttons */
+  /* Banner title + description */
+  const bannerTitle =
+    document.querySelector(".banner h1");
+
+  const bannerDescription =
+    document.querySelector(".banner p");
+
+  if (bannerTitle) {
+    bannerTitle.textContent = data.title;
+  }
+
+  if (bannerDescription) {
+    bannerDescription.textContent =
+      data.description;
+  }
+
+
+  /* Banner buttons */
+  const bannerButtons =
+    document.querySelectorAll(
+      ".banner button"
+    );
+
   bannerButtons.forEach(function (button, index) {
-  if (data.buttons[index]) {
-    button.textContent = data.buttons[index];
-  }
-});
 
-
-    /* Box titles */
-    const boxTitles =
-      document.querySelectorAll(".box h3");
-
-    boxTitles.forEach(
-      function (title, index) {
-
-        if (data.boxTitles[index]) {
-          title.textContent =
-            data.boxTitles[index];
-        }
-
-      }
-    );
-
-
-    /* Box descriptions */
-    const descriptions =
-      document.querySelectorAll(".box p");
-
-    descriptions.forEach(
-      function (paragraph, index) {
-
-        if (data.boxDescriptions[index]) {
-          paragraph.textContent =
-            data.boxDescriptions[index];
-        }
-
-      }
-    );
-
-
-    /* Footer */
-    const footer =
-      document.querySelector("footer");
-
-    if (footer) {
-      footer.textContent =
-        data.footer;
+    if (data.buttons[index]) {
+      button.textContent =
+        data.buttons[index];
     }
 
-
-    /* Active flag */
-    myBtn.classList.toggle(
-      "active",
-      language === "my"
-    );
-
-    enBtn.classList.toggle(
-      "active",
-      language === "en"
-    );
+  });
 
 
-    document.documentElement.lang =
-      language === "my"
-        ? "my"
-        : "en";
+  /* Box titles */
+  const boxTitles =
+    document.querySelectorAll(".box h3");
+
+  boxTitles.forEach(function (title, index) {
+
+    if (data.boxTitles[index]) {
+      title.textContent =
+        data.boxTitles[index];
+    }
+
+  });
+
+
+  /* Box descriptions */
+  const descriptions =
+    document.querySelectorAll(".box p");
+
+  descriptions.forEach(function (paragraph, index) {
+
+    if (data.boxDescriptions[index]) {
+      paragraph.textContent =
+        data.boxDescriptions[index];
+    }
+
+  });
+
+
+  /* Footer */
+  const footer =
+    document.querySelector("footer");
+
+  if (footer) {
+    footer.textContent =
+      data.footer;
   }
+
+
+  /* Active language flag */
+  myBtn.classList.toggle(
+    "active",
+    language === "my"
+  );
+
+  enBtn.classList.toggle(
+    "active",
+    language === "en"
+  );
+
+
+  /* Change HTML language */
+  document.documentElement.lang =
+    language === "my"
+      ? "my"
+      : "en";
+}
 
 
   /* =========================================
