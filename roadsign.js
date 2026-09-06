@@ -614,3 +614,43 @@ document.documentElement.dataset.theme =
 updateLanguage();
 updateThemeButton();
 filterCards();
+/* ==========================================
+   LANGUAGE FLAG DISPLAY
+   Added without changing original JS
+========================================== */
+
+function updateLanguageFlag() {
+
+    if (currentLanguage === "my") {
+
+        // Currently Myanmar -> show British flag
+        // Clicking it changes page to English
+        languageToggle.textContent = "🇬🇧";
+        languageToggle.title = "Switch to English";
+
+    } else {
+
+        // Currently English -> show Myanmar flag
+        // Clicking it changes page to Myanmar
+        languageToggle.textContent = "🇲🇲";
+        languageToggle.title = "မြန်မာဘာသာသို့ ပြောင်းရန်";
+
+    }
+}
+
+
+/* Update flag after original language button is clicked */
+
+languageToggle.addEventListener(
+    "click",
+    function () {
+
+        updateLanguageFlag();
+
+    }
+);
+
+
+/* Show correct flag when page first opens */
+
+updateLanguageFlag();

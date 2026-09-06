@@ -511,3 +511,24 @@ html[data-theme="dark"] .category button.active {
         font-size: 14px;
     }
 }
+/* ==========================================
+   LANGUAGE FLAG
+   Added without changing original CSS
+========================================== */
+
+#language-toggle {
+    width: 55px;
+    min-width: 55px;
+    height: 42px;
+
+    padding: 5px;
+
+    font-size: 27px;
+    line-height: 1;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
