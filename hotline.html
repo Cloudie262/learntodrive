@@ -1,183 +1,497 @@
 <!DOCTYPE html>
 <html lang="my">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ယာဉ်မောင်းသူများအတွက် Hotline</title>
-    <link rel="stylesheet" href="hotline.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        ယာဉ်မောင်းသူများအတွက် Hotline
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="hotline.css"
+    >
+
 </head>
+
 
 <body>
 
+
+    <!-- ======================================
+         LANGUAGE + DARK MODE
+    ======================================= -->
+
+    <div class="l2d-settings">
+
+        <div class="l2d-language-switch">
+
+    <button
+        type="button"
+        id="l2dMy"
+        class="l2d-language-btn active"
+        aria-label="Myanmar language"
+        title="Myanmar"
+    >
+        <img
+            src="myanmar-flag.svg"
+            alt="Myanmar"
+            class="language-flag"
+        >
+    </button>
+
+
+    <button
+        type="button"
+        id="l2dEn"
+        class="l2d-language-btn"
+        aria-label="English language"
+        title="English"
+    >
+        <img
+            src="uk-flag.svg"
+            alt="English"
+            class="language-flag"
+        >
+    </button>
+
+</div>
+
+
+        <button
+            type="button"
+            id="l2dThemeBtn"
+            class="l2d-theme-btn"
+            aria-label="Change theme"
+        >
+
+            <span id="l2dThemeIcon">
+                🌙
+            </span>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- ======================================
+         MAIN CONTAINER
+    ======================================= -->
+
     <div class="container">
 
-        <!-- Header -->
+
+        <!-- ======================================
+             HEADER
+        ======================================= -->
+
         <div class="header">
-            <div class="header-icon">📞</div>
+
+
+            <div class="header-icon">
+                📞
+            </div>
+
 
             <div>
-                <h1>ယာဉ်မောင်းသူများအတွက် Hotline</h1>
-                <p>
+
+                <h1
+                    data-my="ယာဉ်မောင်းသူများအတွက် Hotline"
+                    data-en="Hotline for Drivers"
+                >
+                    ယာဉ်မောင်းသူများအတွက် Hotline
+                </h1>
+
+
+                <p
+                    data-my="ယာဉ်မောင်းနေစဉ် အရေးပေါ်အခြေအနေများနှင့် ယာဉ်ဆိုင်ရာ အကူအညီများအတွက် ဆက်သွယ်နိုင်သော ဖုန်းနံပါတ်များ"
+                    data-en="Contact numbers for emergencies and vehicle-related assistance while driving."
+                >
                     ယာဉ်မောင်းနေစဉ် အရေးပေါ်အခြေအနေများနှင့်
                     ယာဉ်ဆိုင်ရာ အကူအညီများအတွက် ဆက်သွယ်နိုင်သော
                     ဖုန်းနံပါတ်များ
                 </p>
+
             </div>
+
+
         </div>
 
 
-        <!-- Emergency & Traffic Assistance -->
+
+        <!-- ======================================
+             EMERGENCY & TRAFFIC ASSISTANCE
+        ======================================= -->
+
         <section class="section">
 
-            <h2>🚨 အရေးပေါ်နှင့် ယာဉ်ထိန်းသိမ်းရေး အကူအညီ</h2>
+
+            <h2
+                data-my="🚨 အရေးပေါ်နှင့် ယာဉ်ထိန်းသိမ်းရေး အကူအညီ"
+                data-en="🚨 Emergency and Traffic Assistance"
+            >
+                🚨 အရေးပေါ်နှင့် ယာဉ်ထိန်းသိမ်းရေး အကူအညီ
+            </h2>
+
+
 
             <div class="cards">
 
+
+                <!-- POLICE -->
+
                 <div class="card police">
-                    <div class="icon">🚔</div>
 
-                    <h3>အထွေထွေ ရဲတပ်ဖွဲ့ အရေးပေါ်</h3>
 
-                    <p>
+                    <div class="icon">
+                        🚔
+                    </div>
+
+
+                    <h3
+                        data-my="အထွေထွေ ရဲတပ်ဖွဲ့ အရေးပေါ်"
+                        data-en="General Police Emergency"
+                    >
+                        အထွေထွေ ရဲတပ်ဖွဲ့ အရေးပေါ်
+                    </h3>
+
+
+                    <p
+                        data-my="ယာဉ်မတော်တဆမှုများနှင့် အခြား အရေးပေါ်လမ်းပေါ်အခြေအနေများအတွက် ဆက်သွယ်နိုင်ပါသည်။"
+                        data-en="Contact this number for road accidents and other emergency situations on the road."
+                    >
                         ယာဉ်မတော်တဆမှုများနှင့် အခြား
                         အရေးပေါ်လမ်းပေါ်အခြေအနေများအတွက်
                         ဆက်သွယ်နိုင်ပါသည်။
                     </p>
 
+
                     <div class="number">
-                        📞 <strong>199</strong>
+
+                        📞
+                        <strong>
+                            199
+                        </strong>
+
                     </div>
+
+
                 </div>
 
 
+
+                <!-- TRAFFIC POLICE -->
+
                 <div class="card traffic">
-                    <div class="icon">🚦</div>
 
-                    <h3>ရန်ကုန် ယာဉ်ထိန်းရဲ</h3>
 
-                    <p>
+                    <div class="icon">
+                        🚦
+                    </div>
+
+
+                    <h3
+                        data-my="ရန်ကုန် ယာဉ်ထိန်းရဲ"
+                        data-en="Yangon Traffic Police"
+                    >
+                        ရန်ကုန် ယာဉ်ထိန်းရဲ
+                    </h3>
+
+
+                    <p
+                        data-my="ရန်ကုန်မြို့အတွင်း ယာဉ်ကြောနှင့် ယာဉ်ထိန်းသိမ်းရေးဆိုင်ရာ ကိစ္စများအတွက် ဆက်သွယ်နိုင်ပါသည်။"
+                        data-en="Contact this office for traffic and traffic-control matters within Yangon."
+                    >
                         ရန်ကုန်မြို့အတွင်း ယာဉ်ကြောနှင့်
                         ယာဉ်ထိန်းသိမ်းရေးဆိုင်ရာ ကိစ္စများအတွက်
                         ဆက်သွယ်နိုင်ပါသည်။
                     </p>
 
-                    <div class="number">
-                        📞 <strong>01-298651</strong>
-                    </div>
 
                     <div class="number">
-                        📞 <strong>01-500005</strong>
+
+                        📞
+                        <strong>
+                            01-298651
+                        </strong>
+
                     </div>
+
+
+                    <div class="number">
+
+                        📞
+                        <strong>
+                            01-500005
+                        </strong>
+
+                    </div>
+
+
                 </div>
 
+
+
+                <!-- HIGHWAY -->
 
                 <div class="card highway">
-                    <div class="icon">🛣️</div>
 
-                    <h3>ရန်ကုန်-မန္တလေး အမြန်လမ်း</h3>
 
-                    <p>
+                    <div class="icon">
+                        🛣️
+                    </div>
+
+
+                    <h3
+                        data-my="ရန်ကုန်-မန္တလေး အမြန်လမ်း"
+                        data-en="Yangon–Mandalay Expressway"
+                    >
+                        ရန်ကုန်-မန္တလေး အမြန်လမ်း
+                    </h3>
+
+
+                    <p
+                        data-my="အမြန်လမ်းပေါ်တွင် ယာဉ်မတော်တဆမှု၊ ယာဉ်ဆွဲခြင်းနှင့် အရေးပေါ် လမ်းပေါ်အကူအညီများအတွက် ဆက်သွယ်နိုင်ပါသည်။"
+                        data-en="Contact these numbers for accidents, towing, and emergency roadside assistance on the expressway."
+                    >
                         အမြန်လမ်းပေါ်တွင် ယာဉ်မတော်တဆမှု၊
                         ယာဉ်ဆွဲခြင်းနှင့် အရေးပေါ်
-                        လမ်းပေါ်အကူအညီများအတွက် ဆက်သွယ်နိုင်ပါသည်။
+                        လမ်းပေါ်အကူအညီများအတွက်
+                        ဆက်သွယ်နိုင်ပါသည်။
                     </p>
 
-                    <div class="number">
-                        📞 <strong>09-420888801</strong>
-                    </div>
 
                     <div class="number">
-                        📞 <strong>09-420888870</strong>
+
+                        📞
+                        <strong>
+                            09-420888801
+                        </strong>
+
                     </div>
+
+
+                    <div class="number">
+
+                        📞
+                        <strong>
+                            09-420888870
+                        </strong>
+
+                    </div>
+
+
                 </div>
 
+
             </div>
+
 
         </section>
 
 
-        <!-- Driver Licensing -->
+
+        <!-- ======================================
+             DRIVER LICENSING
+        ======================================= -->
+
         <section class="section">
 
-            <h2>🚗 ယာဉ်မောင်းလိုင်စင်နှင့် ယာဉ်ဆိုင်ရာ မေးမြန်းမှုများ</h2>
 
-            <p class="description">
+            <h2
+                data-my="🚗 ယာဉ်မောင်းလိုင်စင်နှင့် ယာဉ်ဆိုင်ရာ မေးမြန်းမှုများ"
+                data-en="🚗 Driver Licensing and Vehicle Enquiries"
+            >
+                🚗 ယာဉ်မောင်းလိုင်စင်နှင့်
+                ယာဉ်ဆိုင်ရာ မေးမြန်းမှုများ
+            </h2>
+
+
+            <p
+                class="description"
+                data-my="ယာဉ်မောင်းလိုင်စင်၊ Smart Card နှင့် ယာဉ်မှတ်ပုံတင်ခြင်းဆိုင်ရာ မေးမြန်းမှုများအတွက် ကုန်းလမ်းပို့ဆောင်ရေးညွှန်ကြားမှုဦးစီးဌာန (RTAD) သို့ ဆက်သွယ်နိုင်ပါသည်။"
+                data-en="For enquiries about driving licences, Smart Cards, and vehicle registration, contact the Road Transport Administration Department (RTAD)."
+            >
                 ယာဉ်မောင်းလိုင်စင်၊ Smart Card နှင့်
                 ယာဉ်မှတ်ပုံတင်ခြင်းဆိုင်ရာ မေးမြန်းမှုများအတွက်
-                ကုန်းလမ်းပို့ဆောင်ရေးညွှန်ကြားမှုဦးစီးဌာန (RTAD) သို့
-                ဆက်သွယ်နိုင်ပါသည်။
+                ကုန်းလမ်းပို့ဆောင်ရေးညွှန်ကြားမှုဦးစီးဌာန
+                (RTAD) သို့ ဆက်သွယ်နိုင်ပါသည်။
             </p>
+
 
 
             <div class="cards">
 
+
+                <!-- RTAD YANGON -->
+
                 <div class="card licensing">
 
-                    <div class="icon">📋</div>
 
-                    <h3>RTAD ရန်ကုန်တိုင်းဒေသကြီးရုံး</h3>
+                    <div class="icon">
+                        📋
+                    </div>
 
-                    <p>
-                        သင်္ဃန်းကျွန်းရုံးမှ ယာဉ်မောင်းလိုင်စင်၊
-                        Smart Card နှင့် ယာဉ်ဆိုင်ရာ
-                        ဝန်ဆောင်မှုများအတွက် ဆက်သွယ်နိုင်ပါသည်။
+
+                    <h3
+                        data-my="RTAD ရန်ကုန်တိုင်းဒေသကြီးရုံး"
+                        data-en="RTAD Yangon Region Office"
+                    >
+                        RTAD ရန်ကုန်တိုင်းဒေသကြီးရုံး
+                    </h3>
+
+
+                    <p
+                        data-my="သင်္ဃန်းကျွန်းရုံးမှ ယာဉ်မောင်းလိုင်စင်၊ Smart Card နှင့် ယာဉ်ဆိုင်ရာ ဝန်ဆောင်မှုများအတွက် ဆက်သွယ်နိုင်ပါသည်။"
+                        data-en="Contact the Thingangyun office for driving licences, Smart Cards, and vehicle-related services."
+                    >
+                        သင်္ဃန်းကျွန်းရုံးမှ
+                        ယာဉ်မောင်းလိုင်စင်၊ Smart Card နှင့်
+                        ယာဉ်ဆိုင်ရာ ဝန်ဆောင်မှုများအတွက်
+                        ဆက်သွယ်နိုင်ပါသည်။
                     </p>
 
-                    <div class="number">
-                        📞 <strong>09-968048768</strong>
-                    </div>
 
                     <div class="number">
-                        📞 <strong>09-987171789</strong>
+
+                        📞
+                        <strong>
+                            09-968048768
+                        </strong>
+
                     </div>
 
+
                     <div class="number">
-                        📞 <strong>09-795593308</strong>
+
+                        📞
+                        <strong>
+                            09-987171789
+                        </strong>
+
                     </div>
+
+
+                    <div class="number">
+
+                        📞
+                        <strong>
+                            09-795593308
+                        </strong>
+
+                    </div>
+
 
                 </div>
 
 
+
+                <!-- RTAD NAY PYI TAW -->
+
                 <div class="card licensing">
 
-                    <div class="icon">🪪</div>
 
-                    <h3>RTAD နေပြည်တော် ရုံးချုပ်</h3>
+                    <div class="icon">
+                        🪪
+                    </div>
 
-                    <p>
+
+                    <h3
+                        data-my="RTAD နေပြည်တော် ရုံးချုပ်"
+                        data-en="RTAD Nay Pyi Taw Headquarters"
+                    >
+                        RTAD နေပြည်တော် ရုံးချုပ်
+                    </h3>
+
+
+                    <p
+                        data-my="ယာဉ်မောင်းလိုင်စင်ဌာနနှင့် ယာဉ်မောင်းလိုင်စင်ဆိုင်ရာ ကိစ္စများအတွက် ဆက်သွယ်နိုင်ပါသည်။"
+                        data-en="Contact the Driving Licence Department for driving-licence related matters."
+                    >
                         ယာဉ်မောင်းလိုင်စင်ဌာနနှင့်
                         ယာဉ်မောင်းလိုင်စင်ဆိုင်ရာ
                         ကိစ္စများအတွက် ဆက်သွယ်နိုင်ပါသည်။
                     </p>
 
+
                     <div class="number">
-                        📞 <strong>067-405416</strong>
+
+                        📞
+                        <strong>
+                            067-405416
+                        </strong>
+
                     </div>
+
 
                 </div>
 
+
             </div>
+
 
         </section>
 
 
-        <!-- Reminder -->
+
+        <!-- ======================================
+             REMINDER
+        ======================================= -->
+
         <div class="reminder">
 
-            <div class="reminder-icon">💡</div>
+
+            <div class="reminder-icon">
+                💡
+            </div>
+
 
             <div>
-                <h3>အရေးကြီး သတိပေးချက်</h3>
 
-                <p>
-                    ခရီးမထွက်မီ အရေးကြီးသော Hotline ဖုန်းနံပါတ်များကို
+
+                <h3
+                    data-my="အရေးကြီး သတိပေးချက်"
+                    data-en="Important Reminder"
+                >
+                    အရေးကြီး သတိပေးချက်
+                </h3>
+
+
+                <p
+                    data-my="ခရီးမထွက်မီ အရေးကြီးသော Hotline ဖုန်းနံပါတ်များကို သင့်ဖုန်းတွင် သိမ်းဆည်းထားပါ။"
+                    data-en="Save important hotline numbers on your phone before starting your journey."
+                >
+                    ခရီးမထွက်မီ အရေးကြီးသော
+                    Hotline ဖုန်းနံပါတ်များကို
                     သင့်ဖုန်းတွင် သိမ်းဆည်းထားပါ။
                 </p>
+
+
             </div>
+
 
         </div>
 
+
     </div>
 
+
+
+    <!-- ======================================
+         JAVASCRIPT
+    ======================================= -->
+
+    <script src="hotline-settings.js"></script>
+
+
 </body>
+
 </html>
