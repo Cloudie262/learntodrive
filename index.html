@@ -349,21 +349,23 @@ function updateProfile(name, role, avatarUrl) {
 
 
     /* Banner buttons */
-    const bannerButtons =
-      document.querySelectorAll(
-        ".banner button"
-      );
+   bannerButtons.forEach(
+  function (button, index) {
 
-    bannerButtons.forEach(
-      function (button, index) {
+    if (data.buttons[index]) {
 
-        if (data.buttons[index]) {
-          button.textContent =
-            data.buttons[index];
-        }
+      const link = button.querySelector("a");
 
+      if (link) {
+        link.textContent = data.buttons[index];
+      } else {
+        button.textContent = data.buttons[index];
       }
-    );
+
+    }
+
+  }
+);
 
 
     /* Box titles */
