@@ -19,180 +19,7 @@ body {
 }
 
 
-/* ==============================
-   Sidebar Toggle Button
-   ============================== */
 
-.sidebar-toggle {
-  position: fixed;
-  top: 22px;
-  left: 22px;
-  z-index: 999;
-
-  width: 48px;
-  height: 48px;
-  border: none;
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #2c3e50;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
-
-.sidebar-toggle:hover {
-  background: #34495e;
-  transform: scale(1.08);
-}
-
-
-/* ==============================
-   Sidebar Overlay
-   ============================== */
-
-.sidebar-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-
-  background: rgba(0, 0, 0, 0);
-  pointer-events: none;
-
-  transition: background 0.3s ease;
-}
-
-.sidebar-overlay.active {
-  background: rgba(0, 0, 0, 0.5);
-  pointer-events: auto;
-}
-
-
-/* ==============================
-   Sidebar
-   ============================== */
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1001;
-
-  width: 250px;
-  height: 100vh;
-  padding: 20px;
-
-  background: #2c3e50;
-  color: white;
-
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
-
-  overflow-y: auto;
-}
-
-.sidebar.active {
-  transform: translateX(0);
-}
-
-
-/* ==============================
-   Profile Section
-   ============================== */
-
-.profile-section {
-  padding: 22px 12px;
-  border-bottom: 1px solid #e5e7eb;
-  background-color: white;
-  border-radius: 10px;
-}
-
-.profile-container {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.profile-avatar {
-  width: 58px;
-  height: 58px;
-  flex-shrink: 0;
-
-  border-radius: 50%;
-  border: 2px solid #c084fc;
-
-  object-fit: cover;
-}
-
-.profile-info {
-  flex: 1;
-}
-
-.profile-name {
-  margin: 0 0 4px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #111827;
-}
-
-.profile-role {
-  margin: 0;
-  font-size: 14px;
-  color: #6b7280;
-  font-weight: 400;
-}
-
-.profile-section:hover {
-  background-color: #fafafa;
-  transition: background-color 0.2s ease;
-}
-
-
-/* ==============================
-   Sidebar Menu
-   ============================== */
-
-.sidebar .menu {
-  list-style: none;
-  padding: 8px 0 0;
-  margin: 0;
-}
-
-.sidebar .menu li {
-  margin: 7px 0;
-}
-
-.sidebar .menu li a {
-  display: flex;
-  align-items: center;
-
-  min-height: 44px;
-  padding: 10px 12px;
-
-  border-radius: 8px;
-
-  color: white;
-  text-decoration: none;
-
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.sidebar .menu li a:hover {
-  background: #3498db;
-  transform: translateX(3px);
-}
-
-.sidebar .menu li a i {
-  width: 24px;
-  margin-right: 10px;
-  text-align: center;
-}
 
 
 /* ==============================
@@ -556,4 +383,30 @@ body.l2d-dark .l2d-setting-btn.active {
     height: 32px;
     font-size: 18px;
   }
+}
+/* =========================================
+   PROFILE STYLE - TRANSLATION BUTTONS ONLY
+========================================= */
+
+/* Translation buttons only */
+/* PROFILE STYLE TRANSLATION BUTTON ONLY */
+#l2dLangToggle {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+
+    padding: 0;
+
+    border: 2px solid #d8d2ca;
+    border-radius: 50%;
+
+    background: white;
+
+    font-size: 20px;
+
+    display: grid;
+    place-items: center;
+
+    cursor: pointer;
 }

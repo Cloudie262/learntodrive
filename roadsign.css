@@ -532,3 +532,49 @@ html[data-theme="dark"] .category button.active {
 
     cursor: pointer;
 }
+/* ==========================================
+   PROFILE STYLE CONTROLS
+   Appearance only - no function changes
+========================================== */
+
+#language-toggle,
+#theme-toggle {
+    width: 45px !important;
+    height: 45px !important;
+
+    min-width: 45px !important;
+    min-height: 45px !important;
+
+    max-width: 45px !important;
+    max-height: 45px !important;
+
+    padding: 0 !important;
+
+    border-radius: 50% !important;
+    border: 2px solid var(--border-color) !important;
+
+    background: var(--button-bg) !important;
+    color: var(--button-text) !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    flex: 0 0 45px !important;
+
+    font-size: 20px !important;
+    line-height: 1 !important;
+
+    cursor: pointer;
+}
+
+/* Keep theme icon centered */
+#theme-toggle i {
+    margin: 0 !important;
+    font-size: 20px !important;
+}
+
+/* Hide only the Dark / Light text
+   so the theme button matches Profile */
+#theme-toggle span {
+    display: none !important;
+}
