@@ -16,7 +16,7 @@
 <section id="authScreen" class="auth-screen">
     <div class="auth-card">
         <h1 data-en="Driving License Portal" data-mm="မောင်းနှင်ခွင့်လိုင်စင် ပေါ်တယ်">Driving License Portal</h1>
-        <p class="muted" data-en="Practice and track your learning progress." data-mm="လေ့ကျင့်ပြီး သင်ယူမှု တိုးတက်မှုကို ခြေရာခံပါ။">Practice and track your learning progress.</p>
+        <p class="muted" data-en="Log in to manage your profile." data-mm="သင့်ပရိုဖိုင်ကို စီမံရန် ဝင်ရောက်ပါ။">Log in to manage your profile.</p>
 
         <div class="tabs">
             <button class="tab active" data-form="loginForm" data-en="Log In" data-mm="ဝင်ရောက်မည်">Log In</button>
@@ -26,12 +26,12 @@
         <form id="loginForm" class="auth-form">
             <div>
                 <label data-en="Username" data-mm="အသုံးပြုသူအမည်">Username</label>
-                <input id="loginUsername" required>
+                <input id="loginUsername" required autocomplete="username">
             </div>
 
             <div>
                 <label data-en="Password" data-mm="စကားဝှက်">Password</label>
-                <input id="loginPassword" type="password" required>
+                <input id="loginPassword" type="password" required autocomplete="current-password">
             </div>
 
             <p id="loginError" class="error"></p>
@@ -44,12 +44,12 @@
         <form id="registerForm" class="auth-form hidden">
             <div>
                 <label data-en="Username" data-mm="အသုံးပြုသူအမည်">Username</label>
-                <input id="registerUsername" required>
+                <input id="registerUsername" required autocomplete="username">
             </div>
 
             <div>
                 <label data-en="Password" data-mm="စကားဝှက်">Password</label>
-                <input id="registerPassword" type="password" minlength="6" required>
+                <input id="registerPassword" type="password" minlength="6" required autocomplete="new-password">
             </div>
 
             <p id="registerMessage" class="message"></p>
@@ -61,137 +61,84 @@
 
 <main id="app" class="hidden">
     <header class="topbar">
-        <strong data-en="Driving License Learning Portal" data-mm="မောင်းနှင်ခွင့်လိုင်စင် သင်ယူရေး ပေါ်တယ်">Driving License Learning Portal</strong>
-        <div style="display:flex;align-items:center;gap:15px">
-            <span id="displayUsername" style="font-weight:bold"></span>
+        <strong data-en="My Profile" data-mm="ကျွန်ုပ်၏ ပရိုဖိုင်">My Profile</strong>
+        <div class="topbar-user">
+            <span id="displayUsername"></span>
             <button id="logoutButton" class="secondary-button" data-en="Log Out" data-mm="ထွက်မည်">Log Out</button>
         </div>
     </header>
 
-    <section class="card profile-section">
-        <div class="profile-header">
-            <div class="profile-pic">👤</div>
+    <section class="card profile-card">
+        <div class="profile-summary">
+            <div class="photo-wrap">
+                <div id="profilePic" class="profile-pic">👤</div>
+                <input id="photoInput" type="file" accept="image/*" hidden>
+                <button id="changePhotoButton" class="small-button" type="button" data-en="Change Photo" data-mm="ဓာတ်ပုံပြောင်းမည်">Change Photo</button>
+                <button id="removePhotoButton" class="text-button hidden" type="button" data-en="Remove Photo" data-mm="ဓာတ်ပုံဖယ်မည်">Remove Photo</button>
+            </div>
+
+            <div class="profile-heading">
+                <h1 id="profileName">User</h1>
+                <p class="muted"><span data-en="Username:" data-mm="အသုံးပြုသူအမည်:">Username:</span> <strong id="profileUsername"></strong></p>
+                <span class="status-badge" data-en="Active Account" data-mm="အသုံးပြုနေသောအကောင့်">Active Account</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <div class="section-header">
             <div>
-                <h1 id="profileName">Alex Driver</h1>
-                <p class="muted" data-en="Account status:" data-mm="အကောင့် အခြေအနေ:">Account status:
-                    <span class="status-badge" data-en="Active" data-mm="တက်ကြွ">Active</span>
-                </p>
-                <p class="muted" data-en="Member since January 2026" data-mm="ဇန်နဝါရီ ၂၀၂၆ မှစ၍ အဖွဲ့ဝင်">Member since January 2026</p>
+                <h2 data-en="Profile Information" data-mm="ပရိုဖိုင် အချက်အလက်">Profile Information</h2>
+                <p class="muted" data-en="Update your personal information below." data-mm="အောက်တွင် သင့်ကိုယ်ရေးအချက်အလက်များကို ပြင်ဆင်နိုင်သည်။">Update your personal information below.</p>
             </div>
+            <button id="editProfileButton" class="secondary-button" type="button" data-en="Edit Profile" data-mm="ပရိုဖိုင်ပြင်မည်">Edit Profile</button>
         </div>
+
+        <form id="profileForm" class="profile-form">
+            <div class="form-grid">
+                <div>
+                    <label for="editName" data-en="Display Name" data-mm="ပြသမည့်အမည်">Display Name</label>
+                    <input id="editName" maxlength="50" disabled>
+                </div>
+
+                <div>
+                    <label for="editUsername" data-en="Username" data-mm="အသုံးပြုသူအမည်">Username</label>
+                    <input id="editUsername" disabled>
+                    <small data-en="Username comes from your login account and cannot be changed here." data-mm="အသုံးပြုသူအမည်ကို ဝင်ရောက်မှုအကောင့်မှ ယူထားသောကြောင့် ဒီနေရာတွင် မပြောင်းနိုင်ပါ။">Username comes from your login account and cannot be changed here.</small>
+                </div>
+
+                <div>
+                    <label for="editEmail" data-en="Email" data-mm="အီးမေးလ်">Email</label>
+                    <input id="editEmail" type="email" maxlength="80" placeholder="name@example.com" disabled>
+                </div>
+
+                <div>
+                    <label for="editPhone" data-en="Phone" data-mm="ဖုန်းနံပါတ်">Phone</label>
+                    <input id="editPhone" type="tel" maxlength="30" placeholder="09xxxxxxxxx" disabled>
+                </div>
+            </div>
+
+            <div class="full-field">
+                <label for="editBio" data-en="About Me" data-mm="ကျွန်ုပ်အကြောင်း">About Me</label>
+                <textarea id="editBio" rows="4" maxlength="250" placeholder="Write something about yourself..." disabled></textarea>
+            </div>
+
+            <div id="formActions" class="form-actions hidden">
+                <button id="cancelEditButton" class="secondary-button" type="button" data-en="Cancel" data-mm="မလုပ်တော့ပါ">Cancel</button>
+                <button class="primary-button save-button" type="submit" data-en="Save Changes" data-mm="ပြောင်းလဲမှုများ သိမ်းမည်">Save Changes</button>
+            </div>
+
+            <p id="profileMessage" class="message"></p>
+        </form>
     </section>
 
-    <section class="card">
-        <h1 data-en="License Practice Portal" data-mm="လိုင်စင် လေ့ကျင့်ရေး ပေါ်တယ်">License Practice Portal</h1>
-        <p class="muted" data-en="Pass all modules to unlock the Official Test Simulation." data-mm="တရားဝင် စမ်းသပ်မှုကို ဖွင့်ရန် မော်ဒျူအားလုံးကို အောင်မြင်ပါ။">Pass all modules to unlock the Official Test Simulation.</p>
-
-        <div class="stats">
-            <div class="stat-box">
-                <small data-en="PORTAL PROGRESS" data-mm="ပေါ်တယ် တိုးတက်မှု">PORTAL PROGRESS</small>
-                <h2 id="progressText">50%</h2>
-                <div class="progress-track">
-                    <div id="portalProgress" class="progress-fill portal-fill"></div>
-                </div>
-            </div>
-
-            <div class="stat-box">
-                <small data-en="OVERALL AVERAGE" data-mm="စုစုပေါင်း ပျမ်းမျှ">OVERALL AVERAGE</small>
-                <h2>81% <em data-en="best score" data-mm="အကောင်းဆုံး ရမှတ်">best score</em></h2>
-            </div>
-        </div>
-
-        <h3 data-en="Dynamic Simulation" data-mm="ဒိုင်းနမစ် စမ်းသပ်မှု">Dynamic Simulation</h3>
-
-        <div class="simulation">
-            <label><input id="module3Check" type="checkbox"> <span data-en="Module 3 Passed" data-mm="မော်ဒျူ ၃ အောင်မြင်">Module 3 Passed</span></label>
-            <label><input id="module4Check" type="checkbox"> <span data-en="Module 4 Passed" data-mm="မော်ဒျူ ၄ အောင်မြင်">Module 4 Passed</span></label>
-        </div>
-
-        <div class="filters">
-            <button class="filter active" data-filter="all" data-en="All" data-mm="အားလုံး">All</button>
-            <button class="filter" data-filter="completed" data-en="Completed" data-mm="ပြီးဆုံး">Completed</button>
-            <button class="filter" data-filter="progress" data-en="In Progress" data-mm="လုပ်ဆောင်နေ">In Progress</button>
-        </div>
-
-        <div class="modules">
-            <article class="module" data-status="completed">
-                <div>
-                    <h2 data-en="M1 Road Signs & Signals" data-mm="M1 လမ်းအမှတ်အသားများနှင့် အချက်ပြများ">M1 Road Signs & Signals</h2>
-                    <p data-en="Official regulatory signs, warnings, and markers." data-mm="တရားဝင် စည်းကမ်းအမှတ်အသားများ၊ သတိပေးချက်များနှင့် အမှတ်အသားများ။">Official regulatory signs, warnings, and markers.</p>
-                    <small data-en="20 Questions • Min 80%" data-mm="မေးခွန်း ၂၀ • အနည်းဆုံး ၈၀%">20 Questions • Min 80%</small>
-                </div>
-                <b class="green" data-en="✓ 95%" data-mm="✓ ၉၅%">✓ 95%</b>
-            </article>
-
-            <article class="module" data-status="completed">
-                <div>
-                    <h2 data-en="M2 Rules & Right-of-Way" data-mm="M2 စည်းကမ်းများနှင့် အဦးစားပေး">M2 Rules & Right-of-Way</h2>
-                    <p data-en="Intersections, roundabouts, and priority procedures." data-mm="လမ်းဆုံလမ်းခွများ၊ လမ်းဝိုင်းများနှင့် ဦးစားပေး လုပ်ထုံးလုပ်နည်းများ။">Intersections, roundabouts, and priority procedures.</p>
-                    <small data-en="25 Questions • Min 80%" data-mm="မေးခွန်း ၂၅ • အနည်းဆုံး ၈၀%">25 Questions • Min 80%</small>
-                </div>
-                <b class="green" data-en="✓ 88%" data-mm="✓ ၈၈%">✓ 88%</b>
-            </article>
-
-            <article class="module active" data-status="progress">
-                <div>
-                    <h2 data-en="M3 Speed Limits & Lane Controls" data-mm="M3 အမြန်နှုန်း သတ်မှတ်ချက်နှင့် လမ်းကြောင်း ထိန်းချုပ်မှု">M3 Speed Limits & Lane Controls</h2>
-                    <p data-en="Freeway conditions, speed tiers, and lane discipline." data-mm="အမြန်လမ်း အခြေအနေများ၊ အမြန်နှုန်း အဆင့်များနှင့် လမ်းကြောင်း စည်းကမ်း။">Freeway conditions, speed tiers, and lane discipline.</p>
-                    <small data-en="15 Questions • Min 80%" data-mm="မေးခွန်း ၁၅ • အနည်းဆုံး ၈၀%">15 Questions • Min 80%</small>
-                </div>
-                <b id="statusM3" class="red">60%</b>
-            </article>
-
-            <article id="module4" class="module locked" data-status="locked">
-                <div>
-                    <h2 data-en="M4 Alcohol, Laws & Violations" data-mm="M4 အရက်၊ ဥပဒေများနှင့် ချိုးဖောက်မှုများ">M4 Alcohol, Laws & Violations</h2>
-                    <p data-en="Legal limits, penalties, and liability issues." data-mm="တရားဝင် ကန့်သတ်ချက်များ၊ ပြစ်ဒဏ်များနှင့် တာဝန်ယူမှု ဆိုင်ရာ ကိစ္စရပ်များ။">Legal limits, penalties, and liability issues.</p>
-                    <small data-en="15 Questions • Min 80%" data-mm="မေးခွန်း ၁၅ • အနည်းဆုံး ၈၀%">15 Questions • Min 80%</small>
-                </div>
-                <b id="statusM4" class="gray" data-en="Locked" data-mm="ပိတ်ထားသည်">Locked</b>
-            </article>
-        </div>
-
-        <div class="exam-box">
-            <h2 data-en="Official Mock Exam" data-mm="တရားဝင် စမ်းသပ်မှု">Official Mock Exam</h2>
-            <p id="examText" data-en="Locked until all practice modules are completed." data-mm="လေ့ကျင့်ရေး မော်ဒျူအားလုံး ပြီးဆုံးသည်အထိ ပိတ်ထားသည်။">Locked until all practice modules are completed.</p>
-            <button id="examButton" class="exam-button" data-en="Locked" data-mm="ပိတ်ထားသည်">Locked</button>
-        </div>
-    </section>
-
-    <section class="card">
-        <h2 data-en="Learning Progress" data-mm="သင်ယူမှု တိုးတက်မှု">Learning Progress</h2>
-
-        <div class="progress-row">
-            <span data-en="Road Signs & Signals" data-mm="လမ်းအမှတ်အသားများနှင့် အချက်ပြများ">Road Signs & Signals</span>
-            <b>95%</b>
-            <div class="progress-track">
-                <div class="progress-fill" style="width:95%"></div>
-            </div>
-        </div>
-
-        <div class="progress-row">
-            <span data-en="Rules & Right-of-Way" data-mm="စည်းကမ်းများနှင့် အဦးစားပေး">Rules & Right-of-Way</span>
-            <b>88%</b>
-            <div class="progress-track">
-                <div class="progress-fill" style="width:88%"></div>
-            </div>
-        </div>
-
-        <div class="progress-row">
-            <span data-en="Speed Limits & Lane Controls" data-mm="အမြန်နှုန်း သတ်မှတ်ချက်နှင့် လမ်းကြောင်း ထိန်းချုပ်မှု">Speed Limits & Lane Controls</span>
-            <b>60%</b>
-            <div class="progress-track">
-                <div class="progress-fill" style="width:60%"></div>
-            </div>
-        </div>
-    </section>
 </main>
 
 <script>
 const demoAccount = { username: "learner", password: "license123" };
 const get = id => document.getElementById(id);
-
 let currentUser = null;
+let editSnapshot = null;
 
 // Language toggle
 let currentLang = localStorage.getItem("lang") || "en";
@@ -242,10 +189,53 @@ function isValidLogin(username, password) {
            (accounts[username] && accounts[username].password === password);
 }
 
+function getProfiles() {
+    return JSON.parse(localStorage.getItem("portalProfiles") || "{}");
+}
+
+function getProfile(username) {
+    const profiles = getProfiles();
+    return profiles[username] || {
+        name: username.charAt(0).toUpperCase() + username.slice(1),
+        email: "",
+        phone: "",
+        bio: "",
+        photo: ""
+    };
+}
+
+function saveProfile(username, profile) {
+    const profiles = getProfiles();
+    profiles[username] = profile;
+    localStorage.setItem("portalProfiles", JSON.stringify(profiles));
+}
+
+function renderProfile() {
+    const profile = getProfile(currentUser);
+
+    get("displayUsername").textContent = currentUser;
+    get("profileUsername").textContent = currentUser;
+    get("profileName").textContent = profile.name || currentUser;
+
+    get("editUsername").value = currentUser;
+    get("editName").value = profile.name || "";
+    get("editEmail").value = profile.email || "";
+    get("editPhone").value = profile.phone || "";
+    get("editBio").value = profile.bio || "";
+
+    if (profile.photo) {
+        get("profilePic").innerHTML = `<img src="${profile.photo}" alt="Profile photo">`;
+        get("removePhotoButton").classList.remove("hidden");
+    } else {
+        get("profilePic").textContent = "👤";
+        get("removePhotoButton").classList.add("hidden");
+    }
+}
+
 function showApp(username) {
     currentUser = username;
-    get("displayUsername").textContent = username;
-    get("profileName").textContent = username.charAt(0).toUpperCase() + username.slice(1);
+    renderProfile();
+    setEditMode(false);
     get("authScreen").classList.add("hidden");
     get("app").classList.remove("hidden");
 }
@@ -255,7 +245,18 @@ function showLogin() {
     get("authScreen").classList.remove("hidden");
     get("loginForm").reset();
     get("loginError").textContent = "";
+    get("profileMessage").textContent = "";
     currentUser = null;
+}
+
+function setEditMode(enabled) {
+    ["editName", "editEmail", "editPhone", "editBio"].forEach(id => {
+        get(id).disabled = !enabled;
+    });
+
+    get("formActions").classList.toggle("hidden", !enabled);
+    get("editProfileButton").classList.toggle("hidden", enabled);
+    get("profileMessage").textContent = "";
 }
 
 document.querySelectorAll(".tab").forEach(tab => {
@@ -273,11 +274,13 @@ get("loginForm").addEventListener("submit", event => {
     event.preventDefault();
     const username = get("loginUsername").value.trim().toLowerCase();
     const password = get("loginPassword").value;
-    
+
     if (isValidLogin(username, password)) {
         showApp(username);
     } else {
-        get("loginError").textContent = "Incorrect username or password.";
+        get("loginError").textContent = currentLang === "mm"
+            ? "အသုံးပြုသူအမည် သို့မဟုတ် စကားဝှက် မှားနေပါသည်။"
+            : "Incorrect username or password.";
     }
 });
 
@@ -291,16 +294,18 @@ get("registerForm").addEventListener("submit", event => {
         get("registerMessage").textContent = "Username must contain at least 3 characters.";
         return;
     }
+
     if (password.length < 6) {
         get("registerMessage").textContent = "Password must contain at least 6 characters.";
         return;
     }
+
     if (username === demoAccount.username || accounts[username]) {
         get("registerMessage").textContent = "That username already exists.";
         return;
     }
 
-    accounts[username] = { password: password };
+    accounts[username] = { password };
     saveAccounts(accounts);
 
     get("registerMessage").style.color = "green";
@@ -310,6 +315,84 @@ get("registerForm").addEventListener("submit", event => {
 });
 
 get("logoutButton").addEventListener("click", showLogin);
+
+get("editProfileButton").addEventListener("click", () => {
+    editSnapshot = getProfile(currentUser);
+    setEditMode(true);
+    get("editName").focus();
+});
+
+get("cancelEditButton").addEventListener("click", () => {
+    if (editSnapshot) {
+        get("editName").value = editSnapshot.name || "";
+        get("editEmail").value = editSnapshot.email || "";
+        get("editPhone").value = editSnapshot.phone || "";
+        get("editBio").value = editSnapshot.bio || "";
+    }
+    setEditMode(false);
+});
+
+get("profileForm").addEventListener("submit", event => {
+    event.preventDefault();
+    const oldProfile = getProfile(currentUser);
+    const name = get("editName").value.trim();
+
+    const updatedProfile = {
+        ...oldProfile,
+        name: name || currentUser,
+        email: get("editEmail").value.trim(),
+        phone: get("editPhone").value.trim(),
+        bio: get("editBio").value.trim()
+    };
+
+    saveProfile(currentUser, updatedProfile);
+    renderProfile();
+    setEditMode(false);
+    get("profileMessage").style.color = "var(--green)";
+    get("profileMessage").textContent = currentLang === "mm"
+        ? "ပရိုဖိုင်ကို သိမ်းဆည်းပြီးပါပြီ။"
+        : "Profile saved successfully.";
+});
+
+get("changePhotoButton").addEventListener("click", () => get("photoInput").click());
+
+get("photoInput").addEventListener("change", event => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+        alert("Please choose an image file.");
+        return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+        alert("Please choose an image smaller than 2 MB.");
+        event.target.value = "";
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+        const profile = getProfile(currentUser);
+        profile.photo = reader.result;
+        saveProfile(currentUser, profile);
+        renderProfile();
+        get("profileMessage").style.color = "var(--green)";
+        get("profileMessage").textContent = currentLang === "mm"
+            ? "ပရိုဖိုင်ဓာတ်ပုံ ပြောင်းပြီးပါပြီ။"
+            : "Profile photo updated.";
+    };
+    reader.readAsDataURL(file);
+    event.target.value = "";
+});
+
+get("removePhotoButton").addEventListener("click", () => {
+    const profile = getProfile(currentUser);
+    profile.photo = "";
+    saveProfile(currentUser, profile);
+    renderProfile();
+});
+
 
 function updatePortal() {
     const module3Passed = get("module3Check").checked;
@@ -331,7 +414,9 @@ function updatePortal() {
     const examUnlocked = module3Passed && module4Passed;
     get("examButton").textContent = examUnlocked ? "Take Mock Exam" : "Locked";
     get("examButton").classList.toggle("unlocked", examUnlocked);
-    get("examText").textContent = examUnlocked ? "All requirements met. Ready for test simulation." : "Locked until all practice modules are completed.";
+    get("examText").textContent = examUnlocked
+        ? "All requirements met. Ready for test simulation."
+        : "Locked until all practice modules are completed.";
 }
 
 get("module3Check").addEventListener("change", updatePortal);
@@ -354,6 +439,7 @@ document.querySelectorAll(".filter").forEach(button => {
 });
 
 updatePortal();
+
 </script>
 
 </body>
