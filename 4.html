@@ -8,10 +8,68 @@
   <title>Learn2Drive</title>
 
   <link rel="stylesheet" href="all.css">
+  <link rel="stylesheet" href="sidebar.css">
 </head>
 
 <body>
+<!-- Sidebar Button -->
+<button class="sidebar-toggle" id="sidebarToggle">
+    <i class="fa-solid fa-bars"></i>
+</button>
 
+<!-- Sidebar -->
+<aside class="sidebar">
+    <nav>
+        <ul class="menu">
+
+            <li>
+                <a href="index.html">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="Knowledge.html">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    Knowledge Sharing
+                </a>
+            </li>
+
+            <li>
+                <a href="portal.html">
+                    <i class="fa-solid fa-file-pen"></i>
+                    Practice Test
+                </a>
+            </li>
+
+            <li>
+                <a href="roadsign.html">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    Road Signs
+                </a>
+            </li>
+
+            <li>
+                <a href="hotline.html">
+                    <i class="fa-solid fa-phone"></i>
+                    Hotline
+                </a>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    <i class="fa-solid fa-user"></i>
+                    My Profile
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+</aside>
+
+<!-- Sidebar Overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
   <main class="topic-page">
 
     <!-- Topic Image -->
@@ -63,6 +121,44 @@
   </main>
 
   <script src="article-translation.js"></script>
+  <script>
+const sidebar = document.querySelector('.sidebar');
+const sidebarToggle = document.getElementById('sidebarToggle');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+
+// OPEN SIDEBAR
+sidebarToggle.addEventListener('click', function () {
+
+    sidebar.classList.add('active');
+    sidebarOverlay.classList.add('active');
+
+});
+
+
+// CLOSE SIDEBAR
+function closeSidebar() {
+
+    sidebar.classList.remove('active');
+    sidebarOverlay.classList.remove('active');
+
+}
+
+
+// CLICK OUTSIDE TO CLOSE
+sidebarOverlay.addEventListener('click', closeSidebar);
+
+
+// CLICK MENU ITEM TO CLOSE
+const menuItems =
+    document.querySelectorAll('.sidebar .menu li a');
+
+menuItems.forEach(function (item) {
+
+    item.addEventListener('click', closeSidebar);
+
+});
+</script>
 </body>
 </html>
 
