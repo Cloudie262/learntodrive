@@ -472,6 +472,63 @@ document.addEventListener("DOMContentLoaded", function () {
           item.addEventListener("click", closeSidebar);
         });
       }
+
+      // Apply the currently selected language to the sidebar
+      const savedLanguage = localStorage.getItem("learn2driveLanguage") || "en";
+
+      const sidebarEnglish = [
+        "Home",
+        "Knowledge Sharing",
+        "Practice Test",
+        "Road Signs",
+        "Hotline",
+        "My Profile"
+      ];
+
+      const sidebarMyanmar = [
+        "ပင်မစာမျက်နှာ",
+        "ဗဟုသုတ မျှဝေခြင်း",
+        "လေ့ကျင့်ခန်း စာမေးပွဲ",
+        "လမ်းအမှတ်အသားများ",
+        "Hotline",
+        "ကျွန်ုပ်၏ ပရိုဖိုင်"
+      ];
+
+      const sidebarText = savedLanguage === "my" ? sidebarMyanmar : sidebarEnglish;
+
+      document.querySelectorAll(".sidebar .menu li a").forEach(function (link, index) {
+        let textNode = null;
+
+        link.childNodes.forEach(function (node) {
+          if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") {
+            textNode = node;
+          }
+        });
+
+        if (textNode && sidebarText[index]) {
+          textNode.textContent = " " + sidebarText[index];
+        }
+      });
+
+      // Update sidebar immediately whenever the index language button is clicked
+      window.addEventListener("l2dLanguageChanged", function (event) {
+        const currentSidebarText =
+          event.detail.language === "my" ? sidebarMyanmar : sidebarEnglish;
+
+        document.querySelectorAll(".sidebar .menu li a").forEach(function (link, index) {
+          let textNode = null;
+
+          link.childNodes.forEach(function (node) {
+            if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") {
+              textNode = node;
+            }
+          });
+
+          if (textNode && currentSidebarText[index]) {
+            textNode.textContent = " " + currentSidebarText[index];
+          }
+        });
+      });
     })
     .catch(function (error) {
       console.error("Could not load sidebar.html:", error);
