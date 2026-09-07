@@ -522,3 +522,62 @@ body:has(#quiz-page) .l2d-language-btn {
     }
 
 }
+/* =========================================
+   EXACT PROFILE-STYLE BUTTONS
+========================================= */
+
+/* Toolbar */
+#l2dSettings {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Remove extra box around language button */
+#l2dSettings .l2d-language-switch {
+    display: contents !important;
+}
+
+/* Language + Theme — same as Profile */
+#l2dSettings #l2dLangToggle,
+#l2dSettings #l2dTheme {
+    width: 45px !important;
+    height: 45px !important;
+    min-width: 45px !important;
+    min-height: 45px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    border-radius: 50% !important;
+    border: 2px solid #d8d2ca !important;
+
+    background: white !important;
+    color: #333 !important;
+
+    font-size: 20px !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    box-shadow: none !important;
+    cursor: pointer;
+
+    transition: all 0.3s;
+}
+
+/* Center theme emoji */
+#l2dSettings #l2dThemeIcon {
+    display: grid;
+    place-items: center;
+    line-height: 1;
+}
+
+/* Dark mode */
+body.l2d-dark #l2dSettings #l2dLangToggle,
+body.l2d-dark #l2dSettings #l2dTheme {
+    background: #1e293b !important;
+    color: white !important;
+    border-color: #475569 !important;
+}

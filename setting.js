@@ -371,112 +371,76 @@
 
     function createToolbar() {
 
-        if (
-            document.getElementById("l2dSettings")
-        ) {
-            return;
-        }
+    if (
+        document.getElementById("l2dSettings")
+    ) {
+        return;
+    }
 
+    const toolbar =
+        document.createElement("div");
 
-        const toolbar =
-            document.createElement("div");
+    toolbar.id =
+        "l2dSettings";
 
+    toolbar.className =
+        "l2d-settings";
 
-        toolbar.id =
-            "l2dSettings";
+    toolbar.innerHTML = `
 
-
-        toolbar.className =
-            "l2d-settings";
-
-
-        toolbar.innerHTML = `
-
-            <div class="l2d-language-switch">
-
-                <button
-                    type="button"
-                    id="l2dMy"
-                    title="Myanmar">
-
-                    <img
-                        src="myanmar-flag.svg"
-                        alt="Myanmar">
-
-                    <span>မြန်မာ</span>
-
-                </button>
-
-
-                <button
-                    type="button"
-                    id="l2dEn"
-                    title="English">
-
-                    <img
-                        src="uk-flag.svg"
-                        alt="English">
-
-                    <span>English</span>
-
-                </button>
-
-            </div>
-
+        <div class="l2d-language-switch">
 
             <button
                 type="button"
-                id="l2dTheme"
-                class="l2d-theme-button"
-                title="Light / Dark Theme">
-
-                <span id="l2dThemeIcon">
-                    🌙
-                </span>
-
+                id="l2dLangToggle"
+                class="control-btn"
+                title="Toggle language">
+                🇬🇧
             </button>
 
-        `;
+        </div>
 
+        <button
+            type="button"
+            id="l2dTheme"
+            class="control-btn"
+            title="Toggle theme">
 
-        document.body.insertBefore(
-            toolbar,
-            document.body.firstChild
+            <span id="l2dThemeIcon">
+                🌙
+            </span>
+
+        </button>
+
+    `;
+
+    document.body.insertBefore(
+        toolbar,
+        document.body.firstChild
+    );
+
+    document
+        .getElementById("l2dLangToggle")
+        .addEventListener(
+            "click",
+            function () {
+
+                setLanguage(
+                    language === "my"
+                        ? "en"
+                        : "my"
+                );
+
+            }
         );
 
-
-        document
-            .getElementById("l2dMy")
-            .addEventListener(
-                "click",
-                function () {
-
-                    setLanguage("my");
-
-                }
-            );
-
-
-        document
-            .getElementById("l2dEn")
-            .addEventListener(
-                "click",
-                function () {
-
-                    setLanguage("en");
-
-                }
-            );
-
-
-        document
-            .getElementById("l2dTheme")
-            .addEventListener(
-                "click",
-                toggleTheme
-            );
-
-    }
+    document
+        .getElementById("l2dTheme")
+        .addEventListener(
+            "click",
+            toggleTheme
+        );
+}
 
 
     // =====================================================
@@ -820,40 +784,27 @@
     // LANGUAGE
     // =====================================================
 
-    function updateLanguageButtons() {
+   function updateLanguageButtons() {
 
-        const myButton =
-            document.getElementById(
-                "l2dMy"
-            );
+    const langButton =
+        document.getElementById(
+            "l2dLangToggle"
+        );
 
-
-        const enButton =
-            document.getElementById(
-                "l2dEn"
-            );
-
-
-        if (myButton) {
-
-            myButton.classList.toggle(
-                "active",
-                language === "my"
-            );
-
-        }
-
-
-        if (enButton) {
-
-            enButton.classList.toggle(
-                "active",
-                language === "en"
-            );
-
-        }
-
+    if (!langButton) {
+        return;
     }
+
+    langButton.textContent =
+        language === "my"
+            ? "🇬🇧"
+            : "🇲🇲";
+
+    langButton.title =
+        language === "my"
+            ? "Switch to English"
+            : "Switch to Myanmar";
+}
 
 
     function applyLanguage() {
