@@ -1,107 +1,46 @@
-// ======================================================
-// quiz.js
-// Learn2Drive
-// ======================================================
+// ========================================
+// Get Module & Lesson from URL
+// ========================================
 
+const params =
+    new URLSearchParams(window.location.search);
 
-// ======================================================
-// 1. GET MODULE AND LESSON FROM URL
-// ======================================================
+const moduleNumber =
+    params.get("module");
 
-const params = new URLSearchParams(window.location.search);
-
-const moduleNumber = params.get("module");
-const lessonNumber = params.get("lesson");
+const lessonNumber =
+    params.get("lesson");
 
 
 // Example:
-// quiz.html?module=1&lesson=1
-//
-// moduleNumber = "1"
-// lessonNumber = "1"
-//
+// module = 1
+// lesson = 1
 // quizKey = "1-1"
 
-const quizKey = `${moduleNumber}-${lessonNumber}`;
+const quizKey =
+    `${moduleNumber}-${lessonNumber}`;
 
 
-// ======================================================
-// 2. CHECK IF MODULE QUESTIONS EXIST
-// ======================================================
-
-if (
-    !moduleNumber ||
-    !lessonNumber
-) {
-
-    alert(
-        "Module or lesson information is missing."
-    );
-
-    window.location.href = "portal.html";
-
-}
-
-
-if (
-    typeof quizzes === "undefined"
-) {
-
-    alert(
-        "question.js could not be loaded."
-    );
-
-    throw new Error(
-        "question.js is not loaded."
-    );
-
-}
-
-
-if (
-    !quizzes[quizKey]
-) {
-
-    alert(
-        `Questions for Module ${moduleNumber}, Lesson ${lessonNumber} were not found.\n\nQuiz key: ${quizKey}`
-    );
-
-    window.location.href = "portal.html";
-
-}
-
-
-// ======================================================
-// 3. MYANMAR NUMBERS
-// ======================================================
+// ========================================
+// Myanmar Number
+// ========================================
 
 function mmNumber(num) {
 
     const mm = [
-        "၀",
-        "၁",
-        "၂",
-        "၃",
-        "၄",
-        "၅",
-        "၆",
-        "၇",
-        "၈",
-        "၉"
+        "၀", "၁", "၂", "၃", "၄",
+        "၅", "၆", "၇", "၈", "၉"
     ];
 
-
-    return String(num).replace(
-        /\d/g,
-        digit => mm[digit]
-    );
-
+    return num
+        .toString()
+        .replace(/\d/g, d => mm[d]);
 }
 
 
-// ======================================================
-// 4. HTML ELEMENTS
-// ======================================================
+// ========================================
+// Get HTML Elements
+// ========================================
 
 const quizPage =
     document.getElementById("quiz-page");
@@ -142,12 +81,21 @@ const statusText =
 const restartBtn =
     document.getElementById("restart-btn");
 
+const backBtn =
+    document.getElementById("back-btn");
 
-// ======================================================
-// 5. LOAD QUESTIONS FOR THIS MODULE
-// ======================================================
 
-let quizQuestions = [];
+// ========================================
+// Quiz Data
+// ========================================
+
+let quizQuestions =
+    quizzes[quizKey] || [];
+
+
+// ========================================
+// Quiz Variables
+// ========================================
 
 let currentQuestion = 0;
 
@@ -156,9 +104,9 @@ let score = 0;
 let answered = false;
 
 
-// ======================================================
-// 6. SHUFFLE QUESTIONS
-// ======================================================
+// ========================================
+// Shuffle Questions
+// ========================================
 
 function shuffle(array) {
 
@@ -173,7 +121,6 @@ function shuffle(array) {
                 Math.random() * (i + 1)
             );
 
-
         [
             array[i],
             array[j]
@@ -181,28 +128,39 @@ function shuffle(array) {
             array[j],
             array[i]
         ];
-
     }
-
 
     return array;
 }
 
 
-// ======================================================
-// 7. START QUIZ
-// ======================================================
+// ========================================
+// Start Quiz
+// ========================================
 
 function startQuiz() {
 
-    // Important:
-    // Make a COPY of the questions.
-    // question.js remains unchanged.
+    // Check if quiz exists
+
+    if (!quizzes[quizKey] || quizzes[quizKey].length === 0) {
+
+        questionEl.textContent =
+            "ဒီသင်ခန်းစာအတွက် မေးခွန်းများ မရှိသေးပါ။";
+
+        optionsEl.innerHTML = "";
+
+        nextBtn.style.display = "none";
+
+        return;
+    }
+
+
+    // Randomize questions
 
     quizQuestions =
-        shuffle(
-            [...quizzes[quizKey]]
-        );
+        shuffle([
+            ...quizzes[quizKey]
+        ]);
 
 
     currentQuestion = 0;
@@ -212,31 +170,29 @@ function startQuiz() {
     answered = false;
 
 
-    quizPage.classList.remove(
-        "hidden"
-    );
+    quizPage.classList.remove("hidden");
+
+    resultPage.classList.add("hidden");
 
 
-    resultPage.classList.add(
-        "hidden"
-    );
-
+    nextBtn.style.display = "block";
 
     nextBtn.textContent =
         "နောက်မေးခွန်းသို့";
 
 
     loadQuestion();
-
 }
 
 
-// ======================================================
-// 8. LOAD QUESTION
-// ======================================================
+// ========================================
+// Load Question
+// ========================================
+
 function loadQuestion() {
 
     answered = false;
+
 
     feedbackEl.textContent = "";
 
@@ -247,182 +203,79 @@ function loadQuestion() {
         quizQuestions[currentQuestion];
 
 
-    const language =
-        localStorage.getItem(
-            "learn2driveLanguage"
-        ) || "my";
+    // Question Progress
+
+    progressEl.textContent =
+        `မေးခွန်း ${mmNumber(
+            currentQuestion + 1
+        )} / ${mmNumber(
+            quizQuestions.length
+        )}`;
 
 
-    // ==========================================
-    // FIND ORIGINAL QUESTION INDEX
-    // ==========================================
+    // Score
 
-    const originalQuestions =
-        quizzes[quizKey];
+    scoreEl.textContent =
+        `ရမှတ်: ${mmNumber(score)}`;
 
 
-    const originalIndex =
-        originalQuestions.findIndex(
-            function (item) {
+    // Question
 
-                return (
-                    item.question === q.question
-                );
-
-            }
-        );
-
-
-    let displayQuestion =
+    questionEl.textContent =
         q.question;
 
 
-    let displayOptions =
-        q.options;
-
-
-    // ==========================================
-    // ENGLISH VERSION
-    // ==========================================
-
-    if (
-        language === "en" &&
-        typeof quizTranslations !== "undefined" &&
-        quizTranslations[quizKey] &&
-        quizTranslations[quizKey][originalIndex]
-    ) {
-
-        const translated =
-            quizTranslations[quizKey][originalIndex];
-
-
-        displayQuestion =
-            translated.question;
-
-
-        displayOptions =
-            translated.options;
-
-    }
-
-
-    // ==========================================
-    // PROGRESS + SCORE
-    // ==========================================
-
-    if (language === "en") {
-
-        progressEl.textContent =
-            `Question ${
-                currentQuestion + 1
-            } / ${
-                quizQuestions.length
-            }`;
-
-
-        scoreEl.textContent =
-            `Score: ${score}`;
-
-    }
-
-    else {
-
-        progressEl.textContent =
-            `မေးခွန်း ${
-                mmNumber(
-                    currentQuestion + 1
-                )
-            } / ${
-                mmNumber(
-                    quizQuestions.length
-                )
-            }`;
-
-
-        scoreEl.textContent =
-            `ရမှတ်: ${
-                mmNumber(score)
-            }`;
-
-    }
-
-
-    // ==========================================
-    // QUESTION
-    // ==========================================
-
-    questionEl.textContent =
-        displayQuestion;
-
-
-    // ==========================================
-    // OPTIONS
-    // ==========================================
+    // Clear Options
 
     optionsEl.innerHTML = "";
 
 
-    displayOptions.forEach(
-        function (option, index) {
+    // Create Options
 
-            const button =
+    q.options.forEach(
+        (option, index) => {
+
+            const btn =
                 document.createElement(
                     "button"
                 );
 
 
-            button.type =
-                "button";
-
-
-            button.className =
-                "option-btn";
-
-
-            button.textContent =
+            btn.textContent =
                 option;
 
 
-            button.addEventListener(
-                "click",
-                function () {
-
-                    checkAnswer(index);
-
-                }
-            );
+            btn.className =
+                "option-btn";
 
 
-            optionsEl.appendChild(
-                button
-            );
+            btn.onclick =
+                () => checkAnswer(index);
+
+
+            optionsEl.appendChild(btn);
 
         }
     );
-
 }
 
 
-// ======================================================
-// 9. CHECK ANSWER
-// ======================================================
+// ========================================
+// Check Answer
+// ========================================
 
 function checkAnswer(selected) {
 
-    if (answered) {
+    // Only answer once
 
-        return;
-
-    }
+    if (answered) return;
 
 
     answered = true;
 
 
     const q =
-        quizQuestions[
-            currentQuestion
-        ];
+        quizQuestions[currentQuestion];
 
 
     const buttons =
@@ -432,58 +285,46 @@ function checkAnswer(selected) {
 
 
     buttons.forEach(
-        function (
-            button,
-            index
-        ) {
+        (btn, index) => {
 
-            button.disabled =
-                true;
+            btn.disabled = true;
 
 
-            // Correct answer
-            if (
-                index === q.answer
-            ) {
+            // Correct Answer
 
-                button.classList.add(
+            if (index === q.answer) {
+
+                btn.classList.add(
                     "correct"
                 );
-
             }
 
 
-            // Wrong selected answer
+            // Wrong Selected Answer
+
             if (
                 index === selected &&
                 index !== q.answer
             ) {
 
-                button.classList.add(
+                btn.classList.add(
                     "wrong"
                 );
-
             }
 
         }
     );
 
 
-    // ==================================================
-    // CORRECT
-    // ==================================================
+    // Correct
 
-    if (
-        selected === q.answer
-    ) {
+    if (selected === q.answer) {
 
         score++;
 
 
         scoreEl.textContent =
-            `ရမှတ်: ${
-                mmNumber(score)
-            }`;
+            `ရမှတ်: ${mmNumber(score)}`;
 
 
         feedbackEl.textContent =
@@ -492,95 +333,80 @@ function checkAnswer(selected) {
 
         feedbackEl.style.color =
             "green";
-
     }
 
 
-    // ==================================================
-    // WRONG
-    // ==================================================
+    // Wrong
 
     else {
 
         feedbackEl.textContent =
             `❌ မှားပါသည်။ အဖြေမှန် - ${
-                q.options[
-                    q.answer
-                ]
+                q.options[q.answer]
             }`;
 
 
         feedbackEl.style.color =
             "red";
-
     }
-
 }
 
 
-// ======================================================
-// 10. NEXT QUESTION
-// ======================================================
+// ========================================
+// Next Question
+// ========================================
 
-nextBtn.addEventListener(
-    "click",
-    function () {
+nextBtn.onclick = function () {
 
-        // User must choose an answer first
+    // Must answer first
 
-        if (!answered) {
-
-            return;
-
-        }
+    if (!answered) return;
 
 
-        currentQuestion++;
+    currentQuestion++;
 
 
-        if (
-            currentQuestion <
-            quizQuestions.length
-        ) {
+    // More questions
 
-            loadQuestion();
+    if (
+        currentQuestion <
+        quizQuestions.length
+    ) {
 
-        }
-
-        else {
-
-            showResult();
-
-        }
+        loadQuestion();
 
     }
-);
 
 
-// ======================================================
-// 11. RESULT
-// ======================================================
+    // Quiz Finished
+
+    else {
+
+        showResult();
+
+    }
+};
+
+
+// ========================================
+// Show Result
+// ========================================
 
 function showResult() {
 
-    quizPage.classList.add(
-        "hidden"
-    );
+    quizPage.classList.add("hidden");
 
-
-    resultPage.classList.remove(
-        "hidden"
-    );
+    resultPage.classList.remove("hidden");
 
 
     const total =
         quizQuestions.length;
 
 
+    // 80% Pass Mark
+
     const passMark =
-        Math.ceil(
-            total * 0.8
-        );
+        Math.ceil(total * 0.8);
 
 
     const percent =
@@ -589,17 +415,21 @@ function showResult() {
         );
 
 
+    // Final Score
+
     finalScore.textContent =
         `${mmNumber(score)} / ${mmNumber(total)}`;
 
+
+    // Percentage
 
     percentageEl.textContent =
         `${mmNumber(percent)}%`;
 
 
-// ======================================================
-// SAVE SCORE
-// ======================================================
+    // ====================================
+    // Get Existing Scores
+    // ====================================
 
     let lessonScores =
         JSON.parse(
@@ -610,24 +440,20 @@ function showResult() {
 
 
     const lessonID =
-        quizKey;
+        `${moduleNumber}-${lessonNumber}`;
 
 
-    // Save only the best score
+    // ====================================
+    // Save Best Score
+    // ====================================
 
     if (
-        !lessonScores[
-            lessonID
-        ] ||
-        percent >
-        lessonScores[
-            lessonID
-        ]
+        !lessonScores[lessonID] ||
+        percent > lessonScores[lessonID]
     ) {
 
-        lessonScores[
-            lessonID
-        ] = percent;
+        lessonScores[lessonID] =
+            percent;
 
 
         localStorage.setItem(
@@ -636,17 +462,14 @@ function showResult() {
                 lessonScores
             )
         );
-
     }
 
 
-// ======================================================
-// PASS
-// ======================================================
+    // ====================================
+    // PASS
+    // ====================================
 
-    if (
-        score >= passMark
-    ) {
+    if (score >= passMark) {
 
         resultTitle.textContent =
             "🎉 အောင်မြင်သည်";
@@ -658,17 +481,15 @@ function showResult() {
 
         statusText.textContent =
             `အောင်မှတ် - ${
-                mmNumber(
-                    passMark
-                )
+                mmNumber(passMark)
             } / ${
-                mmNumber(
-                    total
-                )
+                mmNumber(total)
             }`;
 
 
-        // Save completed lesson
+        // ====================================
+        // Mark Lesson Complete
+        // ====================================
 
         let completedLessons =
             JSON.parse(
@@ -695,15 +516,14 @@ function showResult() {
                     completedLessons
                 )
             );
-
         }
 
     }
 
 
-// ======================================================
-// FAIL
-// ======================================================
+    // ====================================
+    // FAIL
+    // ====================================
 
     else {
 
@@ -717,41 +537,38 @@ function showResult() {
 
         statusText.textContent =
             `အောင်မှတ် ${
-                mmNumber(
-                    passMark
-                )
+                mmNumber(passMark)
             } မှတ် လိုအပ်သည်`;
 
     }
-
 }
 
 
-// ======================================================
-// 12. RESTART
-// ======================================================
+// ========================================
+// Restart Quiz
+// ========================================
 
-restartBtn.addEventListener(
-    "click",
-    function () {
+restartBtn.onclick = function () {
 
-        startQuiz();
+    startQuiz();
 
-    }
-);
+};
 
 
-// ======================================================
-// 13. START
-// ======================================================
-window.addEventListener(
-    "l2dLanguageChanged",
-    function () {
+// ========================================
+// Back to Portal
+// ========================================
 
-        // Reload the SAME question
-        // without restarting the quiz
-        loadQuestion();
+backBtn.onclick = function () {
 
-    }
-);
+    window.location =
+        "portal.html";
+
+};
+
+
+// ========================================
+// Start Quiz
+// ========================================
+
 startQuiz();
