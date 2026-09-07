@@ -6,17 +6,12 @@
 
 (function () {
 
-
     // ============================================
     // STORAGE KEYS
     // ============================================
 
-    const LANGUAGE_KEY =
-        "learn2driveLanguage";
-
-    const THEME_KEY =
-        "learn2driveTheme";
-
+    const LANGUAGE_KEY = "learn2driveLanguage";
+    const THEME_KEY = "learn2driveTheme";
 
 
     // ============================================
@@ -24,67 +19,55 @@
     // ============================================
 
     let language =
-        localStorage.getItem(
-            LANGUAGE_KEY
-        ) || "my";
-
+        localStorage.getItem(LANGUAGE_KEY) || "my";
 
     let theme =
-        localStorage.getItem(
-            THEME_KEY
-        ) || "light";
-
+        localStorage.getItem(THEME_KEY) || "light";
 
 
     // ============================================
-    // LANGUAGE BUTTONS
+    // UPDATE LANGUAGE BUTTON
     // ============================================
 
-    function updateLanguageButtons() {
+    function updateLanguageButton() {
 
+        const langButton =
+            document.getElementById("l2dLangToggle");
 
-        const myButton =
-            document.getElementById(
-                "l2dMy"
+        if (!langButton) {
+            return;
+        }
+
+        if (language === "en") {
+
+            langButton.textContent = "🇲🇲";
+
+            langButton.setAttribute(
+                "aria-label",
+                "Switch to Myanmar language"
             );
 
-
-        const enButton =
-            document.getElementById(
-                "l2dEn"
+            langButton.setAttribute(
+                "title",
+                "Myanmar"
             );
 
+        } else {
 
+            langButton.textContent = "🇬🇧";
 
-        if (myButton) {
+            langButton.setAttribute(
+                "aria-label",
+                "Switch to English language"
+            );
 
-            myButton.classList.toggle(
-
-                "active",
-
-                language === "my"
-
+            langButton.setAttribute(
+                "title",
+                "English"
             );
 
         }
-
-
-
-        if (enButton) {
-
-            enButton.classList.toggle(
-
-                "active",
-
-                language === "en"
-
-            );
-
-        }
-
-
     }
-
 
 
     // ============================================
@@ -93,138 +76,104 @@
 
     function applyLanguage() {
 
-
         const elements =
             document.querySelectorAll(
                 "[data-my][data-en]"
             );
 
+        elements.forEach(function (element) {
 
+            if (language === "en") {
 
-        elements.forEach(
-            function (element) {
+                element.textContent =
+                    element.dataset.en;
 
+            } else {
 
-                if (
-                    language === "en"
-                ) {
-
-                    element.textContent =
-                        element.dataset.en;
-
-                }
-
-                else {
-
-                    element.textContent =
-                        element.dataset.my;
-
-                }
-
+                element.textContent =
+                    element.dataset.my;
 
             }
-        );
 
+        });
 
 
         document.documentElement.lang =
-
             language === "en"
-
                 ? "en"
-
                 : "my";
 
 
-
         document.title =
-
             language === "en"
-
                 ? "Hotline for Drivers"
-
                 : "ယာဉ်မောင်းသူများအတွက် Hotline";
 
 
-
-        updateLanguageButtons();
-
-
+        updateLanguageButton();
     }
 
 
-
     // ============================================
-    // CHANGE LANGUAGE
+    // SET LANGUAGE
     // ============================================
 
-    function setLanguage(
-        nextLanguage
-    ) {
+    function setLanguage(nextLanguage) {
 
-
-        language =
-            nextLanguage;
-
-
+        language = nextLanguage;
 
         localStorage.setItem(
-
             LANGUAGE_KEY,
-
             language
-
         );
 
-
-
         applyLanguage();
-
-
     }
 
 
+    // ============================================
+    // TOGGLE LANGUAGE
+    // ============================================
+
+    function toggleLanguage() {
+
+        if (language === "my") {
+
+            setLanguage("en");
+
+        } else {
+
+            setLanguage("my");
+
+        }
+    }
+
 
     // ============================================
-    // THEME ICON
+    // UPDATE THEME ICON
     // ============================================
 
     function updateThemeIcon() {
-
 
         const icon =
             document.getElementById(
                 "l2dThemeIcon"
             );
 
-
         if (!icon) {
-
             return;
-
         }
 
+        if (theme === "dark") {
 
+            icon.textContent = "☀️";
 
-        if (
-            theme === "dark"
-        ) {
+        } else {
 
-            icon.textContent =
-                "☀️";
-
-        }
-
-        else {
-
-            icon.textContent =
-                "🌙";
+            icon.textContent = "🌙";
 
         }
-
-
     }
-
 
 
     // ============================================
@@ -233,21 +182,13 @@
 
     function applyTheme() {
 
-
         document.body.classList.toggle(
-
             "l2d-dark",
-
             theme === "dark"
-
         );
 
-
         updateThemeIcon();
-
-
     }
-
 
 
     // ============================================
@@ -256,40 +197,23 @@
 
     function toggleTheme() {
 
+        if (theme === "dark") {
 
-        if (
-            theme === "dark"
-        ) {
+            theme = "light";
 
-            theme =
-                "light";
+        } else {
 
-        }
-
-        else {
-
-            theme =
-                "dark";
+            theme = "dark";
 
         }
-
-
 
         localStorage.setItem(
-
             THEME_KEY,
-
             theme
-
         );
 
-
-
         applyTheme();
-
-
     }
-
 
 
     // ============================================
@@ -298,18 +222,10 @@
 
     function startSettings() {
 
-
-        const myButton =
+        const langButton =
             document.getElementById(
-                "l2dMy"
+                "l2dLangToggle"
             );
-
-
-        const enButton =
-            document.getElementById(
-                "l2dEn"
-            );
-
 
         const themeButton =
             document.getElementById(
@@ -317,80 +233,39 @@
             );
 
 
+        // LANGUAGE BUTTON
+        if (langButton) {
 
-        // Myanmar button
-
-        if (myButton) {
-
-            myButton.addEventListener(
-
+            langButton.addEventListener(
                 "click",
-
                 function () {
 
-                    setLanguage(
-                        "my"
-                    );
+                    toggleLanguage();
 
                 }
-
             );
 
         }
 
 
-
-        // English button
-
-        if (enButton) {
-
-            enButton.addEventListener(
-
-                "click",
-
-                function () {
-
-                    setLanguage(
-                        "en"
-                    );
-
-                }
-
-            );
-
-        }
-
-
-
-        // Theme button
-
+        // THEME BUTTON
         if (themeButton) {
 
             themeButton.addEventListener(
-
                 "click",
-
                 function () {
 
                     toggleTheme();
 
                 }
-
             );
 
         }
 
 
-
-        // Apply saved settings
-
         applyTheme();
-
         applyLanguage();
-
-
     }
-
 
 
     // ============================================
@@ -398,29 +273,18 @@
     // ============================================
 
     if (
-        document.readyState ===
-        "loading"
+        document.readyState === "loading"
     ) {
 
-
         document.addEventListener(
-
             "DOMContentLoaded",
-
             startSettings
-
         );
 
-
-    }
-
-    else {
-
+    } else {
 
         startSettings();
 
-
     }
-
 
 })();
