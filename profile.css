@@ -1,7 +1,7 @@
 :root {
     --primary: #082052;
     --primary-hover: #0a2e6d;
-    --background: #f8f0e5;
+    --background: #cee6f9;
     --card: #ffffff;
     --text: #082052;
     --muted: #666666;
@@ -77,7 +77,7 @@ p, small, .muted { color: var(--muted); }
     padding: 9px 14px;
     border: 1px solid var(--border);
     border-radius: 20px;
-    background: #f7f3ee;
+    background: #e5efff;
     color: var(--muted);
 }
 
