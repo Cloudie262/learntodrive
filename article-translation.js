@@ -7,11 +7,34 @@ const myArticles = {
   "6.html": `<h2>ABS သတိပေးမီး ဘာကြောင့် လင်းလာသနည်း?</h2><p>ABS သည် အရေးကြီးသော ဘေးကင်းရေးစနစ်ဖြစ်ပြီး sensor၊ motor၊ actuator၊ control unit နှင့် ဝါယာကြိုးများ ပါဝင်သည်။ ချို့ယွင်းချက်ရှိပါက ABS မီးလင်းလာသည်။</p><p>(၁) Brake fluid နည်းခြင်း<br>Brake pad ပွန်းခြင်း၊ brake line သို့မဟုတ် master cylinder ယိုခြင်းတို့ကြောင့် fluid နည်းပြီး ABS မီးလင်းနိုင်သည်။</p><p>(၂) ABS sensor ပျက်ခြင်း<br>Wheel speed sensor ပျက်ပါက ABS မီးလင်းနိုင်သည်။ ကားအချို့တွင် sensor သီးခြားလဲနိုင်ပြီး အချို့တွင် hub နှင့်အတူ လဲရသည်။</p><p>(၃) ABS module ပျက်ခြင်း<br>Motor သို့မဟုတ် solenoid ပျက်ခြင်းက ABS ချို့ယွင်းချက် ဖြစ်စေနိုင်သည်။ Brake fluid ကို ပုံမှန်မလဲခြင်းသည် အကြောင်းရင်းတစ်ခုဖြစ်သည်။</p><p>(၄) Hydraulic pump ပျက်ခြင်း<br>EBD ပါသောကားတွင် pump ပျက်ပါက ABS မီးလင်းနိုင်သည်။</p><p>ဘရိတ်စနစ်သည် အလွန်အရေးကြီးသဖြင့် ABS မီးကို လျစ်လျူမရှုဘဲ ကျွမ်းကျင်သော အလုပ်ရုံတွင် အမြန်စစ်ဆေးပြုပြင်ပါ။</p><p>မူရင်းရေးသားသူအား ကျေးဇူးတင်ပါသည်။</p>`
 };
 const file=decodeURIComponent(location.pathname.split("/").pop()).toLowerCase(),content=document.querySelector(".topic-content"),english=content.innerHTML;
-let language=localStorage.getItem("preferredLang")||"en";
+let language=localStorage.getItem("learn2driveLanguage")||"en";
 const controls=document.createElement("div");controls.className="article-controls";controls.innerHTML='<button id="article-lang"></button><button id="article-theme" aria-label="Switch theme">☾</button>';document.body.prepend(controls);
 const style=document.createElement("style");style.textContent='.article-controls{position:fixed;top:16px;right:16px;z-index:99;display:flex;gap:8px}.article-controls button{border:0;border-radius:9px;padding:9px 14px;background:#194f7f;color:white;font:15px Arial;cursor:pointer}#article-lang img{width:32px;height:21px;display:block;object-fit:cover;border-radius:2px}#article-theme{width:40px;padding:9px}.article-dark{background:#101820!important;color:#f7f9f9}.article-dark .topic-content{background:#1e2a36!important;color:#f7f9f9!important}';document.head.appendChild(style);
 const langButton=document.getElementById("article-lang"),themeButton=document.getElementById("article-theme");
-function applyLanguage(value){language=value;content.innerHTML=value==="my"?myArticles[file]:english;langButton.innerHTML=value==="en"?'<img src="myanmar-flag.svg" alt="Myanmar flag">':'<img src="uk-flag.svg" alt="United Kingdom flag">';langButton.setAttribute("aria-label",value==="en"?"Switch to Myanmar language":"Switch to English language");document.documentElement.lang=value;localStorage.setItem("preferredLang",value)}
-applyLanguage(language);langButton.onclick=()=>applyLanguage(language==="en"?"my":"en");
+function applyLanguage(value){language=value;content.innerHTML=value==="my"?myArticles[file]:english;langButton.innerHTML=value==="en"?'<img src="myanmar-flag.svg" alt="Myanmar flag">':'<img src="uk-flag.svg" alt="United Kingdom flag">';langButton.setAttribute("aria-label",value==="en"?"Switch to Myanmar language":"Switch to English language");document.documentElement.lang=value;localStorage.setItem("learn2driveLanguage",value)}
+langButton.onclick = () => {
+
+  const newLanguage =
+    language === "en" ? "my" : "en";
+
+  applyLanguage(newLanguage);
+
+  localStorage.setItem(
+    "learn2driveLanguage",
+    newLanguage
+  );
+
+  window.dispatchEvent(
+    new CustomEvent(
+      "l2dLanguageChanged",
+      {
+        detail: {
+          language: newLanguage
+        }
+      }
+    )
+  );
+
+};
 if(localStorage.getItem("preferredTheme")==="dark"){document.body.classList.add("article-dark");themeButton.textContent="☀"}
 themeButton.onclick=()=>{const dark=document.body.classList.toggle("article-dark");themeButton.textContent=dark?"☀":"☾";localStorage.setItem("preferredTheme",dark?"dark":"light")};
