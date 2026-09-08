@@ -1,8 +1,44 @@
 // ========================================
+// MOCK TEST LOGIN PROTECTION
+// ========================================
+
+const loggedInUser =
+    localStorage.getItem(
+        "portalSession"
+    );
+
+
+// User is not logged in
+
+if (!loggedInUser) {
+
+    alert(
+        "အစမ်းစာမေးပွဲဖြေဆိုရန် အကောင့်ဝင်ရန် လိုအပ်ပါသည်။"
+    );
+
+
+    window.location.replace(
+        "profile.html?redirect=mock-test.html"
+    );
+
+
+    // Stop the rest of this JavaScript file
+
+    throw new Error(
+        "Mock Test requires login."
+    );
+}
+
+
+// ========================================
 // MOCK TEST
 // ========================================
 
-// Number → Myanmar Number
+
+// ========================================
+// Myanmar Number
+// ========================================
+
 function mmNumber(num) {
 
     const mm = [
@@ -10,9 +46,13 @@ function mmNumber(num) {
         "၅", "၆", "၇", "၈", "၉"
     ];
 
+
     return num
         .toString()
-        .replace(/\d/g, d => mm[d]);
+        .replace(
+            /\d/g,
+            d => mm[d]
+        );
 }
 
 
@@ -22,8 +62,11 @@ function mmNumber(num) {
 
 const TOTAL_QUESTIONS = 50;
 
+
 // 1 hour 30 minutes
-const TOTAL_TIME = 90 * 60;
+
+const TOTAL_TIME =
+    90 * 60;
 
 
 // ========================================
@@ -36,7 +79,8 @@ let currentQuestion = 0;
 
 let answers = [];
 
-let timeLeft = TOTAL_TIME;
+let timeLeft =
+    TOTAL_TIME;
 
 let timerInterval;
 
@@ -49,31 +93,41 @@ function getAllQuestions() {
 
     let allQuestions = [];
 
+
     /*
-       quizzes ထဲမှာ
+        quizzes ထဲမှာ
 
-       "1-1"
-       "1-2"
-       "1-3"
-       ...
-       "4-7"
+        "1-1"
+        "1-2"
+        "1-3"
+        ...
+        "4-7"
 
-       ဆိုပြီး သိမ်းထားတာကို
-       အကုန်စုမယ်
+        ဆိုပြီး သိမ်းထားသော
+        မေးခွန်းများအားလုံးကို
+        စုစည်းပေးမည်။
     */
 
-    Object.values(quizzes).forEach(questionSet => {
 
-        allQuestions.push(...questionSet);
+    Object.values(
+        quizzes
+    ).forEach(
+        questionSet => {
 
-    });
+            allQuestions.push(
+                ...questionSet
+            );
+
+        }
+    );
+
 
     return allQuestions;
 }
 
 
 // ========================================
-// Random 50 Questions
+// Create Random 50 Questions
 // ========================================
 
 function createMockTest() {
@@ -82,27 +136,38 @@ function createMockTest() {
         getAllQuestions();
 
 
-    // Copy
+    // Copy original questions
+
     const shuffled =
         [...allQuestions];
 
 
+    // ====================================
     // Fisher-Yates Shuffle
+    // ====================================
 
     for (
-        let i = shuffled.length - 1;
+        let i =
+            shuffled.length - 1;
+
         i > 0;
+
         i--
     ) {
 
         const j =
-            Math.floor(Math.random() * (i + 1));
+            Math.floor(
+                Math.random() *
+                (i + 1)
+            );
 
 
         [
             shuffled[i],
             shuffled[j]
-        ] = [
+        ]
+        =
+        [
             shuffled[j],
             shuffled[i]
         ];
@@ -110,15 +175,25 @@ function createMockTest() {
     }
 
 
-    // First 50
+    // ====================================
+    // Select first 50 after shuffle
+    // ====================================
+
     mockQuestions =
-        shuffled.slice(0, TOTAL_QUESTIONS);
+        shuffled.slice(
+            0,
+            TOTAL_QUESTIONS
+        );
 
 
-    // Create empty answers
+    // ====================================
+    // Empty answer array
+    // ====================================
 
     answers =
-        new Array(mockQuestions.length).fill(null);
+        new Array(
+            mockQuestions.length
+        ).fill(null);
 }
 
 
@@ -129,18 +204,33 @@ function createMockTest() {
 function loadMockQuestion() {
 
     const question =
-        mockQuestions[currentQuestion];
+        mockQuestions[
+            currentQuestion
+        ];
 
 
-    // Question number
+    // ====================================
+    // Question Number
+    // ====================================
 
     document.getElementById(
         "questionNumber"
     ).textContent =
-        `မေးခွန်း ${mmNumber(currentQuestion + 1)} / ${mmNumber(mockQuestions.length)}`;
+
+        `မေးခွန်း ${
+            mmNumber(
+                currentQuestion + 1
+            )
+        } / ${
+            mmNumber(
+                mockQuestions.length
+            )
+        }`;
 
 
-    // Question
+    // ====================================
+    // Question Text
+    // ====================================
 
     document.getElementById(
         "mockQuestion"
@@ -148,7 +238,9 @@ function loadMockQuestion() {
         question.question;
 
 
-    // Options
+    // ====================================
+    // Options Container
+    // ====================================
 
     const optionsContainer =
         document.getElementById(
@@ -156,14 +248,21 @@ function loadMockQuestion() {
         );
 
 
-    optionsContainer.innerHTML = "";
+    optionsContainer.innerHTML =
+        "";
 
+
+    // ====================================
+    // Create Answer Buttons
+    // ====================================
 
     question.options.forEach(
         (option, index) => {
 
             const button =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
 
 
             button.textContent =
@@ -174,10 +273,14 @@ function loadMockQuestion() {
                 "mock-option";
 
 
-            // Already selected?
+            // =================================
+            // Restore selected answer
+            // =================================
 
             if (
-                answers[currentQuestion] === index
+                answers[
+                    currentQuestion
+                ] === index
             ) {
 
                 button.classList.add(
@@ -187,13 +290,21 @@ function loadMockQuestion() {
             }
 
 
+            // =================================
+            // Click answer
+            // =================================
+
             button.onclick =
-                () => selectAnswer(index);
+                () =>
+                    selectAnswer(
+                        index
+                    );
 
 
-            optionsContainer.appendChild(
-                button
-            );
+            optionsContainer
+                .appendChild(
+                    button
+                );
 
         }
     );
@@ -213,8 +324,9 @@ function loadMockQuestion() {
 
 function selectAnswer(index) {
 
-    answers[currentQuestion] =
-        index;
+    answers[
+        currentQuestion
+    ] = index;
 
 
     loadMockQuestion();
@@ -229,22 +341,41 @@ function updateProgress() {
 
     const answered =
         answers.filter(
-            answer => answer !== null
+            answer =>
+                answer !== null
         ).length;
 
+
+    // ====================================
+    // Answered Count
+    // ====================================
 
     document.getElementById(
         "answeredCount"
     ).textContent =
-        `ဖြေပြီး: ${mmNumber(answered)} / ${mmNumber(mockQuestions.length)}`;
 
+        `ဖြေပြီး: ${
+            mmNumber(answered)
+        } / ${
+            mmNumber(
+                mockQuestions.length
+            )
+        }`;
+
+
+    // ====================================
+    // Progress Bar
+    // ====================================
 
     const progress =
         (
-            (currentQuestion + 1)
+            (
+                currentQuestion + 1
+            )
             /
             mockQuestions.length
-        ) * 100;
+        )
+        * 100;
 
 
     document.getElementById(
@@ -255,7 +386,7 @@ function updateProgress() {
 
 
 // ========================================
-// Previous / Next
+// Previous / Next Navigation
 // ========================================
 
 function updateNavigation() {
@@ -265,19 +396,24 @@ function updateNavigation() {
             "previousBtn"
         );
 
+
     const nextBtn =
         document.getElementById(
             "nextBtn"
         );
 
 
-    // First question
+    // ====================================
+    // Disable Previous on Question 1
+    // ====================================
 
     previousBtn.disabled =
         currentQuestion === 0;
 
 
-    // Last question
+    // ====================================
+    // Last Question
+    // ====================================
 
     if (
         currentQuestion ===
@@ -287,7 +423,9 @@ function updateNavigation() {
         nextBtn.textContent =
             "နောက်ဆုံးမေးခွန်း";
 
-    } else {
+    }
+
+    else {
 
         nextBtn.textContent =
             "နောက်မေးခွန်းသို့";
@@ -296,35 +434,51 @@ function updateNavigation() {
 }
 
 
+// ========================================
+// Previous Button
+// ========================================
+
 document.getElementById(
     "previousBtn"
-).onclick = function () {
+).onclick =
+    function () {
 
-    if (currentQuestion > 0) {
+        if (
+            currentQuestion > 0
+        ) {
 
-        currentQuestion--;
+            currentQuestion--;
 
-        loadMockQuestion();
 
-    }
-};
+            loadMockQuestion();
 
+        }
+
+    };
+
+
+// ========================================
+// Next Button
+// ========================================
 
 document.getElementById(
     "nextBtn"
-).onclick = function () {
+).onclick =
+    function () {
 
-    if (
-        currentQuestion <
-        mockQuestions.length - 1
-    ) {
+        if (
+            currentQuestion <
+            mockQuestions.length - 1
+        ) {
 
-        currentQuestion++;
+            currentQuestion++;
 
-        loadMockQuestion();
 
-    }
-};
+            loadMockQuestion();
+
+        }
+
+    };
 
 
 // ========================================
@@ -339,24 +493,32 @@ function updateQuestionNumbers() {
         );
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
     mockQuestions.forEach(
         (question, index) => {
 
             const button =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
 
 
             button.textContent =
-                mmNumber(index + 1);
+                mmNumber(
+                    index + 1
+                );
 
 
-            // Current question
+            // =================================
+            // Current Question
+            // =================================
 
             if (
-                index === currentQuestion
+                index ===
+                currentQuestion
             ) {
 
                 button.classList.add(
@@ -366,10 +528,13 @@ function updateQuestionNumbers() {
             }
 
 
-            // Answered
+            // =================================
+            // Answered Question
+            // =================================
 
             if (
-                answers[index] !== null
+                answers[index] !==
+                null
             ) {
 
                 button.classList.add(
@@ -379,14 +544,20 @@ function updateQuestionNumbers() {
             }
 
 
-            button.onclick = function () {
+            // =================================
+            // Jump to Question
+            // =================================
 
-                currentQuestion =
-                    index;
+            button.onclick =
+                function () {
 
-                loadMockQuestion();
+                    currentQuestion =
+                        index;
 
-            };
+
+                    loadMockQuestion();
+
+                };
 
 
             container.appendChild(
@@ -399,32 +570,44 @@ function updateQuestionNumbers() {
 
 
 // ========================================
-// TIMER
+// Timer
 // ========================================
 
 function startTimer() {
 
     timerInterval =
-        setInterval(function () {
+        setInterval(
+            function () {
 
-            timeLeft--;
-
-
-            if (timeLeft <= 0) {
-
-                clearInterval(
-                    timerInterval
-                );
-
-                submitMockTest();
-
-                return;
-            }
+                timeLeft--;
 
 
-            updateTimer();
+                // =================================
+                // Time Finished
+                // =================================
 
-        }, 1000);
+                if (
+                    timeLeft <= 0
+                ) {
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+
+                    submitMockTest();
+
+
+                    return;
+                }
+
+
+                updateTimer();
+
+            },
+
+            1000
+        );
 }
 
 
@@ -435,12 +618,18 @@ function startTimer() {
 function updateTimer() {
 
     const hours =
-        Math.floor(timeLeft / 3600);
+        Math.floor(
+            timeLeft / 3600
+        );
 
 
     const minutes =
         Math.floor(
-            (timeLeft % 3600) / 60
+            (
+                timeLeft % 3600
+            )
+            /
+            60
         );
 
 
@@ -452,19 +641,33 @@ function updateTimer() {
         "timer"
     ).textContent =
 
-        `${mmNumber(hours)}:${mmNumber(
-            minutes.toString().padStart(2, "0")
+        `${mmNumber(
+            hours
         )}:${mmNumber(
-            seconds.toString().padStart(2, "0")
+            minutes
+                .toString()
+                .padStart(
+                    2,
+                    "0"
+                )
+        )}:${mmNumber(
+            seconds
+                .toString()
+                .padStart(
+                    2,
+                    "0"
+                )
         )}`;
 }
 
 
 // ========================================
-// Submit Test
+// Submit Mock Test
 // ========================================
 
 function submitMockTest() {
+
+    // Stop timer
 
     clearInterval(
         timerInterval
@@ -473,6 +676,10 @@ function submitMockTest() {
 
     let score = 0;
 
+
+    // ====================================
+    // Calculate Score
+    // ====================================
 
     mockQuestions.forEach(
         (question, index) => {
@@ -490,13 +697,25 @@ function submitMockTest() {
     );
 
 
+    // ====================================
+    // Percentage
+    // ====================================
+
     const percentage =
         Math.round(
-            (score / mockQuestions.length) * 100
+            (
+                score
+                /
+                mockQuestions.length
+            )
+            *
+            100
         );
 
 
-    // Save result
+    // ====================================
+    // Save Result
+    // ====================================
 
     localStorage.setItem(
         "mockTestScore",
@@ -510,9 +729,12 @@ function submitMockTest() {
     );
 
 
-    // Go to result
+    // ====================================
+    // Go To Result Page
+    // ====================================
 
     window.location =
+
         `mock-result.html?score=${score}&total=${mockQuestions.length}&percentage=${percentage}`;
 }
 
@@ -523,38 +745,52 @@ function submitMockTest() {
 
 document.getElementById(
     "submitBtn"
-).onclick = function () {
+).onclick =
+    function () {
 
-    const answered =
-        answers.filter(
-            answer => answer !== null
-        ).length;
-
-
-    const unanswered =
-        mockQuestions.length -
-        answered;
+        const answered =
+            answers.filter(
+                answer =>
+                    answer !== null
+            ).length;
 
 
-    if (unanswered > 0) {
-
-        const confirmSubmit =
-            confirm(
-                `မဖြေရသေးသော မေးခွန်း ${unanswered} ခု ရှိပါသည်။\n\nစာမေးပွဲတင်မည်လား?`
-            );
+        const unanswered =
+            mockQuestions.length
+            -
+            answered;
 
 
-        if (!confirmSubmit) {
+        // ====================================
+        // Confirm if unanswered questions
+        // ====================================
 
-            return;
+        if (
+            unanswered > 0
+        ) {
+
+            const confirmSubmit =
+                confirm(
+
+                    `မဖြေရသေးသော မေးခွန်း ${unanswered} ခု ရှိပါသည်။\n\nစာမေးပွဲတင်မည်လား?`
+
+                );
+
+
+            if (
+                !confirmSubmit
+            ) {
+
+                return;
+
+            }
 
         }
 
-    }
 
+        submitMockTest();
 
-    submitMockTest();
-};
+    };
 
 
 // ========================================
