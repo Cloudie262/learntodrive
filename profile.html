@@ -207,6 +207,44 @@ const phoneRegex = /^[0-9]{2}-[0-9]{9,}$/;
 let currentUser = null;
 let editSnapshot = null;
 
+// ========================================
+// LOGIN SESSION
+// ========================================
+
+const SESSION_KEY = "portalSession";
+
+function getSafeRedirect() {
+    const redirect =
+        new URLSearchParams(window.location.search)
+            .get("redirect");
+
+    // Only allow the Mock Test redirect.
+    // This avoids redirecting to an unexpected page.
+    return redirect === "mock-test.html"
+        ? redirect
+        : null;
+}
+
+function saveLoginSession(username) {
+    localStorage.setItem(
+        SESSION_KEY,
+        username
+    );
+}
+
+function clearLoginSession() {
+    localStorage.removeItem(
+        SESSION_KEY
+    );
+}
+
+function getLoginSession() {
+    return localStorage.getItem(
+        SESSION_KEY
+    );
+}
+
+
 // Language toggle
 let currentLang =
     localStorage.getItem("learn2driveLanguage") || "en";
@@ -419,7 +457,21 @@ get("loginForm").addEventListener("submit", event => {
     const password = get("loginPassword").value;
 
     if (isValidLogin(username, password)) {
+
+        // Keep the user logged in when moving to another page.
+        saveLoginSession(username);
+
+        // If the user came here from the locked Mock Test,
+        // send them straight back to the Mock Test after login.
+        const redirect = getSafeRedirect();
+
+        if (redirect) {
+            window.location.href = redirect;
+            return;
+        }
+
         showApp(username);
+
     } else {
         get("loginError").textContent = currentLang === "my"
             ? "အသုံးပြုသူအမည် သို့မဟုတ် စကားဝှက် မှားနေပါသည်။"
@@ -457,7 +509,12 @@ get("registerForm").addEventListener("submit", event => {
     get("loginUsername").value = username;
 });
 
-get("logoutButton").addEventListener("click", showLogin);
+get("logoutButton").addEventListener("click", function () {
+
+    clearLoginSession();
+
+    showLogin();
+});
 
 get("editProfileButton").addEventListener("click", () => {
     editSnapshot = getProfile(currentUser);
@@ -611,6 +668,35 @@ document.querySelectorAll(".filter").forEach(button => {
 
 if (get("module3Check") && get("module4Check")) {
     updatePortal();
+}
+
+// ========================================
+// RESTORE LOGIN SESSION
+// ========================================
+
+const savedSession = getLoginSession();
+
+if (savedSession) {
+
+    const accounts = getAccounts();
+
+    const sessionStillValid =
+        savedSession === demoAccount.username ||
+        Boolean(accounts[savedSession]);
+
+    if (sessionStillValid) {
+
+        const redirect = getSafeRedirect();
+
+        if (redirect) {
+            window.location.href = redirect;
+        } else {
+            showApp(savedSession);
+        }
+
+    } else {
+        clearLoginSession();
+    }
 }
 
 </script>
