@@ -164,22 +164,116 @@ body {
    Footer
    ============================== */
 
-footer {
-  width: min(1050px, 100%);
-  margin: 32px auto 15px;
-  padding: 17px 20px;
+/* ==============================
+   Footer
+   ============================== */
 
-  text-align: center;
+.footer {
+    width: min(1050px, 100%);
+    margin: 50px auto 0;
+    padding: 45px 40px 20px;
 
-  background: rgba(238, 238, 238, 0.9);
-  border-radius: 9px;
+    background-color: #1e3a5f;
+    color: white;
 
-  font-size: 14px;
-  line-height: 1.5;
-
-  backdrop-filter: blur(5px);
+    border-radius: 20px;
 }
 
+
+/* Four Columns */
+.footer-container {
+    width: 100%;
+    margin: 0;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 40px;
+}
+
+
+/* Footer sections */
+.footer-section h2 {
+    font-size: 28px;
+    margin: 0 0 15px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    margin: 0 0 20px;
+}
+
+.footer-section p {
+    color: #d9e6f2;
+    line-height: 1.6;
+    margin: 0 0 10px;
+}
+
+.footer-section a {
+    display: block;
+    color: #d9e6f2;
+    text-decoration: none;
+    margin-bottom: 12px;
+    transition: 0.3s;
+}
+
+.footer-section a:hover {
+    color: white;
+    padding-left: 5px;
+}
+
+
+/* Bottom */
+.footer-bottom {
+    width: 100%;
+    margin: 40px 0 0;
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-bottom p {
+    color: #d9e6f2;
+    margin: 0;
+}
+
+.footer-bottom a {
+    color: #d9e6f2;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+
+/* Responsive */
+@media (max-width: 800px) {
+    .footer {
+        padding: 35px 25px 20px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .footer {
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+}
 
 /* ==============================
    Responsive Layout
