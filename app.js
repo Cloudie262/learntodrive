@@ -212,6 +212,8 @@ function markLessonComplete(module, lesson) {
 // Open Quiz
 // ========================================
 
+// Normal lesson quizzes do NOT require login.
+
 function openQuiz(module, lesson) {
 
     window.location =
@@ -223,10 +225,81 @@ function openQuiz(module, lesson) {
 // Start Mock Test
 // ========================================
 
+// Mock Test DOES require login.
+
 function startMockTest() {
 
-    window.location =
+    const loggedInUser =
+        localStorage.getItem(
+            "portalSession"
+        );
+
+
+    // User is NOT logged in
+    if (!loggedInUser) {
+
+        alert(
+            "အစမ်းစာမေးပွဲဖြေဆိုရန် အကောင့်ဝင်ရန် လိုအပ်ပါသည်။"
+        );
+
+
+        // Go to profile login page.
+        // After successful login,
+        // user can be redirected to Mock Test.
+
+        window.location.href =
+            "profile.html?redirect=mock-test.html";
+
+
+        return;
+    }
+
+
+    // User IS logged in
+
+    window.location.href =
         "mock-test.html";
+}
+
+
+// ========================================
+// Update Mock Test Button
+// ========================================
+
+function updateMockButton() {
+
+    const mockBtn =
+        document.getElementById(
+            "mockBtn"
+        );
+
+
+    if (!mockBtn) return;
+
+
+    const loggedInUser =
+        localStorage.getItem(
+            "portalSession"
+        );
+
+
+    // Logged in
+
+    if (loggedInUser) {
+
+        mockBtn.innerHTML =
+            '<i class="fa-solid fa-wand-magic-sparkles"></i> အစမ်းစာမေးပွဲ စတင်ရန်';
+
+    }
+
+
+    // Not logged in
+
+    else {
+
+        mockBtn.innerHTML =
+            '<i class="fa-solid fa-lock"></i> အကောင့်ဝင်ပြီး အစမ်းစာမေးပွဲ ဖြေဆိုရန်';
+    }
 }
 
 
@@ -240,6 +313,7 @@ document.addEventListener(
 
         updateDashboard();
 
+        updateMockButton();
+
     }
 );
-
