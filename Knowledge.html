@@ -161,7 +161,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
     const langToggle = document.getElementById("lang-toggle");
     const themeToggle = document.getElementById("theme-toggle");
-    let currentLanguage = localStorage.getItem("preferredLang") || "en";
+    let currentLanguage = localStorage.getItem("learn2driveLanguage") || "en";
 
     function applyLanguage(language) {
       currentLanguage = language;
@@ -181,14 +181,78 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         "aria-label",
         currentLanguage === "en" ? "Switch to Myanmar language" : "Switch to English language"
       );
-      localStorage.setItem("preferredLang", currentLanguage);
+      localStorage.setItem("learn2driveLanguage", currentLanguage);
     }
 
     applyLanguage(currentLanguage);
 
     langToggle.addEventListener("click", function () {
-      applyLanguage(currentLanguage === "en" ? "my" : "en");
-    });
+
+  const newLanguage =
+    currentLanguage === "en" ? "my" : "en";
+
+  applyLanguage(newLanguage);
+
+  window.dispatchEvent(
+    new CustomEvent(
+      "l2dLanguageChanged",
+      {
+        detail: {
+          language: newLanguage
+        }
+      }
+    )
+  );
+
+});
+function translateSidebar(language) {
+
+  const englishMenu = [
+    "Home",
+    "Knowledge Sharing",
+    "Practice Test",
+    "Road Signs",
+    "Hotline",
+    "My Profile"
+  ];
+
+  const myanmarMenu = [
+    "ပင်မစာမျက်နှာ",
+    "ဗဟုသုတ မျှဝေခြင်း",
+    "လေ့ကျင့်ခန်း စာမေးပွဲ",
+    "လမ်းအမှတ်အသားများ",
+    "Hotline",
+    "ကျွန်ုပ်၏ ပရိုဖိုင်"
+  ];
+
+  const menu =
+    language === "my"
+      ? myanmarMenu
+      : englishMenu;
+
+  const links =
+    document.querySelectorAll(
+      ".sidebar .menu li a"
+    );
+
+  links.forEach(function(link, index) {
+
+    if (!menu[index]) return;
+
+    const icon = link.querySelector("i");
+
+    if (icon) {
+      link.innerHTML = "";
+      link.appendChild(icon);
+      link.appendChild(
+        document.createTextNode(
+          " " + menu[index]
+        )
+      );
+    }
+
+  });
+}
 
     themeToggle.addEventListener("click", function () {
       const darkThemeEnabled = document.body.classList.toggle("dark-theme");
