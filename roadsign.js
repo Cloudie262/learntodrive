@@ -16,7 +16,7 @@ const themeText =
 
 let currentCategory = "all";
 let currentLanguage =
-    localStorage.getItem("language") || "my";
+    localStorage.getItem("learn2driveLanguage") || "my";
 
 let currentTheme =
     localStorage.getItem("theme") || "light";
@@ -448,7 +448,7 @@ function updateLanguage() {
     }
 
     localStorage.setItem(
-        "language",
+        "learn2driveLanguage",
         currentLanguage
     );
 
