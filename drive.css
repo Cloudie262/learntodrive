@@ -293,9 +293,9 @@ overflow-y: auto;
 @media (max-width: 768px) {
   body {
     padding: 18px;
-     overflow-y: auto
-     ;
+    overflow-y: auto;
   }
+
 
   .sidebar {
     width: 220px;
