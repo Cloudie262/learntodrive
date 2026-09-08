@@ -203,21 +203,97 @@ let currentUser = null;
 let editSnapshot = null;
 
 // Language toggle
-let currentLang = localStorage.getItem("lang") || "en";
+let currentLang =
+    localStorage.getItem("learn2driveLanguage") || "en";
+
 const langToggle = get("langToggle");
-langToggle.textContent = currentLang === "mm" ? "🇬🇧" : "🇲🇲";
+function translateSidebar(language) {
+
+    const englishMenu = [
+        "Home",
+        "Knowledge Sharing",
+        "Practice Test",
+        "Road Signs",
+        "Hotline",
+        "My Profile"
+    ];
+
+    const myanmarMenu = [
+        "ပင်မစာမျက်နှာ",
+        "ဗဟုသုတ မျှဝေခြင်း",
+        "လေ့ကျင့်ခန်း စာမေးပွဲ",
+        "လမ်းအမှတ်အသားများ",
+        "Hotline",
+        "ကျွန်ုပ်၏ ပရိုဖိုင်"
+    ];
+
+    const menu =
+        language === "my"
+            ? myanmarMenu
+            : englishMenu;
+
+    const links =
+        document.querySelectorAll(
+            ".sidebar .menu li a"
+        );
+
+    links.forEach(function(link, index) {
+
+        if (!menu[index]) return;
+
+        const icon = link.querySelector("i");
+
+        if (icon) {
+
+            link.innerHTML = "";
+
+            link.appendChild(icon);
+
+            link.appendChild(
+                document.createTextNode(
+                    " " + menu[index]
+                )
+            );
+        }
+    });
+}
 
 function setLanguage(lang) {
+
+    currentLang = lang;
+
     document.querySelectorAll("[data-en]").forEach(el => {
-        const text = el.getAttribute(`data-${lang}`);
-        if (text) el.textContent = text;
+
+        const text =
+            lang === "my"
+                ? el.getAttribute("data-my")
+                : el.getAttribute("data-en");
+
+        if (text) {
+            el.textContent = text;
+        }
     });
-    localStorage.setItem("lang", lang);
-    langToggle.textContent = lang === "mm" ? "🇬🇧" : "🇲🇲";
+
+    localStorage.setItem(
+        "learn2driveLanguage",
+        lang
+    );
+
+    langToggle.textContent =
+        lang === "my"
+            ? "🇬🇧"
+            : "🇲🇲";
+
+    translateSidebar(lang);
 }
 
 langToggle.addEventListener("click", () => {
-    currentLang = currentLang === "en" ? "mm" : "en";
+
+    currentLang =
+        currentLang === "en"
+            ? "my"
+            : "en";
+
     setLanguage(currentLang);
 });
 
@@ -340,7 +416,7 @@ get("loginForm").addEventListener("submit", event => {
     if (isValidLogin(username, password)) {
         showApp(username);
     } else {
-        get("loginError").textContent = currentLang === "mm"
+        get("loginError").textContent = currentLang === "my"
             ? "အသုံးပြုသူအမည် သို့မဟုတ် စကားဝှက် မှားနေပါသည်။"
             : "Incorrect username or password.";
     }
@@ -411,7 +487,7 @@ get("profileForm").addEventListener("submit", event => {
     renderProfile();
     setEditMode(false);
     get("profileMessage").style.color = "var(--green)";
-    get("profileMessage").textContent = currentLang === "mm"
+    get("profileMessage").textContent = currentLang === "my"
         ? "ပရိုဖိုင်ကို သိမ်းဆည်းပြီးပါပြီ။"
         : "Profile saved successfully.";
 });
@@ -440,7 +516,7 @@ get("photoInput").addEventListener("change", event => {
         saveProfile(currentUser, profile);
         renderProfile();
         get("profileMessage").style.color = "var(--green)";
-        get("profileMessage").textContent = currentLang === "mm"
+        get("profileMessage").textContent = currentLang === "my"
             ? "ပရိုဖိုင်ဓာတ်ပုံ ပြောင်းပြီးပါပြီ။"
             : "Profile photo updated.";
     };
