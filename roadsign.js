@@ -411,6 +411,7 @@ function updateLanguage() {
 
         languageToggle.textContent =
             "မြန်မာ";
+
     } else {
         title.textContent =
             "ယာဉ်စည်းကမ်း လမ်းညွှန်အမှတ်အသားများ";
@@ -450,6 +451,18 @@ function updateLanguage() {
     localStorage.setItem(
         "learn2driveLanguage",
         currentLanguage
+    );
+
+    /* Sidebar changes with translation button */
+    window.dispatchEvent(
+        new CustomEvent(
+            "l2dLanguageChanged",
+            {
+                detail: {
+                    language: currentLanguage
+                }
+            }
+        )
     );
 
     updateThemeButton();
@@ -614,6 +627,7 @@ document.documentElement.dataset.theme =
 updateLanguage();
 updateThemeButton();
 filterCards();
+
 /* ==========================================
    LANGUAGE FLAG DISPLAY
    Added without changing original JS
@@ -638,7 +652,6 @@ function updateLanguageFlag() {
     }
 }
 
-
 /* Update flag after original language button is clicked */
 
 languageToggle.addEventListener(
@@ -649,7 +662,6 @@ languageToggle.addEventListener(
 
     }
 );
-
 
 /* Show correct flag when page first opens */
 
