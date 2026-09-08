@@ -168,6 +168,97 @@ menuItems.forEach(function (item) {
 
 });
 </script>
+<script>
+/* =========================================
+   SIDEBAR LANGUAGE TRANSLATION
+========================================= */
+
+const sidebarEnglish = [
+  "Home",
+  "Knowledge Sharing",
+  "Practice Test",
+  "Road Signs",
+  "Hotline",
+  "My Profile"
+];
+
+const sidebarMyanmar = [
+  "ပင်မစာမျက်နှာ",
+  "ဗဟုသုတ မျှဝေခြင်း",
+  "လေ့ကျင့်ခန်း စာမေးပွဲ",
+  "လမ်းအမှတ်အသားများ",
+  "Hotline",
+  "ကျွန်ုပ်၏ ပရိုဖိုင်"
+];
+
+
+function translateSidebar(language) {
+
+  const menu =
+    language === "my"
+      ? sidebarMyanmar
+      : sidebarEnglish;
+
+  const menuLinks =
+    document.querySelectorAll(".sidebar .menu li a");
+
+  menuLinks.forEach(function(link, index) {
+
+    if (!menu[index]) return;
+
+    // Keep the icon and only change the text
+    const icon = link.querySelector("i");
+
+    if (icon) {
+      link.innerHTML = "";
+      link.appendChild(icon);
+      link.appendChild(
+        document.createTextNode(" " + menu[index])
+      );
+    }
+  });
+}
+
+
+/* =========================================
+   WATCH FOR SIDEBAR TO LOAD
+========================================= */
+
+const sidebarObserver = new MutationObserver(function() {
+
+  const sidebar = document.querySelector(".sidebar");
+
+  if (sidebar) {
+
+    const language =
+      localStorage.getItem("learn2driveLanguage") || "en";
+
+    translateSidebar(language);
+
+    sidebarObserver.disconnect();
+  }
+});
+
+
+sidebarObserver.observe(document.body, {
+  childList: true,
+  subtree: true
+});
+
+
+/* =========================================
+   LISTEN FOR LANGUAGE CHANGE
+========================================= */
+
+window.addEventListener(
+  "l2dLanguageChanged",
+  function(event) {
+
+    translateSidebar(event.detail.language);
+
+  }
+);
+</script>
 </body>
 </html>
 
