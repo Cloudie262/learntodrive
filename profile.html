@@ -557,13 +557,27 @@ function updatePortal() {
         : "Locked until all practice modules are completed.";
 }
 
-get("module3Check").addEventListener("change", updatePortal);
-get("module4Check").addEventListener("change", updatePortal);
+if (get("module3Check")) {
+    get("module3Check").addEventListener("change", updatePortal);
+}
 
-get("examButton").addEventListener("click", () => {
-    const examUnlocked = get("module3Check").checked && get("module4Check").checked;
-    alert(examUnlocked ? "Starting Official Mock Exam..." : "Pass all modules first.");
-});
+if (get("module4Check")) {
+    get("module4Check").addEventListener("change", updatePortal);
+}
+
+if (get("examButton")) {
+    get("examButton").addEventListener("click", () => {
+        const examUnlocked =
+            get("module3Check").checked &&
+            get("module4Check").checked;
+
+        alert(
+            examUnlocked
+                ? "Starting Official Mock Exam..."
+                : "Pass all modules first."
+        );
+    });
+}
 
 document.querySelectorAll(".filter").forEach(button => {
     button.addEventListener("click", () => {
@@ -576,7 +590,9 @@ document.querySelectorAll(".filter").forEach(button => {
     });
 });
 
-updatePortal();
+if (get("module3Check") && get("module4Check")) {
+    updatePortal();
+}
 
 </script>
 <script>
