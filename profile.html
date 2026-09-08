@@ -199,6 +199,11 @@
 <script>
 const demoAccount = { username: "learner", password: "license123" };
 const get = id => document.getElementById(id);
+
+const usernameRegex = /^[A-Za-z0-9_\s]{5,20}$/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{6,}$/;
+const emailRegex = /^[a-zA-Z0-9]+@[a-z]+\.[a-z]{2,}$/;
+const phoneRegex = /^[0-9]{2}-[0-9]{9,}$/;
 let currentUser = null;
 let editSnapshot = null;
 
@@ -428,13 +433,13 @@ get("registerForm").addEventListener("submit", event => {
     const password = get("registerPassword").value;
     const accounts = getAccounts();
 
-    if (username.length < 3) {
-        get("registerMessage").textContent = "Username must contain at least 3 characters.";
+    if (!usernameRegex.test(username)) {
+        get("registerMessage").textContent = "Username must be 5-20 characters and contain only letters, numbers, underscore, or spaces.";
         return;
     }
 
-    if (password.length < 6) {
-        get("registerMessage").textContent = "Password must contain at least 6 characters.";
+    if (!passwordRegex.test(password)) {
+        get("registerMessage").textContent = "Password must contain at least 6 characters, including uppercase, lowercase, a number, and a special character.";
         return;
     }
 
@@ -474,12 +479,26 @@ get("profileForm").addEventListener("submit", event => {
     event.preventDefault();
     const oldProfile = getProfile(currentUser);
     const name = get("editName").value.trim();
+    const email = get("editEmail").value.trim();
+    const phone = get("editPhone").value.trim();
+
+    if (email && !emailRegex.test(email)) {
+        get("profileMessage").style.color = "red";
+        get("profileMessage").textContent = "Please enter a valid email address.";
+        return;
+    }
+
+    if (phone && !phoneRegex.test(phone)) {
+        get("profileMessage").style.color = "red";
+        get("profileMessage").textContent = "Please enter a valid phone number.";
+        return;
+    }
 
     const updatedProfile = {
         ...oldProfile,
         name: name || currentUser,
-        email: get("editEmail").value.trim(),
-        phone: get("editPhone").value.trim(),
+        email: email,
+        phone: phone,
         bio: get("editBio").value.trim()
     };
 
