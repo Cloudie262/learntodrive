@@ -120,16 +120,26 @@
 
     function setLanguage(nextLanguage) {
 
-        language = nextLanguage;
+    language = nextLanguage;
 
-        localStorage.setItem(
-            LANGUAGE_KEY,
-            language
-        );
+    localStorage.setItem(
+        LANGUAGE_KEY,
+        language
+    );
 
-        applyLanguage();
-    }
+    applyLanguage();
 
+    window.dispatchEvent(
+        new CustomEvent(
+            "l2dLanguageChanged",
+            {
+                detail: {
+                    language: language
+                }
+            }
+        )
+    );
+}
 
     // ============================================
     // TOGGLE LANGUAGE
