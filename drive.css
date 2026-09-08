@@ -15,7 +15,8 @@ body {
   background-attachment: fixed;
   background-color: #cee6f9;
   padding: 28px;
-  overflow: hidden;
+ overflow-x: hidden;
+overflow-y: auto;
 }
 
 
