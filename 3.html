@@ -8,15 +8,76 @@
   <title>Learn2Drive</title>
 
   <link rel="stylesheet" href="all.css">
+  <link rel="stylesheet" href="sidebar.css">
+   <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
+<!-- Sidebar Button -->
+<button class="sidebar-toggle" id="sidebarToggle">
+    <i class="fa-solid fa-bars"></i>
+</button>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+    <nav>
+        <ul class="menu">
+
+            <li>
+                <a href="index.html">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="Knowledge.html">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    Knowledge Sharing
+                </a>
+            </li>
+
+            <li>
+                <a href="portal.html">
+                    <i class="fa-solid fa-file-pen"></i>
+                    Practice Test
+                </a>
+            </li>
+
+            <li>
+                <a href="roadsign.html">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    Road Signs
+                </a>
+            </li>
+
+            <li>
+                <a href="hotline.html">
+                    <i class="fa-solid fa-phone"></i>
+                    Hotline
+                </a>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    <i class="fa-solid fa-user"></i>
+                    My Profile
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+</aside>
+
+<!-- Sidebar Overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <main class="topic-page">
 
     <!-- Topic Image -->
     <img
-      src="3.avif"
+      src="3.png"
       class="topic-image"
     >
 
@@ -57,6 +118,135 @@
   </main>
 
   <script src="article-translation.js"></script>
+  <script>
+const sidebar = document.querySelector('.sidebar');
+const sidebarToggle = document.getElementById('sidebarToggle');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+
+// OPEN SIDEBAR
+sidebarToggle.addEventListener('click', function () {
+
+    sidebar.classList.add('active');
+    sidebarOverlay.classList.add('active');
+
+});
+
+
+// CLOSE SIDEBAR
+function closeSidebar() {
+
+    sidebar.classList.remove('active');
+    sidebarOverlay.classList.remove('active');
+
+}
+
+
+// CLICK OUTSIDE TO CLOSE
+sidebarOverlay.addEventListener('click', closeSidebar);
+
+
+// CLICK MENU ITEM TO CLOSE
+const menuItems =
+    document.querySelectorAll('.sidebar .menu li a');
+
+menuItems.forEach(function (item) {
+
+    item.addEventListener('click', closeSidebar);
+
+});
+</script>
+<script>
+/* =========================================
+   SIDEBAR LANGUAGE TRANSLATION
+========================================= */
+
+const sidebarEnglish = [
+  "Home",
+  "Knowledge Sharing",
+  "Practice Test",
+  "Road Signs",
+  "Hotline",
+  "My Profile"
+];
+
+const sidebarMyanmar = [
+  "ပင်မစာမျက်နှာ",
+  "ဗဟုသုတ မျှဝေခြင်း",
+  "လေ့ကျင့်ခန်း စာမေးပွဲ",
+  "လမ်းအမှတ်အသားများ",
+  "Hotline",
+  "ကျွန်ုပ်၏ ပရိုဖိုင်"
+];
+
+
+function translateSidebar(language) {
+
+  const menu =
+    language === "my"
+      ? sidebarMyanmar
+      : sidebarEnglish;
+
+  const menuLinks =
+    document.querySelectorAll(".sidebar .menu li a");
+
+  menuLinks.forEach(function(link, index) {
+
+    if (!menu[index]) return;
+
+    // Keep the icon and only change the text
+    const icon = link.querySelector("i");
+
+    if (icon) {
+      link.innerHTML = "";
+      link.appendChild(icon);
+      link.appendChild(
+        document.createTextNode(" " + menu[index])
+      );
+    }
+  });
+}
+
+
+/* =========================================
+   WATCH FOR SIDEBAR TO LOAD
+========================================= */
+
+const sidebarObserver = new MutationObserver(function() {
+
+  const sidebar = document.querySelector(".sidebar");
+
+  if (sidebar) {
+
+    const language =
+      localStorage.getItem("learn2driveLanguage") || "en";
+
+    translateSidebar(language);
+
+    sidebarObserver.disconnect();
+  }
+});
+
+
+sidebarObserver.observe(document.body, {
+  childList: true,
+  subtree: true
+});
+
+
+/* =========================================
+   LISTEN FOR LANGUAGE CHANGE
+========================================= */
+
+window.addEventListener(
+  "l2dLanguageChanged",
+  function(event) {
+
+    translateSidebar(event.detail.language);
+
+  }
+);
+</script>
 </body>
 </html>
 
