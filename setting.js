@@ -823,9 +823,10 @@
                 : "my";
 
 
-        translatePageText();
-
-        translateDynamicText();
+        if (!window.l2dQuizTranslation) {
+            translatePageText();
+            translateDynamicText();
+        }
 
         updateLanguageButtons();
 
@@ -934,6 +935,7 @@ function setLanguage(nextLanguage) {
     // =====================================================
 
     function watchPage() {
+        if (window.l2dQuizTranslation) return;
 
         const observer =
             new MutationObserver(
