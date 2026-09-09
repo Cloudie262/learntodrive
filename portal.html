@@ -550,6 +550,27 @@ window.addEventListener(
   }
 );
 </script>
+<script>
+// Require the existing profile login before starting the final mock test.
+(function () {
+    document.getElementById("mockBtn").addEventListener("click", function (event) {
+        let loggedIn = false;
+        try {
+            const username = localStorage.getItem("portalSession");
+            const accounts = JSON.parse(localStorage.getItem("portalAccounts") || "{}");
+            loggedIn = Boolean(username) && (username === "learner" ||
+                Boolean(accounts && Object.prototype.hasOwnProperty.call(accounts, username) && accounts[username]));
+        } catch (error) {
+            loggedIn = false;
+        }
+        if (!loggedIn) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            window.location.href = "profile.html?redirect=mock-test.html";
+        }
+    }, true);
+})();
+</script>
 <script src="app.js"></script>
 <script src="setting.js"></script>
 
