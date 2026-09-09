@@ -5,15 +5,17 @@
 function toMyanmarDigit(num) {
 
     const myanmarDigits = [
-        '၀', '၁', '၂', '၃', '၄',
-        '၅', '၆', '၇', '၈', '၉'
+        "၀", "၁", "၂", "၃", "၄",
+        "၅", "၆", "၇", "၈", "၉"
     ];
 
     return num
         .toString()
-        .split('')
-        .map(digit => myanmarDigits[digit] || digit)
-        .join('');
+        .split("")
+        .map(digit =>
+            myanmarDigits[digit] || digit
+        )
+        .join("");
 }
 
 
@@ -30,26 +32,33 @@ function toggle(id) {
         lesson.previousElementSibling;
 
     const arrow =
-        header.querySelector("span:last-child");
+        header.querySelector(
+            "span:last-child"
+        );
 
 
     if (
-        window.getComputedStyle(lesson).display
-        === "block"
+        window.getComputedStyle(
+            lesson
+        ).display === "block"
     ) {
 
-        lesson.style.display = "none";
+        lesson.style.display =
+            "none";
 
         if (arrow) {
-            arrow.textContent = "▼";
+            arrow.textContent =
+                "▼";
         }
 
     } else {
 
-        lesson.style.display = "block";
+        lesson.style.display =
+            "block";
 
         if (arrow) {
-            arrow.textContent = "▲";
+            arrow.textContent =
+                "▲";
         }
     }
 }
@@ -63,14 +72,37 @@ const TOTAL_LESSONS = 28;
 
 
 // ========================================
+// Pass Percentage
+// ========================================
+
+const PASS_PERCENTAGE = 80;
+
+
+// ========================================
 // Get Completed Lessons
 // ========================================
 
 function getCompletedLessons() {
 
     return JSON.parse(
-        localStorage.getItem("completedLessons")
+        localStorage.getItem(
+            "completedLessons"
+        )
     ) || [];
+}
+
+
+// ========================================
+// Get Lesson Scores
+// ========================================
+
+function getLessonScores() {
+
+    return JSON.parse(
+        localStorage.getItem(
+            "lessonScores"
+        )
+    ) || {};
 }
 
 
@@ -94,7 +126,10 @@ function updateDashboard() {
 
     const progress =
         Math.round(
-            (completed / TOTAL_LESSONS) * 100
+            (
+                completed /
+                TOTAL_LESSONS
+            ) * 100
         );
 
 
@@ -103,10 +138,13 @@ function updateDashboard() {
             "portalProgress"
         );
 
+
     if (portalProgress) {
 
         portalProgress.textContent =
-            toMyanmarDigit(progress);
+            toMyanmarDigit(
+                progress
+            );
     }
 
 
@@ -114,6 +152,7 @@ function updateDashboard() {
         document.getElementById(
             "progressBar"
         );
+
 
     if (progressBar) {
 
@@ -127,19 +166,21 @@ function updateDashboard() {
     // ====================================
 
     const lessonScores =
-        JSON.parse(
-            localStorage.getItem("lessonScores")
-        ) || {};
+        getLessonScores();
 
 
     const scoreValues =
-        Object.values(lessonScores);
+        Object.values(
+            lessonScores
+        );
 
 
     let average = 0;
 
 
-    if (scoreValues.length > 0) {
+    if (
+        scoreValues.length > 0
+    ) {
 
         const total =
             scoreValues.reduce(
@@ -151,7 +192,8 @@ function updateDashboard() {
 
         average =
             Math.round(
-                total / scoreValues.length
+                total /
+                scoreValues.length
             );
     }
 
@@ -165,8 +207,182 @@ function updateDashboard() {
     if (averageScore) {
 
         averageScore.textContent =
-            toMyanmarDigit(average);
+            toMyanmarDigit(
+                average
+            );
     }
+}
+
+
+// ========================================
+// Show Lesson Status
+// ========================================
+
+function showLessonStatus() {
+
+    const completedLessons =
+        getCompletedLessons();
+
+
+    const lessonScores =
+        getLessonScores();
+
+
+    const lessonElements =
+        document.querySelectorAll(
+            ".lesson[data-lesson]"
+        );
+
+
+    lessonElements.forEach(
+        lesson => {
+
+
+            // =================================
+            // Get Lesson ID
+            // =================================
+
+            const lessonID =
+                lesson.dataset.lesson;
+
+
+            // =================================
+            // Find Status Element
+            // =================================
+
+            const status =
+                lesson.querySelector(
+                    ".lesson-status"
+                );
+
+
+            if (!status) {
+                return;
+            }
+
+
+            // Remove old status classes
+
+            lesson.classList.remove(
+                "not-attempted",
+                "attempted",
+                "completed"
+            );
+
+
+            // =================================
+            // Does this lesson have a score?
+            // =================================
+
+            const hasScore =
+                Object.prototype
+                    .hasOwnProperty
+                    .call(
+                        lessonScores,
+                        lessonID
+                    );
+
+
+            // =================================
+            // Is lesson completed?
+            // =================================
+
+            const isCompleted =
+                completedLessons.includes(
+                    lessonID
+                );
+
+
+            // =================================
+            // COMPLETED
+            // =================================
+
+            if (isCompleted) {
+
+                lesson.classList.add(
+                    "completed"
+                );
+
+
+                if (hasScore) {
+
+                    const score =
+                        Number(
+                            lessonScores[
+                                lessonID
+                            ]
+                        );
+
+
+                    status.innerHTML =
+                        `<i class="fa-solid fa-circle-check"></i>
+                        ရမှတ် ${toMyanmarDigit(score)}%
+                        • ပြီးမြောက်ပြီး`;
+
+                } else {
+
+                    status.innerHTML =
+                        `<i class="fa-solid fa-circle-check"></i>
+                        ပြီးမြောက်ပြီး`;
+                }
+
+
+                return;
+            }
+
+
+            // =================================
+            // ATTEMPTED BUT NOT PASSED
+            // =================================
+
+            if (hasScore) {
+
+                const score =
+                    Number(
+                        lessonScores[
+                            lessonID
+                        ]
+                    );
+
+
+                const needed =
+                    Math.max(
+                        0,
+                        PASS_PERCENTAGE -
+                        score
+                    );
+
+
+                lesson.classList.add(
+                    "attempted"
+                );
+
+
+                status.innerHTML =
+                    `<i class="fa-solid fa-circle-exclamation"></i>
+                    ရမှတ် ${toMyanmarDigit(score)}%
+                    • အောင်ရန် ${toMyanmarDigit(needed)}% လိုအပ်`;
+
+
+                return;
+            }
+
+
+            // =================================
+            // NEVER ATTEMPTED
+            // =================================
+
+            lesson.classList.add(
+                "not-attempted"
+            );
+
+
+            status.innerHTML =
+                `<i class="fa-regular fa-circle"></i>
+                မဖြေရသေး`;
+
+        }
+    );
 }
 
 
@@ -174,7 +390,10 @@ function updateDashboard() {
 // Mark Lesson Complete
 // ========================================
 
-function markLessonComplete(module, lesson) {
+function markLessonComplete(
+    module,
+    lesson
+) {
 
     let completedLessons =
         getCompletedLessons();
@@ -205,6 +424,8 @@ function markLessonComplete(module, lesson) {
 
 
     updateDashboard();
+
+    showLessonStatus();
 }
 
 
@@ -212,9 +433,10 @@ function markLessonComplete(module, lesson) {
 // Open Quiz
 // ========================================
 
-// Normal lesson quizzes do NOT require login.
-
-function openQuiz(module, lesson) {
+function openQuiz(
+    module,
+    lesson
+) {
 
     window.location =
         `quiz.html?module=${module}&lesson=${lesson}`;
@@ -224,6 +446,7 @@ function openQuiz(module, lesson) {
 // ========================================
 // Start Mock Test
 // ========================================
+
 
 // Mock Test DOES require login.
 
@@ -260,7 +483,6 @@ function startMockTest() {
     window.location.href =
         "mock-test.html";
 }
-
 
 // ========================================
 // Update Mock Test Button
@@ -301,8 +523,6 @@ function updateMockButton() {
             '<i class="fa-solid fa-lock"></i> အကောင့်ဝင်ပြီး အစမ်းစာမေးပွဲ ဖြေဆိုရန်';
     }
 }
-
-
 // ========================================
 // Page Load
 // ========================================
@@ -311,8 +531,16 @@ document.addEventListener(
     "DOMContentLoaded",
     function () {
 
+        // Update overall percentage
+        // and average score
+
         updateDashboard();
 
+
+        // Show individual lesson
+        // status
+
+        showLessonStatus();
         updateMockButton();
 
     }
