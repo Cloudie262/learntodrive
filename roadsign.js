@@ -19,7 +19,7 @@ let currentLanguage =
     localStorage.getItem("learn2driveLanguage") || "my";
 
 let currentTheme =
-    localStorage.getItem("theme") || "light";
+    localStorage.getItem("learn2driveTheme") || "light";
 
 /* ================= TRANSLATIONS ================= */
 
@@ -515,7 +515,7 @@ themeToggle.addEventListener(
                 : "light";
 
         localStorage.setItem(
-            "theme",
+            "learn2driveTheme",
             currentTheme
         );
 
@@ -666,3 +666,4 @@ languageToggle.addEventListener(
 /* Show correct flag when page first opens */
 
 updateLanguageFlag();
+window.L2DI18n.register(state => { currentLanguage = state.language; currentTheme = state.theme; updateLanguage(); updateThemeButton(); });

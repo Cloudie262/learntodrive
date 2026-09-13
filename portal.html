@@ -2,6 +2,9 @@
 <html lang="my">
 
 <head>
+    <script src="i18n.js"></script>
+    <script src="i18n-messages.js"></script>
+    <link rel="stylesheet" href="site-settings.css">
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -777,7 +780,7 @@ const sidebarObserver = new MutationObserver(function() {
   if (sidebar) {
 
     const language =
-      localStorage.getItem("learn2driveLanguage") || "en";
+      localStorage.getItem("learn2driveLanguage") || "my";
 
     translateSidebar(language);
 
@@ -832,4 +835,8 @@ window.addEventListener(
 
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 6cd85ab (final)

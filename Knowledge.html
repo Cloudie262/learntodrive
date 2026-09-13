@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
 
 <head>
+    <script src="i18n.js"></script>
+    <script src="i18n-messages.js"></script>
+    <link rel="stylesheet" href="site-settings.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -80,10 +83,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   <!-- Page Header -->
   <header class="page-header">
     <div class="header-controls">
-      <button id="lang-toggle" type="button" aria-label="Switch to Myanmar language">🇲🇲</button>
-      <button id="theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch theme">
+      <span hidden aria-hidden="true" data-legacy-setting id="lang-toggle" type="button" aria-label="Switch to Myanmar language">🇲🇲</span>
+      <span hidden aria-hidden="true" data-legacy-setting id="theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch theme">
         <i class="fa-solid fa-moon" aria-hidden="true"></i>
-      </button>
+      </span>
     </div>
     <h1 data-i18n="page_title">Knowledge Sharing</h1>
   </header>
@@ -108,7 +111,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
  
     <a href="3.html" class="knowledge-box">
-      <img src="3.png">
+      <img src="3.avif">
       <h2 data-i18n="title_3">Signs That Your Engine Oil Is Running Low</h2>
     </a>
 
@@ -134,6 +137,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     </a>
 
   </main>
+
+
+  <!-- Footer -->
+  <footer data-i18n="footer_text">
+    © 2024 DriveLearn. All rights reserved.
+  </footer>
 
   <script>
     const translations = {
@@ -161,7 +170,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
     const langToggle = document.getElementById("lang-toggle");
     const themeToggle = document.getElementById("theme-toggle");
-    let currentLanguage = localStorage.getItem("learn2driveLanguage") || "en";
+    let currentLanguage = localStorage.getItem("learn2driveLanguage") || "my";
 
     function applyLanguage(language) {
       currentLanguage = language;
@@ -184,75 +193,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
       localStorage.setItem("learn2driveLanguage", currentLanguage);
     }
 
+window.L2DI18n.register(state => applyLanguage(state.language));
     applyLanguage(currentLanguage);
 
     langToggle.addEventListener("click", function () {
-
-  const newLanguage =
-    currentLanguage === "en" ? "my" : "en";
-
-  applyLanguage(newLanguage);
-
-  window.dispatchEvent(
-    new CustomEvent(
-      "l2dLanguageChanged",
-      {
-        detail: {
-          language: newLanguage
-        }
-      }
-    )
-  );
-
-});
-function translateSidebar(language) {
-
-  const englishMenu = [
-    "Home",
-    "Knowledge Sharing",
-    "Practice Test",
-    "Road Signs",
-    "Hotline",
-    "My Profile"
-  ];
-
-  const myanmarMenu = [
-    "ပင်မစာမျက်နှာ",
-    "ဗဟုသုတ မျှဝေခြင်း",
-    "လေ့ကျင့်ခန်း စာမေးပွဲ",
-    "လမ်းအမှတ်အသားများ",
-    "Hotline",
-    "ကျွန်ုပ်၏ ပရိုဖိုင်"
-  ];
-
-  const menu =
-    language === "my"
-      ? myanmarMenu
-      : englishMenu;
-
-  const links =
-    document.querySelectorAll(
-      ".sidebar .menu li a"
-    );
-
-  links.forEach(function(link, index) {
-
-    if (!menu[index]) return;
-
-    const icon = link.querySelector("i");
-
-    if (icon) {
-      link.innerHTML = "";
-      link.appendChild(icon);
-      link.appendChild(
-        document.createTextNode(
-          " " + menu[index]
-        )
-      );
-    }
-
-  });
-}
+      applyLanguage(currentLanguage === "en" ? "my" : "en");
+    });
 
     themeToggle.addEventListener("click", function () {
       const darkThemeEnabled = document.body.classList.toggle("dark-theme");
@@ -263,10 +209,10 @@ function translateSidebar(language) {
         "aria-label",
         darkThemeEnabled ? "Switch to light theme" : "Switch to dark theme"
       );
-      localStorage.setItem("preferredTheme", darkThemeEnabled ? "dark" : "light");
+      localStorage.setItem("learn2driveTheme", darkThemeEnabled ? "dark" : "light");
     });
 
-    if (localStorage.getItem("preferredTheme") === "dark") {
+    if (localStorage.getItem("learn2driveTheme") === "dark") {
       document.body.classList.add("dark-theme");
       themeToggle.querySelector("i").className = "fa-solid fa-sun";
       themeToggle.setAttribute("aria-label", "Switch to light theme");
@@ -309,97 +255,6 @@ menuItems.forEach(function (item) {
     item.addEventListener('click', closeSidebar);
 
 });
-</script>
-<script>
-/* =========================================
-   SIDEBAR LANGUAGE TRANSLATION
-========================================= */
-
-const sidebarEnglish = [
-  "Home",
-  "Knowledge Sharing",
-  "Practice Test",
-  "Road Signs",
-  "Hotline",
-  "My Profile"
-];
-
-const sidebarMyanmar = [
-  "ပင်မစာမျက်နှာ",
-  "ဗဟုသုတ မျှဝေခြင်း",
-  "လေ့ကျင့်ခန်း စာမေးပွဲ",
-  "လမ်းအမှတ်အသားများ",
-  "Hotline",
-  "ကျွန်ုပ်၏ ပရိုဖိုင်"
-];
-
-
-function translateSidebar(language) {
-
-  const menu =
-    language === "my"
-      ? sidebarMyanmar
-      : sidebarEnglish;
-
-  const menuLinks =
-    document.querySelectorAll(".sidebar .menu li a");
-
-  menuLinks.forEach(function(link, index) {
-
-    if (!menu[index]) return;
-
-    // Keep the icon and only change the text
-    const icon = link.querySelector("i");
-
-    if (icon) {
-      link.innerHTML = "";
-      link.appendChild(icon);
-      link.appendChild(
-        document.createTextNode(" " + menu[index])
-      );
-    }
-  });
-}
-
-
-/* =========================================
-   WATCH FOR SIDEBAR TO LOAD
-========================================= */
-
-const sidebarObserver = new MutationObserver(function() {
-
-  const sidebar = document.querySelector(".sidebar");
-
-  if (sidebar) {
-
-    const language =
-      localStorage.getItem("learn2driveLanguage") || "en";
-
-    translateSidebar(language);
-
-    sidebarObserver.disconnect();
-  }
-});
-
-
-sidebarObserver.observe(document.body, {
-  childList: true,
-  subtree: true
-});
-
-
-/* =========================================
-   LISTEN FOR LANGUAGE CHANGE
-========================================= */
-
-window.addEventListener(
-  "l2dLanguageChanged",
-  function(event) {
-
-    translateSidebar(event.detail.language);
-
-  }
-);
 </script>
 
 </body>

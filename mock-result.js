@@ -1,261 +1,88 @@
-// ========================================
-// MOCK RESULT LOGIN PROTECTION
-// ========================================
-
-const loggedInUser =
-    localStorage.getItem(
-        "portalSession"
-    );
-
-
-// User is not logged in
-
-if (!loggedInUser) {
-
-    alert(
-        "အစမ်းစာမေးပွဲရလဒ်ကို ကြည့်ရှုရန် အကောင့်ဝင်ရန် လိုအပ်ပါသည်။"
-    );
-
-
-    window.location.replace(
-        "profile.html"
-    );
-
-
-    // Stop JavaScript
-
-    throw new Error(
-        "Mock Test result requires login."
-    );
-}
-
-
-// ========================================
-// Get Result from URL
-// ========================================
-
 const params =
-    new URLSearchParams(
-        window.location.search
-    );
-
-
-// ========================================
-// Score
-// ========================================
+    new URLSearchParams(window.location.search);
 
 const score =
-    Number(
-        params.get("score")
-    ) || 0;
-
-
-// ========================================
-// Total Questions
-// ========================================
+    Number(params.get("score")) || 0;
 
 const total =
-    Number(
-        params.get("total")
-    ) || 50;
-
-
-// ========================================
-// Percentage
-// ========================================
+    Number(params.get("total")) || 50;
 
 const percentage =
-    Number(
-        params.get("percentage")
-    ) || 0;
+    Number(params.get("percentage")) || 0;
+
+const language =
+    localStorage.getItem("learn2driveLanguage") || "my";
 
 
-// ========================================
-// Myanmar Number
-// ========================================
+function mmNumber(number) {
 
-function mmNumber(num) {
+    const mm =
+        ["၀","၁","၂","၃","၄","၅","၆","၇","၈","၉"];
 
-    const mm = [
-        "၀", "၁", "၂", "၃", "၄",
-        "၅", "၆", "၇", "၈", "၉"
-    ];
-
-
-    return num
-        .toString()
-        .replace(
-            /\d/g,
-            d => mm[d]
-        );
+    return String(number)
+        .replace(/\d/g, n => mm[n]);
 }
 
 
-// ========================================
-// Get HTML Elements
-// ========================================
+function display(number) {
 
-const resultIcon =
-    document.getElementById(
-        "resultIcon"
-    );
+    return language === "my"
+        ? mmNumber(number)
+        : number;
+}
 
 
-const resultTitle =
-    document.getElementById(
-        "resultTitle"
-    );
+document.getElementById("score").textContent =
+    `${display(score)} / ${display(total)}`;
+
+document.getElementById("percentage").textContent =
+    `${display(percentage)}%`;
 
 
-const resultMessage =
-    document.getElementById(
-        "resultMessage"
-    );
+// Pass = 80%
+if (percentage >= 80) {
 
-
-const scoreElement =
-    document.getElementById(
-        "score"
-    );
-
-
-const percentageElement =
-    document.getElementById(
-        "percentage"
-    );
-
-
-const statusElement =
-    document.getElementById(
-        "status"
-    );
-
-
-const retryBtn =
-    document.getElementById(
-        "retryBtn"
-    );
-
-
-const homeBtn =
-    document.getElementById(
-        "homeBtn"
-    );
-
-
-// ========================================
-// Display Score
-// ========================================
-
-scoreElement.textContent =
-
-    `${mmNumber(
-        score
-    )} / ${mmNumber(
-        total
-    )}`;
-
-
-// ========================================
-// Display Percentage
-// ========================================
-
-percentageElement.textContent =
-
-    `${mmNumber(
-        percentage
-    )}%`;
-
-
-// ========================================
-// Pass / Fail
-// ========================================
-
-// Mock Test pass mark = 80%
-
-const passMark =
-    80;
-
-
-// ========================================
-// PASS
-// ========================================
-
-if (
-    percentage >=
-    passMark
-) {
-
-    resultIcon.textContent =
-        "🎉";
-
+    resultIcon.textContent = "🎉";
 
     resultTitle.textContent =
-        "အောင်မြင်ပါသည်";
-
+        language === "my"
+        ? "အောင်မြင်ပါသည်"
+        : "Congratulations!";
 
     resultMessage.textContent =
-        "ဂုဏ်ယူပါတယ်။ သင်သည် အစမ်းစာမေးပွဲကို အောင်မြင်စွာ ဖြေဆိုနိုင်ခဲ့ပါသည်။";
+        language === "my"
+        ? "သင်သည် အစမ်းစာမေးပွဲကို အောင်မြင်ပါသည်။"
+        : "You passed the mock test.";
 
+    status.textContent =
+        language === "my"
+        ? "✅ အောင်မြင်သည်"
+        : "✅ Passed";
 
-    statusElement.textContent =
-        "✅ အောင်မြင်သည်";
+} else {
 
-
-    statusElement.className =
-        "result-status pass";
-
-}
-
-
-// ========================================
-// FAIL
-// ========================================
-
-else {
-
-    resultIcon.textContent =
-        "📚";
-
+    resultIcon.textContent = "📚";
 
     resultTitle.textContent =
-        "ထပ်မံလေ့ကျင့်ရန်လိုအပ်သည်";
-
+        language === "my"
+        ? "ထပ်မံလေ့ကျင့်ရန်လိုအပ်သည်"
+        : "More Practice Needed";
 
     resultMessage.textContent =
-        "မပူပါနှင့်။ သင်ခန်းစာများကို ပြန်လည်လေ့လာပြီး ထပ်မံဖြေဆိုနိုင်ပါသည်။";
+        language === "my"
+        ? "သင်ခန်းစာများကို ပြန်လည်လေ့လာပါ။"
+        : "Review the lessons and try again.";
 
-
-    statusElement.textContent =
-        "❌ မအောင်မြင်ပါ";
-
-
-    statusElement.className =
-        "result-status fail";
+    status.textContent =
+        language === "my"
+        ? "❌ မအောင်မြင်ပါ"
+        : "❌ Failed";
 }
 
 
-// ========================================
-// Retry Mock Test
-// ========================================
-
-retryBtn.onclick =
-    function () {
-
-        window.location =
-            "mock-test.html";
-
-    };
+retryBtn.onclick = () =>
+    window.location = "mock-test.html";
 
 
-// ========================================
-// Back To Portal
-// ========================================
-
-homeBtn.onclick =
-    function () {
-
-        window.location =
-            "portal.html";
-
-    };
+homeBtn.onclick = () =>
+    window.location = "portal.html";

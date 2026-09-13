@@ -2,6 +2,9 @@
 <html lang="my">
 
 <head>
+    <script src="i18n.js"></script>
+    <script src="i18n-messages.js"></script>
+    <link rel="stylesheet" href="site-settings.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -107,14 +110,14 @@
 
                 <div class="controls">
 
-                    <button
+                    <span hidden aria-hidden="true" data-legacy-setting
                         id="language-toggle"
                         class="control-button"
                         type="button">
                         English
-                    </button>
+                    </span>
 
-                    <button
+                    <span hidden aria-hidden="true" data-legacy-setting
                         id="theme-toggle"
                         class="control-button"
                         type="button">
@@ -122,7 +125,7 @@
                         <i class="fa-solid fa-moon"></i>
                         <span>Dark</span>
 
-                    </button>
+                    </span>
 
                 </div>
 
@@ -656,7 +659,7 @@ const sidebarObserver = new MutationObserver(function() {
   if (sidebar) {
 
     const language =
-      localStorage.getItem("learn2driveLanguage") || "en";
+      localStorage.getItem("learn2driveLanguage") || "my";
 
     translateSidebar(language);
 

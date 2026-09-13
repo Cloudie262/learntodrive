@@ -460,7 +460,7 @@
         if (
             node.parentElement &&
             node.parentElement.closest(
-                "#l2dSettings"
+                "#l2dSettings, script, style, [data-i18n], [data-en]"
             )
         ) {
             return;
@@ -496,7 +496,7 @@
         }
 
 
-        if (translated) {
+        if (translated && translated !== clean) {
 
             node.nodeValue =
                 original.replace(
@@ -808,6 +808,7 @@
 
 
     function applyLanguage() {
+        if (window.l2dQuizTranslation) return;
 
         if (changingPage) {
             return;
@@ -823,10 +824,9 @@
                 : "my";
 
 
-        if (!window.l2dQuizTranslation) {
-            translatePageText();
-            translateDynamicText();
-        }
+        translatePageText();
+
+        translateDynamicText();
 
         updateLanguageButtons();
 
@@ -935,7 +935,6 @@ function setLanguage(nextLanguage) {
     // =====================================================
 
     function watchPage() {
-        if (window.l2dQuizTranslation) return;
 
         const observer =
             new MutationObserver(
@@ -972,7 +971,7 @@ function setLanguage(nextLanguage) {
 
     function startSettings() {
 
-        createToolbar();
+        // Controls are owned by index.html through i18n.js.
 
         applyTheme();
 
@@ -999,4 +998,5 @@ function setLanguage(nextLanguage) {
 
     }
 
+window.L2DI18n.register(state => { language = state.language; theme = state.theme; applyLanguage(); applyTheme(); });
 })();

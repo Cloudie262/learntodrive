@@ -111,6 +111,7 @@
       set("#homeBtn", choose("Portal သို့ပြန်သွားရန်", "Back to Portal"));
     }
   }
+  window.L2DI18n.register(state => { language = state.language; refresh(); });
   const observer = new MutationObserver(refresh);
   function refresh() {
     observer.disconnect();

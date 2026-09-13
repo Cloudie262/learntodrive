@@ -13,7 +13,7 @@
     let language =
         localStorage.getItem(
             LANGUAGE_KEY
-        ) || "en";
+        ) || "my";
 
 
     let theme =
@@ -351,4 +351,5 @@
     }
 
 
+window.L2DI18n.register(state => { language = state.language; theme = state.theme; applyLanguage(); applyTheme(); });
 })();

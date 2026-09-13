@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
 <head>
+    <script src="i18n.js"></script>
+    <script src="i18n-messages.js"></script>
+    <link rel="stylesheet" href="site-settings.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driving License Portal</title>
@@ -71,8 +74,8 @@
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
 <div class="controls">
-    <button id="langToggle" class="control-btn" title="Toggle language">🇲🇲</button>
-    <button id="themeToggle" class="control-btn" title="Toggle theme">🌙</button>
+    <span hidden aria-hidden="true" data-legacy-setting id="langToggle" class="control-btn" title="Toggle language">🇲🇲</span>
+    <span hidden aria-hidden="true" data-legacy-setting id="themeToggle" class="control-btn" title="Toggle theme">🌙</span>
 </div>
 
 <section id="authScreen" class="auth-screen">
@@ -112,6 +115,15 @@
             <div>
                 <label data-en="Password" data-mm="စကားဝှက်">Password</label>
                 <input id="registerPassword" type="password" minlength="6" required autocomplete="new-password">
+            </div>
+
+            <div>
+                <label for="registerEmail" data-en="Email" data-mm="အီးမေးလ်">Email</label>
+                <input id="registerEmail" type="email" maxlength="80" required autocomplete="email" placeholder="name@example.com">
+            </div>
+            <div>
+                <label for="registerPhone" data-en="Phone number" data-mm="ဖုန်းနံပါတ်">Phone number</label>
+                <input id="registerPhone" type="tel" maxlength="30" required autocomplete="tel" placeholder="09xxxxxxxxx or +959xxxxxxxxx">
             </div>
 
             <p id="registerMessage" class="message"></p>
@@ -171,12 +183,12 @@
 
                 <div>
                     <label for="editEmail" data-en="Email" data-mm="အီးမေးလ်">Email</label>
-                    <input id="editEmail" type="email" maxlength="80" placeholder="name@example.com" disabled>
+                    <input id="editEmail" required type="email" maxlength="80" placeholder="name@example.com" disabled>
                 </div>
 
                 <div>
                     <label for="editPhone" data-en="Phone" data-mm="ဖုန်းနံပါတ်">Phone</label>
-                    <input id="editPhone" type="tel" maxlength="30" placeholder="09xxxxxxxxx" disabled>
+                    <input id="editPhone" required type="tel" maxlength="30" placeholder="09xxxxxxxxx" disabled>
                 </div>
             </div>
 
@@ -202,8 +214,9 @@ const get = id => document.getElementById(id);
 
 const usernameRegex = /^[A-Za-z0-9_\s]{5,20}$/;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{6,}$/;
-const emailRegex = /^[a-zA-Z0-9]+@[a-z]+\.[a-z]{2,}$/;
-const phoneRegex = /^[0-9]{2}-[0-9]{9,}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phoneRegex = /^\+?[0-9]{7,15}$/;
+const normalizePhone = phone => phone.replace(/[\s().-]/g, "");
 let currentUser = null;
 let editSnapshot = null;
 
@@ -247,7 +260,7 @@ function getLoginSession() {
 
 // Language toggle
 let currentLang =
-    localStorage.getItem("learn2driveLanguage") || "en";
+    localStorage.getItem("learn2driveLanguage") || "my";
 
 const langToggle = get("langToggle");
 function translateSidebar(language) {
@@ -342,9 +355,10 @@ langToggle.addEventListener("click", () => {
 
 setLanguage(currentLang);
 
+window.L2DI18n.register(state => setLanguage(state.language));
 // Theme toggle
 const themeToggle = get("themeToggle");
-const savedTheme = localStorage.getItem("theme") || "light";
+const savedTheme = localStorage.getItem("learn2driveTheme") || "light";
 document.documentElement.setAttribute("data-theme", savedTheme);
 themeToggle.textContent = savedTheme === "dark" ? "☀️" : "🌙";
 
@@ -352,7 +366,7 @@ themeToggle.addEventListener("click", () => {
     const current = document.documentElement.getAttribute("data-theme");
     const next = current === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
+    localStorage.setItem("learn2driveTheme", next);
     themeToggle.textContent = next === "dark" ? "☀️" : "🌙";
 });
 
@@ -483,6 +497,15 @@ get("registerForm").addEventListener("submit", event => {
     event.preventDefault();
     const username = get("registerUsername").value.trim().toLowerCase();
     const password = get("registerPassword").value;
+    const email = get("registerEmail").value.trim();
+    const phone = normalizePhone(get("registerPhone").value.trim());
+    get("registerMessage").style.color = "var(--red, #c62828)";
+    if (!emailRegex.test(email) || !phoneRegex.test(phone)) {
+        get("registerMessage").textContent = currentLang === "my"
+            ? "မှန်ကန်သော အီးမေးလ်နှင့် ဖုန်းနံပါတ်ကို ထည့်ပါ။"
+            : "Enter a valid email and a phone number containing 7–15 digits.";
+        return;
+    }
     const accounts = getAccounts();
 
     if (!usernameRegex.test(username)) {
@@ -502,6 +525,8 @@ get("registerForm").addEventListener("submit", event => {
 
     accounts[username] = { password };
     saveAccounts(accounts);
+    // Registration and the profile view share the same contact record.
+    saveProfile(username, { ...getProfile(username), email, phone });
 
     get("registerMessage").style.color = "green";
     get("registerMessage").textContent = "Account created successfully. You can now log in.";
@@ -537,15 +562,15 @@ get("profileForm").addEventListener("submit", event => {
     const oldProfile = getProfile(currentUser);
     const name = get("editName").value.trim();
     const email = get("editEmail").value.trim();
-    const phone = get("editPhone").value.trim();
+    const phone = normalizePhone(get("editPhone").value.trim());
 
-    if (email && !emailRegex.test(email)) {
+    if (!emailRegex.test(email)) {
         get("profileMessage").style.color = "red";
         get("profileMessage").textContent = "Please enter a valid email address.";
         return;
     }
 
-    if (phone && !phoneRegex.test(phone)) {
+    if (!phoneRegex.test(phone)) {
         get("profileMessage").style.color = "red";
         get("profileMessage").textContent = "Please enter a valid phone number.";
         return;
@@ -737,6 +762,120 @@ menuItems.forEach(function (item) {
     item.addEventListener('click', closeSidebar);
 
 });
+</script>
+
+
+<!-- Added demonstration verification: no email/SMS is sent. -->
+<script>
+(() => {
+    const login = get('loginForm');
+    const words = (en, mm) => currentLang === 'my' ? mm : en;
+    const fields = document.createElement('div');
+    fields.innerHTML = `
+      <div><label for="loginEmail" data-en="Email" data-mm="အီးမေးလ်">Email</label>
+      <input id="loginEmail" type="email" maxlength="80" autocomplete="email" required></div>
+      <div><label for="loginPhone" data-en="Telephone number" data-mm="ဖုန်းနံပါတ်">Telephone number</label>
+      <input id="loginPhone" type="tel" maxlength="30" autocomplete="tel" required></div>
+      <small data-en="Use your profile email and phone. For accounts without contact details, these will be linked after demo verification." data-mm="ပရိုဖိုင်ရှိ အီးမေးလ်နှင့် ဖုန်းနံပါတ်ကို ထည့်ပါ။ မရှိသေးပါက စမ်းသပ်အတည်ပြုပြီးနောက် သိမ်းပေးပါမည်။">Use your profile email and phone. For accounts without contact details, these will be linked after demo verification.</small>`;
+    login.insertBefore(fields, get('loginError'));
+    const panel = document.createElement('form');
+    panel.id = 'demoVerificationForm';
+    panel.className = 'auth-form hidden';
+    panel.innerHTML = `
+      <h2 data-en="Demo two-step verification" data-mm="အဆင့်နှစ်ဆင့် အတည်ပြုခြင်း စမ်းသပ်ပုံစံ">Demo two-step verification</h2>
+      <p data-en="Demonstration only — no email or SMS is sent. This is not secure two-factor authentication." data-mm="စမ်းသပ်ပုံစံသာ ဖြစ်သည်။ အီးမေးလ်၊ SMS မပို့ပါ။ လုံခြုံသော two-factor authentication မဟုတ်ပါ။">Demonstration only — no email or SMS is sent. This is not secure two-factor authentication.</p>
+      <p data-en="Enter the displayed code within 2 minutes. Maximum 5 attempts." data-mm="ဖော်ပြထားသောကုဒ်ကို ၂ မိနစ်အတွင်း ထည့်ပါ။ ၅ ကြိမ် စမ်းနိုင်သည်။">Enter the displayed code within 2 minutes. Maximum 5 attempts.</p>
+      <output id="demoDisplayedCode" aria-live="polite" style="font-size:2rem;letter-spacing:.3em;font-weight:bold"></output>
+      <label for="demoCode" data-en="Six-digit demo code" data-mm="စမ်းသပ်ကုဒ် ၆ လုံး">Six-digit demo code</label>
+      <input id="demoCode" inputmode="numeric" autocomplete="off" pattern="[0-9]{6}" maxlength="6" required>
+      <p id="demoCodeError" class="error" role="alert"></p>
+      <button class="primary-button" type="submit" data-en="Verify and log in" data-mm="အတည်ပြုပြီး ဝင်မည်">Verify and log in</button>
+      <button id="demoNewCode" class="secondary-button" type="button" data-en="Generate new demo code" data-mm="စမ်းသပ်ကုဒ်အသစ် ထုတ်မည်">Generate new demo code</button>
+      <button id="demoCancel" class="secondary-button" type="button" data-en="Back to login" data-mm="ဝင်ရောက်ရန် ပြန်သွားမည်">Back to login</button>`;
+    login.after(panel);
+    let pending = null;
+    let allowOriginalLogin = false;
+    function clearDemo() {
+        pending = null;
+        panel.reset();
+        panel.classList.add('hidden');
+        get('demoDisplayedCode').textContent = '';
+        get('demoCodeError').textContent = '';
+    }
+    function generate() {
+        const number = crypto.getRandomValues(new Uint32Array(1))[0] % 1000000;
+        pending.code = String(number).padStart(6, '0');
+        pending.expires = Date.now() + 120000;
+        pending.attempts = 0;
+        get('demoDisplayedCode').textContent = pending.code;
+        get('demoCodeError').textContent = '';
+        get('demoCode').value = '';
+        get('demoCode').focus();
+    }
+    // Capture before the existing login listener; release it only after verification.
+    login.addEventListener('submit', event => {
+        if (allowOriginalLogin) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        const username = get('loginUsername').value.trim().toLowerCase();
+        const password = get('loginPassword').value;
+        const email = get('loginEmail').value.trim();
+        const phone = normalizePhone(get('loginPhone').value.trim());
+        clearDemo();
+        get('loginError').textContent = '';
+        if (!isValidLogin(username, password)) {
+            get('loginError').textContent = words('Incorrect username or password.', 'အသုံးပြုသူအမည် သို့မဟုတ် စကားဝှက် မှားနေပါသည်။');
+            return;
+        }
+        if (!emailRegex.test(email) || !phoneRegex.test(phone)) {
+            get('loginError').textContent = words('Enter a valid email and phone number (7–15 digits).', 'မှန်ကန်သော အီးမေးလ်နှင့် ဖုန်းနံပါတ်ကို ထည့်ပါ။');
+            return;
+        }
+        const profile = getProfile(username);
+        if ((profile.email && profile.email.trim().toLowerCase() !== email.toLowerCase()) ||
+            (profile.phone && normalizePhone(profile.phone) !== phone)) {
+            get('loginError').textContent = words('Email or phone does not match your saved profile.', 'အီးမေးလ် သို့မဟုတ် ဖုန်းနံပါတ်သည် ပရိုဖိုင်နှင့် မကိုက်ညီပါ။');
+            return;
+        }
+        pending = { username, email, phone, password };
+        login.classList.add('hidden');
+        panel.classList.remove('hidden');
+        generate();
+    }, true);
+    panel.addEventListener('submit', event => {
+        event.preventDefault();
+        if (!pending) return;
+        if (Date.now() >= pending.expires || pending.attempts >= 5) {
+            get('demoCodeError').textContent = words('Code expired or attempt limit reached. Generate a new demo code.', 'ကုဒ်သက်တမ်းကုန်ပါပြီ သို့မဟုတ် စမ်းသပ်ခွင့်ပြည့်ပါပြီ။ ကုဒ်အသစ် ထုတ်ပါ။');
+            return;
+        }
+        pending.attempts++;
+        if (get('demoCode').value !== pending.code) {
+            get('demoCodeError').textContent = words('Incorrect code. Attempts remaining: ', 'ကုဒ်မှားနေပါသည်။ ကျန်ရှိသောအကြိမ်: ') + (5 - pending.attempts);
+            return;
+        }
+        const details = pending;
+        if (!isValidLogin(details.username, details.password)) {
+            clearDemo(); login.classList.remove('hidden'); return;
+        }
+        const profile = getProfile(details.username);
+        // Existing contacts remain authoritative. Fill only missing legacy/demo contacts.
+        saveProfile(details.username, { ...profile, email: profile.email || details.email, phone: profile.phone || details.phone });
+        get('loginUsername').value = details.username;
+        get('loginPassword').value = details.password;
+        get('loginEmail').value = details.email;
+        get('loginPhone').value = details.phone;
+        clearDemo();
+        login.classList.remove('hidden');
+        allowOriginalLogin = true;
+        try { login.requestSubmit(); } finally { allowOriginalLogin = false; get('loginPassword').value = ''; }
+    });
+    get('demoNewCode').addEventListener('click', () => { if (pending) generate(); });
+    get('demoCancel').addEventListener('click', () => { clearDemo(); login.classList.remove('hidden'); get('loginPassword').value = ''; get('loginPassword').focus(); });
+    document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', clearDemo));
+    get('logoutButton').addEventListener('click', clearDemo);
+    setLanguage(currentLang);
+})();
 </script>
 
 </body>
