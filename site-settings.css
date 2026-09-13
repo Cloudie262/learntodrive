@@ -1,0 +1,12 @@
+/* The home page is the only place to change shared preferences. */
+[data-legacy-setting] { display: none !important; }
+.controls:has([data-legacy-setting]),
+.l2d-settings:has([data-legacy-setting]),
+.l2d-language-switch:has([data-legacy-setting]) { display: none !important; }
+html[data-theme="dark"] { color-scheme: dark; }
+html[data-theme="light"] { color-scheme: light; }
+/* Cover pages that previously had no dark-theme stylesheet. */
+html[data-theme="dark"] body { background-color: #101827; color: #e5edf6; }
+html[data-theme="dark"] :is(.topic-page,.portal-container,#quiz-page,#result-page) { background-color: #172334; color: #e5edf6; }
+html[data-theme="dark"] :is(.topic-content,.topic-content h2,.topic-content p,#question) { color: #e5edf6; }
+html[data-theme="dark"] { --bg-color:#101827; --card-bg:#172334; --card-border:#344155; --text-main:#e5edf6; --text-sub:#b7c5d6; --locked-bg:#263348; --line-color:#344155; }

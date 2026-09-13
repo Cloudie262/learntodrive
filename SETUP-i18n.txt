@@ -1,0 +1,23 @@
+LEARN2DRIVE — SHARED LANGUAGE AND THEME
+
+Extract this ZIP into your existing project folder, retaining its folder structure.
+Open index.html through your usual web server or GitHub Pages.
+Only index.html has a language toggle and a theme toggle.
+New visitors start with Myanmar and light mode. Saved choices persist across pages,
+refreshes and browser tabs on the same origin. Existing saved choices are respected.
+
+New files: i18n.js, i18n-messages.js, site-settings.css.
+Updated HTML pages load them automatically. No npm, backend or CDN is needed for i18n.
+Existing CSS files and product logic are retained. The login demonstration remains.
+The supplied question and article translations are reused.
+
+To add UI translations, use data-en="English text" and data-mm="Myanmar text"
+on a text label, or add a key in i18n-messages.js and use data-i18n="key".
+
+Verification: browser page-load checks, home toggles, navigation, cross-tab sync,
+quiz answer/score preservation and demo login with profile contact linking passed.
+
+Existing archive issue: mock-test.html references mock-test-login.js, but that file
+was not included in the supplied ZIP. Retain your existing copy when deploying;
+this update does not create or change the exam login guard.
+The old homep-settings.js reference now points to the existing index-settings.js.
